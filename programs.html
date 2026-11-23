@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Our Programs — Morning Star Matriculation School</title>
+<link rel="icon" href="assets/logo.jpeg">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="School Our Programs" description="K-10 Our Programs page: banner hero, sticky quick-jump pills with scroll-spy, four stage sections (Pre-Primary, Primary, Middle, High) with alternating splits, why-it-works, CTA, shared footer, matches the School Homepage brand." -->
+<helmet>
+<style id="ds-tokens">
+
+/* tokens/fonts.css */
+/* Webfonts. Display = Spectral (warm editorial serif, heritage voice).
+   Body = Public Sans (clean neutral modern sans).
+   NOTE: loaded from Google Fonts (no brand-owned font files were provided).
+   See readme.md → Typography for the substitution flag. */
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* tokens/colors.css */
+/* Morning Star — Color tokens.
+   Palette sampled from the school crest — GREEN + WHITE only.
+   PRIMARY: white / paper (the crest field and every major surface).
+   SECONDARY: Laurel Green (the crest wreath) — structure AND interaction.
+   No blue and no gold anywhere in the system. Star red survives as a single
+   hairline accent (the crest star); cream is a warm off-white band tint. */
+:root{
+  /* ---- White & paper (PRIMARY) ---- */
+  --white:#FFFFFF;
+  --paper:#FFFFFF;            /* card surfaces */
+  --paper-warm:#FDFCF6;       /* barely-warm page alternative */
+
+  /* ---- Laurel Green (SECONDARY brand — structure + interaction) ---- */
+  --laurel-950:#16240A;   /* deepest — dark bands, footer */
+  --laurel-900:#22350A;   /* headings */
+  --laurel-800:#31490E;
+  --laurel-700:#425F12;
+  --laurel-600:#557A17;   /* core action: buttons, links, focus */
+  --laurel-500:#73A91E;   /* core laurel — crest wreath, accents */
+  --laurel-400:#8FBF45;
+  --laurel-300:#B5D687;
+  --laurel-200:#CFE5AE;   /* muted text on dark green */
+  --laurel-100:#E5F1CD;
+  --laurel-050:#F4F9E9;
+
+  /* ---- Book Cream (warm off-white band tint) ---- */
+  --cream-050:#FFFEF4;
+  --cream-100:#FFFCE9;
+  --cream-200:#FFF9D5;
+  --cream-300:#F6EDB5;
+  --cream-400:#E7DA93;
+  --cream-500:#CFBF6E;
+  --cream-600:#A8974C;
+
+  /* ---- Star Red (hairline accent only — crest star) ---- */
+  --star-700:#A8210C;
+  --star-600:#C42710;
+  --star-500:#DE2C12;
+  --star-300:#EE8B7A;
+  --star-100:#FBDDD7;
+
+  /* ---- Neutrals (green-leaning greys → Ink) ---- */
+  --stone-050:#F7F8F4;
+  --stone-100:#F0F2EA;
+  --stone-200:#E3E7DA;
+  --stone-300:#CFD5C2;
+  --ink-900:#232418;     /* default body text (never pure black) */
+  --ink-700:#3F412F;
+  --ink-500:#63664F;
+  --ink-400:#878A70;
+
+  /* ---- Back-compat aliases: the retired blue ramp now resolves to deep green ---- */
+  --indigo-900:var(--laurel-950);
+  --indigo-800:var(--laurel-900);
+  --indigo-700:var(--laurel-800);
+  --indigo-600:var(--laurel-700);
+  --indigo-500:var(--laurel-600);
+  --indigo-300:var(--laurel-200);
+  --indigo-100:var(--laurel-100);
+  --indigo-050:var(--laurel-050);
+
+  /* ---- Back-compat aliases: the retired gold ramp now resolves to crest green ---- */
+  --gold-600:var(--laurel-600);
+  --gold-500:var(--laurel-500);
+  --gold-300:var(--laurel-300);
+  --gold-100:var(--laurel-100);
+
+  /* ---- Back-compat aliases (older ramp names) ---- */
+  --teal-900:var(--laurel-950);
+  --teal-800:var(--laurel-800);
+  --teal-700:var(--laurel-700);
+  --teal-600:var(--laurel-600);
+  --teal-500:var(--laurel-500);
+  --teal-300:var(--laurel-300);
+  --teal-100:var(--laurel-100);
+  --teal-050:var(--laurel-050);
+  --green-700:var(--laurel-800);
+  --green-600:var(--laurel-600);
+  --green-500:var(--laurel-500);
+  --green-300:var(--laurel-300);
+  --green-100:var(--laurel-100);
+  --saffron-700:var(--star-700);
+  --saffron-600:var(--star-600);
+  --saffron-500:var(--star-500);
+  --saffron-300:var(--star-300);
+  --saffron-100:var(--star-100);
+  --coral-700:var(--star-700);
+  --coral-600:var(--star-600);
+  --coral-500:var(--star-500);
+  --coral-300:var(--star-300);
+  --coral-100:var(--star-100);
+  --ivory:var(--white);
+  --sand-100:var(--stone-100);
+  --sand-200:var(--stone-200);
+  --sand-300:var(--stone-300);
+  --charcoal-900:var(--ink-900);
+  --charcoal-700:var(--ink-700);
+  --charcoal-500:var(--ink-500);
+  --charcoal-400:var(--ink-400);
+
+  /* ---- Semantic aliases ---- */
+  --brand-primary:var(--laurel-600);        /* actionable: buttons, links, active states */
+  --brand-primary-strong:var(--laurel-800);
+  --brand-secondary:var(--laurel-900);      /* institutional: headings, outline buttons */
+  --brand-surface:var(--white);
+  --brand-accent:var(--laurel-500);         /* bright crest green — tags, badges */
+  --brand-accent-warm:var(--star-500);      /* crest star red — hairline accent only */
+
+  --surface-page:var(--white);
+  --surface-card:var(--paper);
+  --surface-raised:var(--paper);
+  --surface-sunken:var(--stone-100);
+  --surface-warm:var(--cream-100);          /* optional warm band */
+  --surface-inverse:var(--laurel-950);
+  --surface-accent-soft:var(--laurel-050);
+  --surface-green-soft:var(--laurel-100);
+  --surface-coral-soft:var(--star-100);
+  --surface-gold-soft:var(--laurel-100);
+
+  --text-strong:var(--laurel-900);           /* headings, nav logo */
+  --text-body:var(--ink-900);
+  --text-muted:var(--ink-500);
+  --text-faint:var(--ink-400);
+  --text-on-brand:var(--white);
+  --text-on-brand-muted:var(--laurel-200);
+  --text-link:var(--laurel-700);
+  --text-link-hover:var(--laurel-950);
+
+  --border-hairline:var(--stone-200);
+  --border-soft:var(--stone-300);
+  --border-strong:var(--laurel-100);
+  --border-focus:var(--laurel-600);
+
+  --star:var(--star-500);
+}
+a{color:var(--text-link)}
+a:hover{color:var(--text-link-hover)}
+
+/* tokens/typography.css */
+/* Morning Star — Typography tokens */
+:root{
+  --font-display:'Spectral', Georgia, 'Times New Roman', serif;
+  --font-body:'Public Sans', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+
+  /* Type scale (editorial, generous) */
+  --fs-display:clamp(48px, 6vw, 82px); /* @kind font */
+  --fs-h1:clamp(38px, 4.4vw, 60px); /* @kind font */
+  --fs-h2:clamp(30px, 3vw, 42px); /* @kind font */
+  --fs-h3:24px; /* @kind font */
+  --fs-h4:20px; /* @kind font */
+  --fs-body-lg:19px; /* @kind font */
+  --fs-body:17px; /* @kind font */
+  --fs-body-sm:15px; /* @kind font */
+  --fs-caption:13px; /* @kind font */
+  --fs-metadata:12px; /* @kind font */
+
+  /* Line heights */
+  --lh-display:1.04; /* @kind font */
+  --lh-heading:1.12; /* @kind font */
+  --lh-body:1.62; /* @kind font */
+  --lh-tight:1.3; /* @kind font */
+
+  /* Weights */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+
+  /* Tracking */
+  --ls-display:-0.02em; /* @kind font */
+  --ls-heading:-0.01em; /* @kind font */
+  --ls-eyebrow:0.16em; /* @kind font */
+  --ls-body:0; /* @kind font */
+}
+
+/* tokens/spacing.css */
+/* Morning Star — Spacing, radii, layout tokens */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+
+  /* Section rhythm */
+  --section-y:clamp(64px, 9vw, 128px); /* @kind spacing */
+  --gutter:clamp(20px, 5vw, 72px); /* @kind spacing */
+  --content-max:1200px;
+  --measure:64ch; /* @kind spacing */
+
+  /* Radii — restrained */
+  --radius-xs:4px;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:18px;
+  --radius-pill:999px;
+
+  /* Grid */
+  --grid-cols:12; /* @kind other */
+  --grid-gap:clamp(16px, 2vw, 28px);
+}
+
+/* tokens/effects.css */
+/* Morning Star — Shadows, borders, motion */
+:root{
+  /* Soft shadows (green-tinted, low spread) */
+  --shadow-xs:0 1px 2px rgba(34,53,10,0.07);
+  --shadow-sm:0 2px 8px rgba(34,53,10,0.08);
+  --shadow-md:0 10px 30px rgba(34,53,10,0.10);
+  --shadow-lg:0 24px 60px rgba(34,53,10,0.16);
+  --shadow-focus:0 0 0 3px rgba(85,122,23,0.35);
+
+  --border-thin:1px solid var(--border-hairline);
+  --border-card:1px solid var(--border-soft);
+
+  /* Motion */
+  --ease-out:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1); /* @kind other */
+  --dur-fast:140ms; /* @kind other */
+  --dur-base:240ms; /* @kind other */
+  --dur-slow:520ms; /* @kind other */
+
+  --hover-lift:translateY(-3px); /* @kind other */
+  --press-scale:scale(0.985); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+}
+
+/* styles.css */
+@import url('tokens/fonts.css');
+@import url('tokens/colors.css');
+@import url('tokens/typography.css');
+@import url('tokens/spacing.css');
+@import url('tokens/effects.css');
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--ink-900,#232418);background:var(--white,#fff);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html{scroll-behavior:smooth}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(24px,4vw,56px)}
+.sec{padding:clamp(56px,8vw,100px) 0}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--laurel-600,#557a17);margin:0 0 14px}
+.h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(32px,3.8vw,50px);line-height:1.06;letter-spacing:-.015em;color:var(--laurel-900,#22350a);margin:0 0 16px;text-wrap:pretty}
+.lead{font-size:18px;line-height:1.62;color:var(--ink-700,#3f412f);max-width:64ch;margin:0}
+.card{background:#fff;border:1px solid var(--stone-200,#e3e7da);border-radius:16px;box-shadow:0 2px 8px rgba(34,53,10,.06);transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease,border-color .35s ease}
+.card:hover{transform:translateY(-6px);box-shadow:0 26px 50px -22px rgba(34,53,10,.34);border-color:var(--laurel-200,#cfe5ae)}
+.subcard{position:relative;overflow:hidden;isolation:isolate}
+.subcard::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--laurel-500,#73a91e),var(--laurel-300,#b5d687),var(--star-500,#de2c12));transform:scaleX(0);transform-origin:left center;transition:transform .5s cubic-bezier(.22,.61,.36,1);z-index:2}
+.subcard:hover::before{transform:scaleX(1)}
+.subcard::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,.55) 50%,transparent 70%);transform:translateX(-120%);transition:transform .7s ease;pointer-events:none;z-index:1}
+.subcard:hover::after{transform:translateX(120%)}
+.subcard .glyph{background:linear-gradient(135deg,var(--laurel-100,#e5f1cd),var(--laurel-050,#f4f9e9)) !important;box-shadow:inset 0 0 0 1px rgba(85,122,23,.14);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
+.subcard:hover .glyph{transform:scale(1.12) rotate(-5deg);box-shadow:0 10px 22px -8px rgba(85,122,23,.5)}
+.ph{background-image:repeating-linear-gradient(135deg,rgba(85,122,23,.10) 0 2px,transparent 2px 11px);background-color:var(--laurel-050,#f4f9e9);display:flex;align-items:center;justify-content:center;color:var(--laurel-700,#425f12);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.07em;text-align:center;padding:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;border-radius:999px;padding:13px 26px;cursor:pointer;border:none;transition:transform .18s ease,box-shadow .18s ease,background .2s ease}
+.btn-cta{background:var(--star-500,#de2c12);color:#fff;box-shadow:0 10px 24px -8px rgba(222,44,18,.5)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(222,44,18,.55)}
+.btn-outline{background:transparent;color:var(--laurel-800,#31490e);border:1.5px solid var(--laurel-300,#b5d687)}
+.btn-outline:hover{background:var(--laurel-050,#f4f9e9);border-color:var(--laurel-500,#73a91e);transform:translateY(-2px)}
+.btn-ghost-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}.btn-ghost-light:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.grid{display:grid;gap:22px}
+.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+.glyph{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0}
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.why-pro{position:relative;background:linear-gradient(160deg,#fff,var(--laurel-050,#f4f9e9));border:1px solid var(--stone-200,#e3e7da);border-radius:18px;padding:34px 34px 30px;display:flex;flex-direction:column;gap:16px;overflow:hidden;transition:border-color .35s ease,box-shadow .35s ease,transform .35s cubic-bezier(.22,.61,.36,1)}
+.why-pro::before{content:attr(data-no);position:absolute;top:-.28em;right:16px;font-family:'Spectral',Georgia,serif;font-weight:700;font-size:110px;line-height:1;background:linear-gradient(160deg,var(--laurel-300,#b5d687),var(--laurel-500,#73a91e));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;opacity:.5;pointer-events:none}
+.why-pro::after{content:"";position:absolute;left:0;right:0;bottom:0;height:4px;background:linear-gradient(90deg,var(--laurel-500,#73a91e),var(--star-500,#de2c12));transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.why-pro:hover{border-color:var(--laurel-300,#b5d687);box-shadow:0 24px 48px -22px rgba(34,53,10,.4);transform:translateY(-6px)}
+.why-pro:hover::after{transform:scaleX(1)}
+.why-pro-ic{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:22px;background:linear-gradient(135deg,var(--laurel-100,#e5f1cd),var(--laurel-050,#f4f9e9));color:var(--laurel-700,#425f12);box-shadow:inset 0 0 0 1px rgba(85,122,23,.14);position:relative;transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .3s ease}
+.why-pro:hover .why-pro-ic{transform:scale(1.1) rotate(-6deg);box-shadow:0 12px 24px -8px rgba(85,122,23,.5)}
+.why-pro-title{font-family:'Spectral',Georgia,serif;font-size:20px;font-weight:600;color:var(--laurel-900,#22350a);line-height:1.3;text-wrap:pretty;position:relative}
+.why-pro-desc{font-size:14.5px;line-height:1.6;color:var(--ink-700,#3f412f);margin:0;position:relative;max-width:42ch}
+.why-pro{opacity:0;transform:perspective(900px) rotateX(-14deg) translateY(34px);transform-origin:top center}
+.why-pro.why-in{animation:whyRise .7s cubic-bezier(.22,1,.36,1) forwards}
+.why-pro.why-in:nth-child(2){animation-delay:.12s}
+.why-pro.why-in:nth-child(3){animation-delay:.24s}
+.why-pro.why-in:nth-child(4){animation-delay:.36s}
+@keyframes whyRise{to{opacity:1;transform:perspective(900px) rotateX(0) translateY(0)}}
+.why-pro:hover .why-pro-ic{animation:whyPop .5s ease}
+@keyframes whyPop{0%{transform:scale(1)}45%{transform:scale(1.18) rotate(-6deg)}100%{transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.why-pro{opacity:1;transform:none;animation:none}}
+@media (max-width:640px){.why-grid{grid-template-columns:1fr}}
+.morelink{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;color:var(--laurel-700,#425f12);text-decoration:none}
+.morelink:hover{color:var(--laurel-950,#16240a)}
+/* Nav (shared) */
+.msn-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.msn-root.msn-scrolled .msn-header{border-bottom-color:var(--stone-200,#e3e7da);box-shadow:0 8px 26px -14px rgba(34,53,10,.4)}
+.msn-bar{max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px);height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:height .3s ease}
+.msn-root.msn-scrolled .msn-bar{height:66px}
+.msn-desktop{display:flex;align-items:center;gap:clamp(14px,2vw,30px)}
+.msn-link{position:relative;display:inline-flex;align-items:center;padding:10px clamp(9px,1.2vw,15px);font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-radius:8px;white-space:nowrap;transition:color .2s ease}
+.msn-link::after{content:"";position:absolute;left:15px;right:15px;bottom:5px;height:2px;border-radius:2px;background:var(--laurel-500,#73a91e);transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.msn-link:hover{color:var(--laurel-700,#425f12)}.msn-link:hover::after{transform:scaleX(1)}
+.msn-link:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:3px}
+.msn-link.msn-active{color:var(--laurel-700,#425f12)}.msn-link.msn-active::after{background:var(--star-500,#de2c12);transform:scaleX(1)}
+.msn-toggle{display:none;order:-1;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:46px;height:46px;background:transparent;border:none;border-radius:10px;cursor:pointer}
+.msn-toggle:hover{background:var(--stone-100,#f0f2ea)}
+.msn-line{width:24px;height:2px;border-radius:2px;background:var(--laurel-900,#22350a);transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .2s ease}
+.msn-root.msn-open .msn-line:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.msn-root.msn-open .msn-line:nth-child(2){opacity:0}
+.msn-root.msn-open .msn-line:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.msn-overlay{position:fixed;inset:0;z-index:200;background:rgba(22,36,10,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .32s ease}
+.msn-root.msn-open .msn-overlay{opacity:1;pointer-events:auto}
+.msn-drawer{position:fixed;top:0;right:0;height:100vh;width:min(87vw,360px);z-index:210;background:#fff;box-shadow:-24px 0 48px -24px rgba(22,36,10,.4);transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:22px 22px 28px;display:flex;flex-direction:column;overflow-y:auto}
+.msn-root.msn-open .msn-drawer{transform:translateX(0)}
+.msn-dlink{display:flex;align-items:center;justify-content:space-between;padding:16px 4px;font-size:18px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-bottom:1px solid var(--stone-200,#e3e7da);transition:color .2s ease}
+.msn-dlink:hover{color:var(--laurel-700,#425f12)}
+/* Programs-specific */
+.crumb{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--laurel-200,#cfe5ae)}
+.crumb a{text-decoration:none;color:var(--laurel-200,#cfe5ae)}.crumb a:hover{color:#fff}
+.pillbar{position:sticky;top:65px;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:saturate(150%) blur(10px);-webkit-backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--stone-200,#e3e7da)}
+.pillrow{display:flex;gap:10px;overflow-x:auto;padding:13px 0;scrollbar-width:none}
+.pillrow::-webkit-scrollbar{display:none}
+.pill{white-space:nowrap;font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;border:1.5px solid var(--stone-300,#cfd5c2);color:var(--ink-700,#3f412f);text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
+.pill:hover{border-color:var(--laurel-400,#8fbf45)}
+.pill.active{background:var(--laurel-600,#557a17);border-color:var(--laurel-600,#557a17);color:#fff}
+.pill:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:2px}
+.pillrow{align-items:center}
+.pillrow .pill:not(:last-child){margin-right:30px}
+.pillrow .pill:not(:last-child)::after{content:"\2192";position:absolute;right:-22px;top:50%;transform:translateY(-50%);color:var(--laurel-400,#8fbf45);font-weight:700;font-size:14px}
+.pill-no{display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:var(--laurel-100,#e5f1cd);color:var(--laurel-700,#425f12);font-size:11px;font-weight:700;margin-right:8px}
+.pill.active .pill-no{background:rgba(255,255,255,.25);color:#fff}
+.climb{position:relative;display:grid;grid-template-columns:1fr 1.05fr;gap:clamp(24px,4vw,48px);align-items:center}
+.climb-copy .replay{margin-top:22px;font:inherit;font-weight:600;font-size:14px;border:1px solid var(--laurel-300,#b5d687);background:#fff;color:var(--laurel-700,#425f12);padding:10px 20px;border-radius:999px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+.climb-copy .replay:hover{background:var(--laurel-050,#f4f9e9)}
+.scene{position:relative;height:520px;border-radius:22px;overflow:hidden;background:linear-gradient(#bfe0f5,#e8f4dd 62%,#dff0c8)}
+.scene .sky{position:absolute;inset:0;transition:transform 1s ease}
+.scene .sun{position:absolute;top:36px;right:56px;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#fff3c4,#ffd24d);box-shadow:0 0 40px #ffe08a}
+.scene .cloud{position:absolute;background:#fff;border-radius:99px;opacity:.85}
+.scene .hills{position:absolute;left:0;right:0;bottom:0;height:110px;background:radial-gradient(120% 100% at 50% 100%,var(--laurel-300,#b5d687),var(--laurel-400,#8fbf45));border-radius:50% 50% 0 0/60px 60px 0 0}
+.ladder{position:absolute;left:50%;top:26px;bottom:14px;width:150px;transform:translateX(-50%)}
+.ladder .rail{position:absolute;top:0;bottom:0;width:10px;background:linear-gradient(var(--laurel-700,#425f12),var(--laurel-600,#557a17));border-radius:8px;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.ladder .rail.l{left:24px}.ladder .rail.r{right:24px}
+.ladder .rungs{position:absolute;inset:0;display:flex;flex-direction:column-reverse}
+.ladder .rung{position:relative;flex:1}
+.ladder .rung::before{content:"";position:absolute;left:24px;right:24px;top:50%;height:7px;background:var(--laurel-500,#73a91e);border-radius:5px;transform:translateY(-50%);opacity:.55;transition:opacity .3s,background .3s}
+.ladder .rung.done::before{opacity:1;background:var(--laurel-700,#425f12)}
+.ladder .rung .gn{position:absolute;right:calc(100% + 14px);top:50%;transform:translateY(-50%);font-family:'Spectral',Georgia,serif;font-weight:700;font-size:15px;color:#fff;background:var(--laurel-500,#73a91e);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 8px rgba(0,0,0,.18);transition:transform .3s,background .3s}
+.ladder .rung.current .gn{transform:translateY(-50%) scale(1.25);background:var(--star-500,#de2c12)}
+.ladder .rung .lab{position:absolute;left:calc(100% + 14px);top:50%;transform:translateY(-50%);white-space:nowrap;font-size:12px;font-weight:700;color:var(--laurel-800,#31490e);background:rgba(255,255,255,.82);padding:3px 9px;border-radius:99px;opacity:0;transition:opacity .3s}
+.ladder .rung.current .lab,.ladder .rung.done .lab{opacity:1}
+.climb-duo{position:absolute;left:50%;transform:translateX(-50%);bottom:6px;z-index:5;transition:bottom .82s cubic-bezier(.34,1.5,.55,1)}
+.climber{color:#31490e;display:block}
+.climber.hop{animation:climbhop .82s ease}
+@keyframes climbhop{40%{transform:translateY(-12px)}}
+.climb-ball{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:16px;height:16px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ff8a5c,var(--star-500,#de2c12));box-shadow:0 3px 7px rgba(222,44,18,.4);z-index:1}
+.climb-hud{position:absolute;left:16px;bottom:14px;background:rgba(34,53,10,.82);color:#fff;padding:8px 14px;border-radius:12px;font-size:13px;font-weight:700;z-index:6}
+.climb-mortar{position:absolute;top:0;left:50%;transform:translateX(-50%) scale(0) translateY(-6px);transition:transform .45s cubic-bezier(.34,1.6,.5,1);z-index:6;pointer-events:none}
+.climb-mortar.on{transform:translateX(-50%) scale(1) translateY(0)}
+.climb-badge{position:absolute;top:calc(100% + 8px);left:50%;transform:translateX(-50%) translateY(6px) rotate(-4deg);font-family:'Spectral',Georgia,serif;font-weight:700;font-size:15px;color:#fff;background:var(--star-500,#de2c12);padding:5px 12px;border-radius:99px;box-shadow:0 6px 16px rgba(222,44,18,.4);opacity:0;transition:opacity .4s .15s,transform .4s .15s;z-index:7;white-space:nowrap;pointer-events:none}
+.climb-badge.on{opacity:1;transform:translateX(-50%) translateY(0) rotate(-4deg)}
+.climb-decor{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:1}
+.balloon{position:absolute;width:26px;height:32px;border-radius:50%;opacity:.9;animation:floatup linear infinite}
+.balloon::after{content:"";position:absolute;top:100%;left:50%;width:1px;height:18px;background:rgba(34,53,10,.35)}
+@keyframes floatup{0%{transform:translateY(20px)}50%{transform:translateY(-14px)}100%{transform:translateY(20px)}}
+.bird{position:absolute;width:22px;height:12px;color:var(--laurel-700,#425f12);opacity:.7;animation:drift linear infinite}
+@keyframes drift{0%{transform:translateX(-60px)}100%{transform:translateX(560px)}}
+.book{position:absolute;width:18px;height:14px;border-radius:2px;opacity:.85;animation:floatup linear infinite}
+.spark{position:absolute;width:10px;height:10px;pointer-events:none;opacity:0}
+.spark.go{animation:sparkpop .8s ease-out forwards}
+@keyframes sparkpop{0%{opacity:1;transform:scale(.2) rotate(0)}100%{opacity:0;transform:scale(1.3) rotate(140deg) translateY(-16px)}}
+@media (max-width:820px){.climb{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){.climb-duo{transition:none}.climber.hop{animation:none}.climb-ball{animation:none}.balloon,.bird,.book{animation:none}}
+.cta-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(32px,5vw,64px);align-items:center;text-align:left;max-width:1040px}
+.cta-btns{display:flex;gap:14px;justify-content:flex-start;flex-wrap:wrap}
+.cta-panel{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:clamp(22px,3vw,30px)}
+.cta-panel h3{font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;color:#fff;margin:0 0 6px}
+.cta-panel .ph3{color:var(--laurel-200,#cfe5ae);font-size:13px;margin:0 0 14px}
+.cta-stage{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid rgba(255,255,255,.12)}
+.cta-stage:first-of-type{border-top:0}
+.cta-stage .n{flex:none;width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.14);color:#fff;font-family:'Spectral',Georgia,serif;font-weight:700;font-size:14px;display:flex;align-items:center;justify-content:center}
+.cta-stage b{color:#fff;font-weight:600;font-size:15px}
+.cta-stage em{color:var(--laurel-200,#cfe5ae);font-size:13px;margin-left:auto;font-weight:600;font-style:normal;white-space:nowrap}
+@media (max-width:820px){.cta-grid{grid-template-columns:1fr;text-align:center;gap:32px}.cta-btns{justify-content:center}.cta-panel{text-align:left}}
+.stage{scroll-margin-top:132px;position:relative;overflow:hidden}
+.stage .wrap{position:relative;z-index:1}
+.ghost{position:absolute;top:50%;left:-2vw;transform:translateY(-50%);font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(180px,26vw,400px);line-height:.8;color:var(--laurel-900,#22350a);opacity:.04;pointer-events:none;z-index:0;user-select:none}
+.stage.rev .ghost{left:auto;right:-2vw}
+.nb{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.stage.rev .nb{direction:rtl}.stage.rev .nb>*{direction:ltr}
+.nb-num{font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(88px,11vw,146px);line-height:.78;margin:0 0 16px;background:linear-gradient(150deg,var(--laurel-500,#73a91e),var(--laurel-800,#31490e));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;letter-spacing:-.02em}
+.nb-num.reveal{opacity:0;transform:translateY(20px) scale(.82);transform-origin:left bottom;transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.34,1.4,.5,1)}
+.nb-num.reveal.in{opacity:1;transform:none}
+.nb-panel{background:linear-gradient(155deg,var(--laurel-800,#31490e),var(--laurel-950,#16240a));border-radius:20px;padding:clamp(26px,3vw,38px);color:#fff;position:relative;overflow:hidden;box-shadow:0 30px 60px -30px rgba(34,53,10,.7)}
+.nb-panel::before{content:"";position:absolute;top:-40%;right:-20%;width:70%;height:180%;background:radial-gradient(circle,rgba(143,191,69,.22),transparent 70%);pointer-events:none}
+.nb-pt{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687);margin:0 0 6px;font-weight:700;position:relative}
+.nb-row{display:flex;gap:16px;padding:18px 0;border-top:1px solid rgba(255,255,255,.13);position:relative}
+.nb-row:first-of-type{border-top:0}
+.nb-row .ic{flex:none;width:46px;height:46px;border-radius:13px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.16);display:flex;align-items:center;justify-content:center;font-size:20px;color:var(--laurel-300,#b5d687);transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .3s ease}
+.nb-row:hover .ic{transform:scale(1.12) rotate(-6deg);background:rgba(255,255,255,.18)}
+.nb-row h4{margin:0 0 4px;font-size:15.5px;color:#fff;font-weight:600}
+.nb-row p{margin:0;font-size:13.5px;color:var(--laurel-200,#cfe5ae);line-height:1.55}
+.nb-row.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+.nb-row.reveal.in{opacity:1;transform:none}
+@media(max-width:900px){.nb{grid-template-columns:1fr;gap:30px}.ghost{display:none}.stage.rev .nb{direction:ltr}}
+.stagetag{display:inline-flex;align-items:center;gap:8px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:6px 14px;border-radius:999px;margin-bottom:16px}
+.stage .split{display:block}
+.split{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,5vw,60px);align-items:center}
+.split>div:only-child{max-width:none}
+.subcard .ic{transition:transform .25s ease}
+.subcard:hover .ic{transform:scale(1.14) translateY(-3px)}
+.mini{position:relative;overflow:hidden;border:1px solid var(--stone-200,#e3e7da);border-radius:14px;padding:22px 24px 22px 26px;background:#fff;box-shadow:0 2px 8px rgba(34,53,10,.05);transition:transform .35s cubic-bezier(.22,.61,.36,1),box-shadow .35s ease,border-color .35s ease}
+.mini::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:linear-gradient(var(--laurel-500,#73a91e),var(--laurel-700,#425f12));transform:scaleY(0);transform-origin:top center;transition:transform .5s cubic-bezier(.22,.61,.36,1)}
+.mini:hover{transform:translateY(-5px);box-shadow:0 22px 44px -20px rgba(34,53,10,.32);border-color:var(--laurel-200,#cfe5ae)}
+.mini:hover::before{transform:scaleY(1)}
+.stagetag{position:relative;box-shadow:0 6px 16px -8px rgba(85,122,23,.4);animation:tagfloat 4s ease-in-out infinite}
+.stagetag>span:first-child{display:inline-flex;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+.stage:hover .stagetag>span:first-child{transform:translateY(-2px) rotate(-8deg)}
+@keyframes tagfloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s cubic-bezier(.22,.61,.36,1),transform .7s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){.g3{grid-template-columns:repeat(2,1fr)}.split{grid-template-columns:1fr !important}.split .imgcol{order:-1 !important}}
+@media (max-width:960px){.msn-desktop{display:none}.msn-toggle{display:flex}.msn-bar{height:62px;padding:0 18px}.msn-root.msn-scrolled .msn-bar{height:62px}.pillbar{top:61px}}
+@media (min-width:961px){.msn-overlay,.msn-drawer{display:none}}
+@media (max-width:640px){.g3,.g2{grid-template-columns:1fr}.hero-cta{flex-direction:column !important;align-items:stretch !important}}
+.msn-root{overflow-x:hidden}
+@media (max-width:600px){
+.sec{padding:clamp(44px,9vw,64px) 0}
+.climb{gap:22px}
+.scene{height:440px;border-radius:16px}
+.scene .sun{width:46px;height:46px;top:24px;right:34px}
+.ladder{width:118px;top:22px;bottom:18px}
+.ladder .rail.l{left:18px}.ladder .rail.r{right:18px}
+.ladder .rung::before{left:18px;right:18px}
+.ladder .rung .gn{width:26px;height:26px;font-size:13px;right:calc(100% + 8px)}
+.ladder .rung .lab{left:calc(100% + 8px);font-size:11px;padding:2px 7px}
+.climb-badge{font-size:13px;padding:4px 10px}
+.climber svg{width:34px;height:44px}
+.climb-hud{font-size:12px;padding:6px 11px;left:12px;bottom:12px}
+.balloon{width:20px;height:24px}.book{width:15px;height:12px}
+.cta-panel{padding:20px}
+.cta-stage em{font-size:12px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}.reveal{opacity:1 !important;transform:none !important}.stagetag{animation:none}.subcard::after{display:none}}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--laurel-900,#22350a);color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:top .2s ease}.skip-link:focus{top:12px}
+</style>
+</helmet>
+
+<div id="msn-root" class="msn-root">
+<a href="#top" class="skip-link">Skip to main content</a>
+<header class="msn-header">
+  <div class="msn-bar">
+    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+      <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
+      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <span style="display:flex;flex-direction:column;line-height:1.08">
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:var(--laurel-900,#22350a)">Morning Star</span>
+        <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--laurel-600,#557a17)">Matriculation School</span>
+        <span style="font-size:9.5px;letter-spacing:.02em;font-weight:700;color:var(--laurel-700,#425f12);margin-top:2px">(Run by Lions Club of Karur Host Charitable Trust)</span>
+      </span>
+    </a>
+    <div class="msn-desktop">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:2px">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <a href="{{ link.href }}" class="{{ link.cls }}" aria-current="{{ link.ariaCurrent }}">{{ link.label }}</a>
+        </sc-for>
+      </nav>
+      <a href="admission.html" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
+    </div>
+    <button id="msn-toggle" type="button" class="msn-toggle" onClick="{{ toggleDrawer }}" aria-label="Open menu" aria-expanded="false" aria-controls="msn-drawer">
+      <span class="msn-line"></span><span class="msn-line"></span><span class="msn-line"></span>
+    </button>
+  </div>
+</header>
+<div class="msn-overlay" onClick="{{ closeDrawer }}" aria-hidden="true"></div>
+<aside id="msn-drawer" class="msn-drawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:var(--laurel-900,#22350a)">Menu</span>
+    <button type="button" onClick="{{ closeDrawer }}" aria-label="Close menu" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--stone-100,#f0f2ea);border:none;border-radius:10px;cursor:pointer;font-size:20px;color:var(--laurel-900,#22350a)">✕</button>
+  </div>
+  <nav aria-label="Mobile" style="display:flex;flex-direction:column">
+    <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+      <a href="{{ link.href }}" class="msn-dlink" onClick="{{ closeDrawer }}">{{ link.label }} <span aria-hidden="true" style="color:var(--laurel-400,#8fbf45);font-size:15px">→</span></a>
+    </sc-for>
+  </nav>
+  <a href="admission.html" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
+</aside>
+
+<main id="top">
+<!-- 1. HERO -->
+<section style="position:relative;background:linear-gradient(120deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="ph" aria-hidden="true" style="position:absolute;inset:0;opacity:.22;background-color:var(--laurel-800,#31490e);color:transparent"></div>
+  <div class="wrap" style="position:relative;padding:clamp(48px,7vw,84px) clamp(24px,4vw,56px) clamp(52px,7vw,80px)">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="#top">Home</a> <span aria-hidden="true">/</span> <span style="color:#fff">Our Programs</span></nav>
+    <h1 style="font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.06;letter-spacing:-.02em;color:#fff;margin:20px 0 14px;max-width:16ch;text-wrap:pretty">Our Programs</h1>
+    <p style="font-size:clamp(16px,2vw,20px);line-height:1.5;color:var(--laurel-200,#cfe5ae);margin:0;max-width:56ch">A structured learning journey from early years through high school, designed to nurture every stage of growth.</p>
+  </div>
+</section>
+
+<!-- 2. QUICK-JUMP PILLS -->
+<div class="pillbar">
+  <div class="wrap"><div class="pillrow" role="navigation" aria-label="Jump to stage">
+    <sc-for list="{{ stages }}" as="st" hint-placeholder-count="4">
+      <a href="{{ st.anchor }}" class="pill" data-target="{{ st.id }}"><span class="pill-no" aria-hidden="true">{{ st.num }}</span>{{ st.label }}</a>
+    </sc-for>
+  </div></div>
+</div>
+<section style="padding:clamp(40px,6vw,64px) 0 0">
+  <div class="wrap"><p class="eyebrow">One School · One Continuous Journey</p><p class="lead" style="max-width:70ch">Every child grows up within the same Morning Star family, moving step by step through connected stages, from early exploration to board-exam readiness. It is one continuous path, not separate schools, with familiar teachers, a shared campus, and consistent values at every level.</p></div>
+</section>
+
+<!-- 2b. LADDER CLIMB (Grades 1-12) -->
+<section class="sec" style="padding-bottom:clamp(32px,5vw,56px)">
+  <div class="wrap">
+    <div class="climb">
+      <div class="climb-copy">
+        <p class="eyebrow">The Full Journey · Grades 1 to 10</p>
+        <h2 class="h2" style="margin-bottom:8px">Climbing to Grade 10</h2>
+        <p class="lead">Every child begins at Grade 1 and climbs, step by step, all the way to Grade 10, one continuous journey up the same ladder, within the same school family.</p>
+        <button type="button" class="replay" onClick="{{ replayClimb }}"><span aria-hidden="true">↺</span> Watch the climb again</button>
+      </div>
+      <div class="scene" id="climb-scene">
+        <div class="sky" id="climb-sky"><div class="sun"></div>
+          <div class="cloud" style="top:70px;left:60px;width:90px;height:26px"></div>
+          <div class="cloud" style="top:130px;left:150px;width:60px;height:20px"></div>
+          <div class="cloud" style="top:90px;right:120px;width:70px;height:22px"></div>
+        </div>
+        <div class="hills"></div>
+        <div class="climb-decor" aria-hidden="true">
+          <span class="balloon" style="left:14%;top:120px;background:#de2c12;animation-duration:7s"></span>
+          <span class="balloon" style="left:8%;top:230px;background:#f0a020;animation-duration:9s;animation-delay:1s"></span>
+          <span class="balloon" style="right:12%;top:300px;background:#73a91e;animation-duration:8s;animation-delay:.5s"></span>
+          <span class="book" style="right:18%;top:180px;background:#557a17;animation-duration:6s"></span>
+          <span class="book" style="left:20%;top:340px;background:#8fbf45;animation-duration:7.5s;animation-delay:1.4s"></span>
+          <span class="bird" style="top:70px;animation-duration:11s"><svg viewBox="0 0 22 12" width="22" height="12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 8c3 0 4-5 5-5s2 5 5 5"/><path d="M11 8c3 0 4-5 5-5s2 5 5 5"/></svg></span>
+          <span class="bird" style="top:150px;animation-duration:14s;animation-delay:3s"><svg viewBox="0 0 22 12" width="18" height="10" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M1 8c3 0 4-5 5-5s2 5 5 5"/><path d="M11 8c3 0 4-5 5-5s2 5 5 5"/></svg></span>
+        </div>
+        <div class="ladder" id="climb-ladder" role="img" aria-label="A ladder from Grade 1 up to Grade 10">
+          <div class="rail l"></div><div class="rail r"></div>
+          <div class="rungs" id="climb-rungs"><sc-for list="{{ gradesLadder }}" as="r" hint-placeholder-count="10"><div class="rung"><span class="gn">{{ r.g }}</span><span class="lab">{{ r.stage }}</span></div></sc-for></div>
+          <div class="climb-duo" id="climb-duo">
+            <div class="climb-badge" id="climb-badge" aria-hidden="true">Grade 10!</div>
+            <span class="climber" id="climber" aria-hidden="true"><svg viewBox="0 0 40 50" width="40" height="50" fill="none"><circle cx="20" cy="12" r="8" fill="currentColor"/><rect x="13" y="20" width="14" height="16" rx="7" fill="currentColor"/><path d="M13 26l-8-6M27 26l8-6" stroke="currentColor" stroke-width="3.4" stroke-linecap="round"/><path d="M16 36v10M24 36v10" stroke="currentColor" stroke-width="3.6" stroke-linecap="round"/></svg></span>
+            <span class="climb-mortar" id="climb-mortar" aria-hidden="true"><svg viewBox="0 0 30 22" width="30" height="22"><path d="M15 2 2 8l13 6 13-6z" fill="#22350a"/><path d="M6 11v5c0 2 4 3.5 9 3.5s9-1.5 9-3.5v-5l-9 4z" fill="#31490e"/><path d="M28 8v6" stroke="#de2c12" stroke-width="1.6" stroke-linecap="round"/><circle cx="28" cy="15" r="1.8" fill="#de2c12"/></svg></span>
+          </div>
+        </div>
+        <div class="climb-hud" id="climb-cap">Grade 1 · Primary</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PRE-PRIMARY -->
+<section class="sec stage" id="pre-primary">
+  <div class="ghost" aria-hidden="true">01</div>
+  <div class="wrap nb">
+    <div class="nb-info">
+    <p class="nb-num">01</p>
+    <span class="stagetag" style="background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e)"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 20h10"/><path d="M10 20c5.5-2.5.8-6.4 3-10"/><path d="M9.5 9.4c1.1.8 1.8 2.2 2.3 3.7C14 11 16 9.7 17 8c1.9-3.2.5-7.7-3-8-1.1 1.2-2.3 3.2-2.5 5.3-.3 3.2 1.9 5.6 2 7.1"/><path d="M14.1 6a7 7 0 0 0-1.1 4c1.9-1.6 3-3 3-5a3 3 0 0 0-1.9-1z"/></svg></span> Step 01 · Foundation Years</span>
+    <h2 class="h2">Pre-Primary</h2>
+    <p class="lead">The foundation years, where learning begins through play, curiosity, and gentle guidance.</p>
+    </div>
+    <div class="nb-panel">
+      <p class="nb-pt">What this stage covers</p>
+      <sc-for list="{{ prePrimary }}" as="c" hint-placeholder-count="3">
+        <div class="nb-row"><div class="ic" aria-hidden="true">{{ c.glyph }}</div><div><h4>{{ c.title }}</h4><p>{{ c.detail }}</p></div></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 4. PRIMARY (image left) -->
+<section class="sec stage rev" id="primary" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="ghost" aria-hidden="true">02</div>
+  <div class="wrap nb">
+    <div class="nb-info">
+      <p class="nb-num">02</p>
+      <span class="stagetag" style="background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e)"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg></span> Step 02 · Std 1 to 5</span>
+      <h2 class="h2">Primary School</h2>
+      <p class="lead">Building strong academic foundations across the core subjects.</p>
+    </div>
+    <div class="nb-panel">
+      <p class="nb-pt">What this stage covers</p>
+      <div class="nb-row"><div class="ic" aria-hidden="true">◆</div><div><h4>Grade Range · Std 1 to 5</h4><p>Structured learning across Language, Mathematics, Science, and Social Studies with activity-based teaching methods.</p></div></div>
+      <div class="nb-row"><div class="ic" aria-hidden="true">✎</div><div><h4>Curriculum</h4><p>Follows the [State Board / Matriculation] syllabus, enriched with practical learning, project work, and regular assessments to track growth.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. MIDDLE (image right) -->
+<section class="sec stage" id="middle-school">
+  <div class="ghost" aria-hidden="true">03</div>
+  <div class="wrap nb">
+    <div class="nb-info">
+      <p class="nb-num">03</p>
+      <span class="stagetag" style="background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e)"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2v6a2 2 0 0 0 .24.96l5.52 10.08A2 2 0 0 1 18 22H6a2 2 0 0 1-1.76-2.96l5.52-10.08A2 2 0 0 0 10 8V2"/><path d="M6.45 15h11.1"/><path d="M8.5 2h7"/></svg></span> Step 03 · Std 6 to 8</span>
+      <h2 class="h2">Middle School</h2>
+      <p class="lead">Deeper conceptual learning as students transition into more independent thinking.</p>
+    </div>
+    <div class="nb-panel">
+      <p class="nb-pt">What this stage covers</p>
+      <div class="nb-row"><div class="ic" aria-hidden="true">◆</div><div><h4>Grade Range · Std 6 to 8</h4><p>Subject specialization begins with dedicated teachers per subject; focus shifts to concept clarity and analytical skills.</p></div></div>
+      <div class="nb-row"><div class="ic" aria-hidden="true">⚗</div><div><h4>Curriculum</h4><p>Comprehensive coverage of core and elective subjects, with lab-based science learning and skill-building modules.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6. HIGH SCHOOL (image left) -->
+<section class="sec stage rev" id="high-school" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="ghost" aria-hidden="true">04</div>
+  <div class="wrap nb">
+    <div class="nb-info">
+      <p class="nb-num">04</p>
+      <span class="stagetag" style="background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e)"><span aria-hidden="true"><svg viewBox="0 0 24 24" width="1em" height="1em" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span> Step 04 · Std 9 to 10</span>
+      <h2 class="h2">High School</h2>
+      <p class="lead">Preparing students for board examinations and the next chapter of their academic journey.</p>
+    </div>
+    <div class="nb-panel">
+      <p class="nb-pt">What this stage covers</p>
+      <div class="nb-row"><div class="ic" aria-hidden="true">◆</div><div><h4>Grade Range · Std 9 to 10</h4><p>Focused, exam-oriented learning with personalized mentoring and regular mock assessments.</p></div></div>
+      <div class="nb-row"><div class="ic" aria-hidden="true">⚑</div><div><h4>Curriculum</h4><p>Full Matriculation board syllabus coverage with structured revision plans, career guidance sessions, and doubt-clearing support.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7. WHY OUR STRUCTURE WORKS -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Why It Works</p>
+    <h2 class="h2" style="margin-bottom:36px">A stage-by-stage approach</h2>
+    <div class="why-grid">
+      <sc-for list="{{ whyItems }}" as="w" hint-placeholder-count="4">
+        <div class="why-pro" data-no="{{ w.no }}">
+          <span class="why-pro-ic" aria-hidden="true">{{ w.glyph }}</span>
+          <span class="why-pro-title">{{ w.title }}</span>
+          <p class="why-pro-desc">{{ w.desc }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CLOSING CTA -->
+<section class="sec" id="cta" style="background:linear-gradient(135deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="wrap cta-grid">
+    <div>
+      <p class="eyebrow" style="color:var(--laurel-300,#b5d687)">Admissions Open</p>
+      <h2 class="h2" style="color:#fff;font-size:clamp(30px,3.8vw,48px)">Find the right stage for your child</h2>
+      <p class="lead" style="color:var(--laurel-200,#cfe5ae);margin:0 0 32px">Our admissions team will help you choose the stage that fits your child best.</p>
+      <div class="cta-btns">
+        <a href="#cta" class="btn btn-cta">Apply for Admission <span aria-hidden="true">→</span></a>
+        <a href="#footer" class="btn btn-ghost-light">Talk to Our Admissions Team</a>
+      </div>
+    </div>
+    <div class="cta-panel">
+      <h3>Stages we offer</h3>
+      <p class="ph3">One continuous journey, Grades 1 to 10.</p>
+      <div class="cta-stage"><span class="n" aria-hidden="true">1</span><b>Pre-Primary</b><em>LKG &amp; UKG</em></div>
+      <div class="cta-stage"><span class="n" aria-hidden="true">2</span><b>Primary</b><em>Std 1 to 5</em></div>
+      <div class="cta-stage"><span class="n" aria-hidden="true">3</span><b>Middle School</b><em>Std 6 to 8</em></div>
+      <div class="cta-stage"><span class="n" aria-hidden="true">4</span><b>High School</b><em>Std 9 to 10</em></div>
+    </div>
+  </div>
+</section>
+</main>
+
+<!-- FOOTER (shared) -->
+<footer style="background:var(--laurel-950,#16240a);color:var(--laurel-200,#cfe5ae)" id="footer">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px">
+    <div class="ft-grid grid" style="grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <span style="display:flex;flex-direction:column;line-height:1.1">
+            <span style="font-family:'Spectral',serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span>
+            <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span>
+          </span>
+        </div>
+        <p style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--laurel-200,#cfe5ae);margin:0 0 18px">Nurturing minds, building futures.</p>
+        <p style="font-size:14px;line-height:1.7;margin:0">Pazhamapuram, Near Punnam Chathram,<br>Erode Road, Karur - 639 136<br><span style="color:var(--laurel-300,#b5d687)">Phone:</span> [ Add phone ]<br><span style="color:var(--laurel-300,#b5d687)">Email:</span> [ Add email ]</p>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Quick Links</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ quickLinks }}" as="q" hint-placeholder-count="5"><li><a href="{{ q.href }}" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ q.label }}</a></li></sc-for>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Resources</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px">
+          <sc-for list="{{ resources }}" as="r" hint-placeholder-count="5"><li><a href="#" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ r }}</a></li></sc-for>
+        </ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Connect With Us</h4>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <a href="#" aria-label="Facebook" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;font-weight:700;text-decoration:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 8.5V7c0-.83.67-1 1.5-1H17V3h-2.5C11.9 3 11 4.9 11 6.5v2H9v3h2v9h3v-9h2.3l.7-3H14z"/></svg></a>
+          <a href="https://www.instagram.com/morningstarmatricschool2024/" target="_blank" rel="noopener" aria-label="Instagram" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://youtube.com/@morningstarmatriculationkarur" target="_blank" rel="noopener" aria-label="YouTube" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2a2.6 2.6 0 0 0-1.8-1.8C18.6 6 12 6 12 6s-6.6 0-8.2.4A2.6 2.6 0 0 0 2 8.2 27 27 0 0 0 1.6 12 27 27 0 0 0 2 15.8a2.6 2.6 0 0 0 1.8 1.8C5.4 18 12 18 12 18s6.6 0 8.2-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22.4 12 27 27 0 0 0 22 8.2zM10 15V9l5.2 3L10 15z"/></svg></a>
+        </div>
+        <p style="font-size:14px;margin:0">Follow us for updates and moments from campus.</p>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:13px;color:var(--laurel-300,#b5d687)">
+      <span>© 2026 Cybernaut EdTech Private Limited. All rights reserved.</span>
+      <span style="display:flex;gap:18px"><a href="#" style="color:var(--laurel-300,#b5d687)">Privacy Policy</a><a href="#" style="color:var(--laurel-300,#b5d687)">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount(){
+    this._scroll = () => { const r = document.getElementById('msn-root'); if (r) r.classList.toggle('msn-scrolled', window.scrollY > 8); };
+    this._key = (e) => { if (e.key === 'Escape') this._close(); };
+    window.addEventListener('scroll', this._scroll, { passive:true });
+    window.addEventListener('keydown', this._key);
+    requestAnimationFrame(() => { this._initReveal(); this._initSpy(); this._initWhy(); });
+    this._initLadder();
+  }
+  _climbData(){ if (!this._climbFlat){ const flat = []; [['Primary',[1,2,3,4,5]],['Middle',[6,7,8]],['Secondary',[9,10]]].forEach(([n,gs]) => gs.forEach(g => flat.push({ g, stage:n }))); this._climbFlat = flat; } return this._climbFlat; }
+  _initLadder(retry){
+    const root = this._root(); if (!root){ if ((retry || 0) < 60) setTimeout(() => this._initLadder((retry || 0) + 1), 60); return; }
+    const ladder = root.querySelector('#climb-ladder');
+    const rungsEl = root.querySelector('#climb-rungs');
+    const rungs = rungsEl ? rungsEl.querySelectorAll('.rung') : [];
+    if (!ladder || rungs.length < 12){ if ((retry || 0) < 60) setTimeout(() => this._initLadder((retry || 0) + 1), 60); return; }
+    this._climbData();
+    this._climbRungs = Array.from(rungs);
+    this._climbRH = 52;
+    this._placeClimb(0);
+    const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    if (reduce){ this._placeClimb(this._climbFlat.length - 1); this._climbTop(true); return; }
+    if (!this._climbPlayedOnce){ this._climbPlayedOnce = true; this._playClimb(); }
+    if (!this._climbTapBound){
+      this._climbTapBound = true;
+      this._climbRungs.forEach((r, i) => {
+        r.style.cursor = 'pointer';
+        r.setAttribute('tabindex', '0');
+        r.setAttribute('role', 'button');
+        r.setAttribute('aria-label', 'Go to Grade ' + this._climbFlat[i].g + ', ' + this._climbFlat[i].stage);
+        const go = () => { clearInterval(this._climbTimer); this._jumpClimb(i); };
+        r.addEventListener('click', go);
+        r.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' '){ e.preventDefault(); go(); } });
+      });
+    }
+  }
+  _jumpClimb(i){
+    const root = this._root(); if (!root) return;
+    const flat = this._climbData();
+    this._placeClimb(i);
+    this._climbTop(i >= flat.length - 1);
+    this._climbSpark();
+    const climber = root.querySelector('#climber'); if (climber){ climber.classList.remove('hop'); void climber.offsetWidth; climber.classList.add('hop'); }
+  }
+  _climbTop(on){
+    const root = this._root(); if (!root) return;
+    const cap = root.querySelector('#climb-mortar'), badge = root.querySelector('#climb-badge');
+    if (cap) cap.classList.toggle('on', !!on);
+    if (badge) badge.classList.toggle('on', !!on);
+  }
+  _climbSpark(){
+    const root = this._root(); if (!root) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const duo = root.querySelector('#climb-duo'), scene = root.querySelector('#climb-scene');
+    if (!duo || !scene) return;
+    const dr = duo.getBoundingClientRect(), sr = scene.getBoundingClientRect();
+    const cx = dr.left - sr.left + dr.width / 2, cy = dr.top - sr.top + dr.height / 2;
+    const cols = ['#de2c12', '#73a91e', '#ffd24d', '#557a17'];
+    for (let k = 0; k < 4; k++){
+      const s = document.createElement('span'); s.className = 'spark';
+      s.style.left = (cx + (Math.random() * 40 - 20)) + 'px';
+      s.style.top = (cy + (Math.random() * 30 - 15)) + 'px';
+      s.style.background = cols[k % cols.length];
+      s.style.borderRadius = k % 2 ? '50%' : '2px';
+      scene.appendChild(s);
+      requestAnimationFrame(() => s.classList.add('go'));
+      setTimeout(() => s.remove(), 900);
+    }
+  }
+  _placeClimb(i){
+    const root = this._root(); if (!root) return;
+    const flat = this._climbData();
+    const duo = root.querySelector('#climb-duo'), cap = root.querySelector('#climb-cap'), sky = root.querySelector('#climb-sky');
+    const pct = flat.length > 1 ? i / (flat.length - 1) : 0;
+    if (duo) duo.style.bottom = 'calc(' + (pct * 100) + '% - ' + (pct * 46) + 'px + 6px)';
+    if (sky) sky.style.transform = 'translateY(' + (pct * 30) + 'px)';
+    if (this._climbRungs) this._climbRungs.forEach((r, k) => { r.classList.toggle('done', k < i); r.classList.toggle('current', k === i); });
+    if (cap && flat[i]) cap.textContent = 'Grade ' + flat[i].g + ' \u00b7 ' + flat[i].stage;
+  }
+  _playClimb(){
+    const root = this._root(); if (!root) return;
+    if (!this._climbRungs){ this._initLadder(); }
+    this._climbData();
+    clearInterval(this._climbTimer);
+    this._climbTop(false);
+    this._placeClimb(0);
+    let i = 0; const flat = this._climbFlat, climber = root.querySelector('#climber');
+    this._climbTimer = setInterval(() => {
+      i++;
+      if (i >= flat.length){ clearInterval(this._climbTimer); this._placeClimb(flat.length - 1); this._climbTop(true); return; }
+      this._placeClimb(i);
+      this._climbSpark();
+      if (climber){ climber.classList.remove('hop'); void climber.offsetWidth; climber.classList.add('hop'); }
+    }, 850);
+  }
+  _initWhy(){
+    const root = this._root(); if (!root) return;
+    const cards = root.querySelectorAll('.why-pro'); if (!cards.length) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches){ cards.forEach(c => c.style.opacity = 1); return; }
+    this._whyIo = new IntersectionObserver((ents) => { ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('why-in'); this._whyIo.unobserve(e.target); } }); }, { threshold:0.2 });
+    cards.forEach(c => this._whyIo.observe(c));
+  }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('keydown', this._key);
+    if (this._io) this._io.disconnect();
+    if (this._spy) this._spy.disconnect();
+    if (this._whyIo) this._whyIo.disconnect();
+    if (this._llio) this._llio.disconnect();
+    clearInterval(this._climbTimer);
+  }
+  _root(){ return document.getElementById('msn-root'); }
+  _setToggle(open){ const b = document.getElementById('msn-toggle'); if (b){ b.setAttribute('aria-expanded', open?'true':'false'); b.setAttribute('aria-label', open?'Close menu':'Open menu'); } }
+  _close(){ const r = this._root(); if (r) r.classList.remove('msn-open'); this._setToggle(false); }
+  _initReveal(){
+    const root = this._root(); if (!root) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const els = root.querySelectorAll('.sec .eyebrow, .sec .h2, .sec .lead, .card, .split .imgcol, .split .mini, .stagetag, .nb-num, .nb-panel, .nb-row');
+    els.forEach(el => el.classList.add('reveal'));
+    root.querySelectorAll('.grid').forEach(g => { Array.from(g.children).forEach((c, i) => { if (c.classList.contains('reveal')) c.style.transitionDelay = ((i % 3) * 90) + 'ms'; }); });
+    root.querySelectorAll('.nb-panel').forEach(p => { Array.from(p.querySelectorAll('.nb-row')).forEach((r, i) => { r.style.transitionDelay = (120 + i * 100) + 'ms'; }); });
+    this._io = new IntersectionObserver((ents) => { ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); this._io.unobserve(e.target); } }); }, { threshold:0.12, rootMargin:'0px 0px -8% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+  _initSpy(){
+    const root = this._root(); if (!root) return;
+    const ids = ['pre-primary','primary','middle-school','high-school'];
+    const setActive = (id) => { root.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-target') === id)); };
+    this._spy = new IntersectionObserver((ents) => {
+      ents.forEach(e => { if (e.isIntersecting) setActive(e.target.id); });
+    }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) this._spy.observe(el); });
+  }
+
+  renderVals(){
+    const svg = (ch) => React.createElement('svg', { viewBox:'0 0 24 24', width:'1em', height:'1em', fill:'none', stroke:'currentColor', strokeWidth:2, strokeLinecap:'round', strokeLinejoin:'round', 'aria-hidden':true }, ...ch);
+    const p = (d) => React.createElement('path', { d, key:d });
+    const c = (cx,cy,r) => React.createElement('circle', { cx, cy, r, key:'c'+cx+cy+r });
+    const rct = (x,y,w,h,rx) => React.createElement('rect', { x, y, width:w, height:h, rx, key:'r'+x+y });
+    const ln = (x1,y1,x2,y2) => React.createElement('line', { x1, y1, x2, y2, key:'l'+x1+y1+x2+y2 });
+    const icons = {
+      phone: () => svg([p('M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z')]),
+      mail: () => svg([rct(2,4,20,16,2), p('m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7')]),
+      message: () => svg([p('M7.9 20A9 9 0 1 0 4 16.1L2 22z')]),
+      school: () => svg([p('M14 22v-4a2 2 0 0 0-4 0v4'), p('m18 10 4 2v8a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2v-8l4-2'), p('M6 8v14'), p('M18 8v14'), p('M6 8l6-6 6 6'), p('M6 8h12')]),
+      mapPin: () => svg([p('M20 10c0 4.4-8 12-8 12s-8-7.6-8-12a8 8 0 0 1 16 0z'), c(12,10,3)]),
+      award: () => svg([p('m15.5 14 1.6 6.5-5.1-3-5.1 3L8.5 14'), c(12,8,6)]),
+      calendar: () => svg([rct(3,4,18,18,2), ln(16,2,16,6), ln(8,2,8,6), ln(3,10,21,10)]),
+      baby: () => svg([p('M9 12h.01'), p('M15 12h.01'), p('M10 16c.5.3 1.2.5 2 .5s1.5-.2 2-.5'), p('M19 6.3a9 9 0 0 1 1.8 3.9 2 2 0 0 1 0 3.6 9 9 0 0 1-17.6 0 2 2 0 0 1 0-3.6A9 9 0 0 1 12 3'), p('M12 3c1.4 0 2.5 1.1 2.5 2.5S13.4 8 12 8')]),
+      palette: () => svg([c(13.5,6.5,.6), c(17.5,10.5,.6), c(8.5,7.5,.6), c(6.5,12.5,.6), p('M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.9 0 1.7-.7 1.7-1.6 0-.4-.2-.8-.5-1.1-.3-.3-.4-.6-.4-1 0-.9.7-1.6 1.6-1.6H16c3.3 0 6-2.7 6-6 0-4.4-4.5-7.7-10-7.7z')]),
+      bookOpen: () => svg([p('M12 7v14'), p('M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z')]),
+      layers: () => svg([p('m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.84z'), p('m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65'), p('m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65')]),
+      arrow: () => svg([p('M5 12h14'), p('m12 5 7 7-7 7')]),
+      clipboard: () => svg([rct(8,2,8,4,1), p('M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2'), p('m9 14 2 2 4-4')]),
+      users: () => svg([p('M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'), c(9,7,4), p('M22 21v-2a4 4 0 0 0-3-3.87'), p('M16 3.13a4 4 0 0 1 0 7.75')]),
+    };
+    const NAV = [
+      { label:'Home', href:'index.html' },
+      { label:'About Us', href:'about.html' },
+      { label:'Our Programs', href:'programs.html' },
+      { label:'Resources', href:'resources.html' },
+      { label:'Contact', href:'contact.html' },
+    ];
+    return {
+      navLinks: NAV.map((it,i) => ({ label:it.label, href:it.href, cls: i===2 ? 'msn-link msn-active' : 'msn-link', ariaCurrent: i===2 ? 'page' : 'false' })),
+      toggleDrawer: () => { const r = this._root(); if (!r) return; const open = !r.classList.contains('msn-open'); r.classList.toggle('msn-open', open); this._setToggle(open); },
+      closeDrawer: () => this._close(),
+      stages: [
+        { id:'pre-primary', anchor:'#pre-primary', label:'Pre-Primary', num:'1' },
+        { id:'primary', anchor:'#primary', label:'Primary', num:'2' },
+        { id:'middle-school', anchor:'#middle-school', label:'Middle School', num:'3' },
+        { id:'high-school', anchor:'#high-school', label:'High School', num:'4' },
+      ],
+      replayClimb: () => this._playClimb(),
+      gradesLadder: (() => { const st = [['Primary',[1,2,3,4,5]],['Middle',[6,7,8]],['Secondary',[9,10]]]; const out = []; st.forEach(([n,gs]) => gs.forEach(g => out.push({ g:String(g), stage:n }))); return out; })(),
+      prePrimary: [
+        { glyph:icons.baby(), title:'Nursery', detail:'Sensory play, motor skills, and a gentle social introduction to the classroom environment.' },
+        { glyph:icons.palette(), title:'LKG', detail:'Building early language, numbers, and creative expression through activity-based learning.' },
+        { glyph:icons.bookOpen(), title:'UKG', detail:'School-readiness focus: reading, writing basics, and structured group learning.' },
+      ],
+      whyItems: [
+        { glyph:icons.layers(), no:'01', title:'Age-appropriate teaching methods at every level', desc:'Lessons, pace and activities are matched to each age, so children stay engaged and grow in confidence.' },
+        { glyph:icons.arrow(), no:'02', title:'Smooth transition support between stages', desc:'Structured guidance as students move up a stage means no learning gaps and no feeling overwhelmed.' },
+        { glyph:icons.clipboard(), no:'03', title:'Continuous assessment, not just exam-based evaluation', desc:'Regular, low-pressure check-ins track real understanding, not only exam-day performance.' },
+        { glyph:icons.users(), no:'04', title:'Personal attention through manageable class sizes', desc:'Smaller classes let teachers know, guide and support every single child individually.' },
+      ],
+      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'Gallery', 'FAQs'],
+    };
+  }
+}
+</script>
+</body>
+</html>

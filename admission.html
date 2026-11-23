@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Admission — Morning Star Matriculation School</title>
+<link rel="icon" href="assets/logo.jpeg">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="School Admission" description="Conversion-focused K-12 Admission page: hero with Apply/Prospectus CTAs, overview strip, step timeline, required-documents checklist, fee table, online application form with validation, FAQ accordion, mobile sticky Apply bar, shared footer, matches the School site brand." -->
+<helmet>
+<style id="ds-tokens">
+
+/* tokens/fonts.css */
+/* Webfonts. Display = Spectral (warm editorial serif, heritage voice).
+   Body = Public Sans (clean neutral modern sans).
+   NOTE: loaded from Google Fonts (no brand-owned font files were provided).
+   See readme.md → Typography for the substitution flag. */
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* tokens/colors.css */
+/* Morning Star — Color tokens.
+   Palette sampled from the school crest — GREEN + WHITE only.
+   PRIMARY: white / paper (the crest field and every major surface).
+   SECONDARY: Laurel Green (the crest wreath) — structure AND interaction.
+   No blue and no gold anywhere in the system. Star red survives as a single
+   hairline accent (the crest star); cream is a warm off-white band tint. */
+:root{
+  /* ---- White & paper (PRIMARY) ---- */
+  --white:#FFFFFF;
+  --paper:#FFFFFF;            /* card surfaces */
+  --paper-warm:#FDFCF6;       /* barely-warm page alternative */
+
+  /* ---- Laurel Green (SECONDARY brand — structure + interaction) ---- */
+  --laurel-950:#16240A;   /* deepest — dark bands, footer */
+  --laurel-900:#22350A;   /* headings */
+  --laurel-800:#31490E;
+  --laurel-700:#425F12;
+  --laurel-600:#557A17;   /* core action: buttons, links, focus */
+  --laurel-500:#73A91E;   /* core laurel — crest wreath, accents */
+  --laurel-400:#8FBF45;
+  --laurel-300:#B5D687;
+  --laurel-200:#CFE5AE;   /* muted text on dark green */
+  --laurel-100:#E5F1CD;
+  --laurel-050:#F4F9E9;
+
+  /* ---- Book Cream (warm off-white band tint) ---- */
+  --cream-050:#FFFEF4;
+  --cream-100:#FFFCE9;
+  --cream-200:#FFF9D5;
+  --cream-300:#F6EDB5;
+  --cream-400:#E7DA93;
+  --cream-500:#CFBF6E;
+  --cream-600:#A8974C;
+
+  /* ---- Star Red (hairline accent only — crest star) ---- */
+  --star-700:#A8210C;
+  --star-600:#C42710;
+  --star-500:#DE2C12;
+  --star-300:#EE8B7A;
+  --star-100:#FBDDD7;
+
+  /* ---- Neutrals (green-leaning greys → Ink) ---- */
+  --stone-050:#F7F8F4;
+  --stone-100:#F0F2EA;
+  --stone-200:#E3E7DA;
+  --stone-300:#CFD5C2;
+  --ink-900:#232418;     /* default body text (never pure black) */
+  --ink-700:#3F412F;
+  --ink-500:#63664F;
+  --ink-400:#878A70;
+
+  /* ---- Back-compat aliases: the retired blue ramp now resolves to deep green ---- */
+  --indigo-900:var(--laurel-950);
+  --indigo-800:var(--laurel-900);
+  --indigo-700:var(--laurel-800);
+  --indigo-600:var(--laurel-700);
+  --indigo-500:var(--laurel-600);
+  --indigo-300:var(--laurel-200);
+  --indigo-100:var(--laurel-100);
+  --indigo-050:var(--laurel-050);
+
+  /* ---- Back-compat aliases: the retired gold ramp now resolves to crest green ---- */
+  --gold-600:var(--laurel-600);
+  --gold-500:var(--laurel-500);
+  --gold-300:var(--laurel-300);
+  --gold-100:var(--laurel-100);
+
+  /* ---- Back-compat aliases (older ramp names) ---- */
+  --teal-900:var(--laurel-950);
+  --teal-800:var(--laurel-800);
+  --teal-700:var(--laurel-700);
+  --teal-600:var(--laurel-600);
+  --teal-500:var(--laurel-500);
+  --teal-300:var(--laurel-300);
+  --teal-100:var(--laurel-100);
+  --teal-050:var(--laurel-050);
+  --green-700:var(--laurel-800);
+  --green-600:var(--laurel-600);
+  --green-500:var(--laurel-500);
+  --green-300:var(--laurel-300);
+  --green-100:var(--laurel-100);
+  --saffron-700:var(--star-700);
+  --saffron-600:var(--star-600);
+  --saffron-500:var(--star-500);
+  --saffron-300:var(--star-300);
+  --saffron-100:var(--star-100);
+  --coral-700:var(--star-700);
+  --coral-600:var(--star-600);
+  --coral-500:var(--star-500);
+  --coral-300:var(--star-300);
+  --coral-100:var(--star-100);
+  --ivory:var(--white);
+  --sand-100:var(--stone-100);
+  --sand-200:var(--stone-200);
+  --sand-300:var(--stone-300);
+  --charcoal-900:var(--ink-900);
+  --charcoal-700:var(--ink-700);
+  --charcoal-500:var(--ink-500);
+  --charcoal-400:var(--ink-400);
+
+  /* ---- Semantic aliases ---- */
+  --brand-primary:var(--laurel-600);        /* actionable: buttons, links, active states */
+  --brand-primary-strong:var(--laurel-800);
+  --brand-secondary:var(--laurel-900);      /* institutional: headings, outline buttons */
+  --brand-surface:var(--white);
+  --brand-accent:var(--laurel-500);         /* bright crest green — tags, badges */
+  --brand-accent-warm:var(--star-500);      /* crest star red — hairline accent only */
+
+  --surface-page:var(--white);
+  --surface-card:var(--paper);
+  --surface-raised:var(--paper);
+  --surface-sunken:var(--stone-100);
+  --surface-warm:var(--cream-100);          /* optional warm band */
+  --surface-inverse:var(--laurel-950);
+  --surface-accent-soft:var(--laurel-050);
+  --surface-green-soft:var(--laurel-100);
+  --surface-coral-soft:var(--star-100);
+  --surface-gold-soft:var(--laurel-100);
+
+  --text-strong:var(--laurel-900);           /* headings, nav logo */
+  --text-body:var(--ink-900);
+  --text-muted:var(--ink-500);
+  --text-faint:var(--ink-400);
+  --text-on-brand:var(--white);
+  --text-on-brand-muted:var(--laurel-200);
+  --text-link:var(--laurel-700);
+  --text-link-hover:var(--laurel-950);
+
+  --border-hairline:var(--stone-200);
+  --border-soft:var(--stone-300);
+  --border-strong:var(--laurel-100);
+  --border-focus:var(--laurel-600);
+
+  --star:var(--star-500);
+}
+a{color:var(--text-link)}
+a:hover{color:var(--text-link-hover)}
+
+/* tokens/typography.css */
+/* Morning Star — Typography tokens */
+:root{
+  --font-display:'Spectral', Georgia, 'Times New Roman', serif;
+  --font-body:'Public Sans', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+
+  /* Type scale (editorial, generous) */
+  --fs-display:clamp(48px, 6vw, 82px); /* @kind font */
+  --fs-h1:clamp(38px, 4.4vw, 60px); /* @kind font */
+  --fs-h2:clamp(30px, 3vw, 42px); /* @kind font */
+  --fs-h3:24px; /* @kind font */
+  --fs-h4:20px; /* @kind font */
+  --fs-body-lg:19px; /* @kind font */
+  --fs-body:17px; /* @kind font */
+  --fs-body-sm:15px; /* @kind font */
+  --fs-caption:13px; /* @kind font */
+  --fs-metadata:12px; /* @kind font */
+
+  /* Line heights */
+  --lh-display:1.04; /* @kind font */
+  --lh-heading:1.12; /* @kind font */
+  --lh-body:1.62; /* @kind font */
+  --lh-tight:1.3; /* @kind font */
+
+  /* Weights */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+
+  /* Tracking */
+  --ls-display:-0.02em; /* @kind font */
+  --ls-heading:-0.01em; /* @kind font */
+  --ls-eyebrow:0.16em; /* @kind font */
+  --ls-body:0; /* @kind font */
+}
+
+/* tokens/spacing.css */
+/* Morning Star — Spacing, radii, layout tokens */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+
+  /* Section rhythm */
+  --section-y:clamp(64px, 9vw, 128px); /* @kind spacing */
+  --gutter:clamp(20px, 5vw, 72px); /* @kind spacing */
+  --content-max:1200px;
+  --measure:64ch; /* @kind spacing */
+
+  /* Radii — restrained */
+  --radius-xs:4px;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:18px;
+  --radius-pill:999px;
+
+  /* Grid */
+  --grid-cols:12; /* @kind other */
+  --grid-gap:clamp(16px, 2vw, 28px);
+}
+
+/* tokens/effects.css */
+/* Morning Star — Shadows, borders, motion */
+:root{
+  /* Soft shadows (green-tinted, low spread) */
+  --shadow-xs:0 1px 2px rgba(34,53,10,0.07);
+  --shadow-sm:0 2px 8px rgba(34,53,10,0.08);
+  --shadow-md:0 10px 30px rgba(34,53,10,0.10);
+  --shadow-lg:0 24px 60px rgba(34,53,10,0.16);
+  --shadow-focus:0 0 0 3px rgba(85,122,23,0.35);
+
+  --border-thin:1px solid var(--border-hairline);
+  --border-card:1px solid var(--border-soft);
+
+  /* Motion */
+  --ease-out:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1); /* @kind other */
+  --dur-fast:140ms; /* @kind other */
+  --dur-base:240ms; /* @kind other */
+  --dur-slow:520ms; /* @kind other */
+
+  --hover-lift:translateY(-3px); /* @kind other */
+  --press-scale:scale(0.985); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+}
+
+/* styles.css */
+@import url('tokens/fonts.css');
+@import url('tokens/colors.css');
+@import url('tokens/typography.css');
+@import url('tokens/spacing.css');
+@import url('tokens/effects.css');
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--ink-900,#232418);background:var(--white,#fff);-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(24px,4vw,56px)}
+.sec{padding:clamp(52px,7vw,92px) 0}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--laurel-600,#557a17);margin:0 0 14px}
+.h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.07;letter-spacing:-.015em;color:var(--laurel-900,#22350a);margin:0 0 14px;text-wrap:pretty}
+.lead{font-size:17px;line-height:1.6;color:var(--ink-700,#3f412f);max-width:66ch;margin:0}
+.card{background:#fff;border:1px solid var(--stone-200,#e3e7da);border-radius:16px;box-shadow:0 2px 8px rgba(34,53,10,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 38px -18px rgba(34,53,10,.28);border-color:var(--laurel-200,#cfe5ae)}
+.ph{background-image:repeating-linear-gradient(135deg,rgba(85,122,23,.10) 0 2px,transparent 2px 11px);background-color:var(--laurel-050,#f4f9e9);display:flex;align-items:center;justify-content:center;color:var(--laurel-700,#425f12);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.07em;text-align:center;padding:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;border-radius:999px;padding:13px 26px;cursor:pointer;border:none;transition:transform .18s ease,box-shadow .18s ease,background .2s ease}
+.btn-cta{background:var(--star-500,#de2c12);color:#fff;box-shadow:0 10px 24px -8px rgba(222,44,18,.5)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(222,44,18,.55)}
+@keyframes msn-pulse{0%,100%{box-shadow:0 10px 24px -8px rgba(222,44,18,.5)}50%{box-shadow:0 10px 30px -6px rgba(222,44,18,.75)}}
+.btn-pulse{animation:msn-pulse 2.6s ease-in-out infinite}
+.btn-outline{background:transparent;color:var(--laurel-800,#31490e);border:1.5px solid var(--laurel-300,#b5d687)}
+.btn-outline:hover{background:var(--laurel-050,#f4f9e9);border-color:var(--laurel-500,#73a91e);transform:translateY(-2px)}
+.btn-ghost-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}.btn-ghost-light:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.btn-light{background:#fff;color:var(--laurel-800,#31490e)}.btn-light:hover{transform:translateY(-2px)}
+.grid{display:grid;gap:22px}.g3{grid-template-columns:repeat(3,1fr)}.g2{grid-template-columns:repeat(2,1fr)}
+/* Nav (shared) */
+.msn-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.msn-root.msn-scrolled .msn-header{border-bottom-color:var(--stone-200,#e3e7da);box-shadow:0 8px 26px -14px rgba(34,53,10,.4)}
+.msn-bar{max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px);height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:height .3s ease}
+.msn-root.msn-scrolled .msn-bar{height:66px}
+.msn-desktop{display:flex;align-items:center;gap:30px}
+.msn-link{position:relative;display:inline-flex;align-items:center;padding:10px 15px;font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-radius:8px;white-space:nowrap;transition:color .2s ease}
+.msn-link::after{content:"";position:absolute;left:15px;right:15px;bottom:5px;height:2px;border-radius:2px;background:var(--laurel-500,#73a91e);transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.msn-link:hover{color:var(--laurel-700,#425f12)}.msn-link:hover::after{transform:scaleX(1)}
+.msn-link:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:3px}
+.msn-link.msn-active{color:var(--laurel-700,#425f12)}.msn-link.msn-active::after{background:var(--star-500,#de2c12);transform:scaleX(1)}
+.msn-toggle{display:none;order:-1;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:46px;height:46px;background:transparent;border:none;border-radius:10px;cursor:pointer}
+.msn-toggle:hover{background:var(--stone-100,#f0f2ea)}
+.msn-line{width:24px;height:2px;border-radius:2px;background:var(--laurel-900,#22350a);transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .2s ease}
+.msn-root.msn-open .msn-line:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.msn-root.msn-open .msn-line:nth-child(2){opacity:0}
+.msn-root.msn-open .msn-line:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.msn-overlay{position:fixed;inset:0;z-index:200;background:rgba(22,36,10,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .32s ease}
+.msn-root.msn-open .msn-overlay{opacity:1;pointer-events:auto}
+.msn-drawer{position:fixed;top:0;right:0;height:100vh;width:min(87vw,360px);z-index:210;background:#fff;box-shadow:-24px 0 48px -24px rgba(22,36,10,.4);transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:22px 22px 28px;display:flex;flex-direction:column;overflow-y:auto}
+.msn-root.msn-open .msn-drawer{transform:translateX(0)}
+.msn-dlink{display:flex;align-items:center;justify-content:space-between;padding:16px 4px;font-size:18px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-bottom:1px solid var(--stone-200,#e3e7da);transition:color .2s ease}
+.msn-dlink:hover{color:var(--laurel-700,#425f12)}
+/* Admission */
+.crumb{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--laurel-200,#cfe5ae)}
+.crumb a{text-decoration:none;color:var(--laurel-200,#cfe5ae)}.crumb a:hover{color:#fff}
+.infostrip{display:flex;flex-wrap:wrap;gap:14px}
+.infopill{display:flex;align-items:center;gap:10px;padding:14px 20px;background:#fff;border:1px solid var(--stone-200,#e3e7da);border-radius:14px}
+/* timeline */
+.tline{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.step{position:relative;z-index:1;display:flex;flex-direction:column;gap:12px}
+.step::after{content:"";position:absolute;top:25px;left:60px;right:-30px;height:2px;background:var(--laurel-200,#cfe5ae);z-index:0}
+.step:nth-child(3n)::after{display:none}
+.stepnum{width:52px;height:52px;border-radius:50%;background:var(--laurel-600,#557a17);color:#fff;display:flex;align-items:center;justify-content:center;font-family:'Spectral',serif;font-size:22px;font-weight:600;box-shadow:0 6px 16px -6px rgba(85,122,23,.6)}
+.stepic{font-size:15px;color:var(--star-500,#de2c12)}
+/* checklist */
+.chkitem{display:flex;align-items:flex-start;gap:14px;padding:15px 18px;border:1px solid var(--stone-200,#e3e7da);border-radius:12px;background:#fff}
+.tick{width:26px;height:26px;border-radius:50%;background:var(--laurel-100,#e5f1cd);color:var(--laurel-700,#425f12);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;flex-shrink:0;transform:scale(.5);opacity:0;transition:transform .35s cubic-bezier(.34,1.56,.64,1),opacity .3s ease}
+.reveal.in .tick,.chkitem.in .tick{transform:scale(1);opacity:1}
+/* fee */
+.feewrap{overflow-x:auto;border:1px solid var(--stone-200,#e3e7da);border-radius:16px}
+.feetable{width:100%;border-collapse:collapse;font-size:15px;min-width:560px}
+.feetable th,.feetable td{padding:16px 20px;text-align:left}
+.feetable thead th{background:var(--laurel-050,#f4f9e9);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--laurel-700,#425f12);font-weight:700}
+.feetable tbody tr{border-top:1px solid var(--stone-200,#e3e7da)}
+.feetable td.num{text-align:right;font-variant-numeric:tabular-nums;font-weight:600;color:var(--ink-900,#232418)}
+.feetable td.grade{font-weight:600;color:var(--laurel-900,#22350a)}
+/* form */
+.field{display:flex;flex-direction:column;gap:7px}
+.field label{font-size:13px;font-weight:600;color:var(--ink-700,#3f412f)}
+.field .req{color:var(--star-500,#de2c12)}
+.inp{padding:12px 14px;border-radius:10px;border:1.5px solid var(--stone-300,#cfd5c2);font-size:15px;font-family:inherit;background:#fff;color:var(--ink-900,#232418);transition:border-color .18s ease,box-shadow .18s ease;width:100%}
+.inp:focus{outline:none;border-color:var(--laurel-500,#73a91e);box-shadow:0 0 0 3px rgba(115,169,30,.16)}
+.inp.err{border-color:var(--star-500,#de2c12);box-shadow:0 0 0 3px rgba(222,44,18,.14)}
+.errmsg{font-size:12.5px;color:var(--star-600,#c1250e);min-height:0;display:none}
+.errmsg.show{display:block}
+/* accordion */
+.faq{border:1px solid var(--stone-200,#e3e7da);border-radius:12px;background:#fff;overflow:hidden}
+.faq+.faq{margin-top:12px}
+.faqq{width:100%;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:19px 22px;background:none;border:none;cursor:pointer;font-family:inherit;font-size:16.5px;font-weight:600;color:var(--laurel-900,#22350a);text-align:left}
+.faqq:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:-2px}
+.faqi{flex-shrink:0;width:26px;height:26px;border-radius:50%;background:var(--laurel-050,#f4f9e9);color:var(--laurel-700,#425f12);display:flex;align-items:center;justify-content:center;font-size:16px;transition:transform .3s ease,background .2s ease}
+.faq.open .faqi{transform:rotate(45deg);background:var(--laurel-600,#557a17);color:#fff}
+.faqa{max-height:0;opacity:0;overflow:hidden;transition:max-height .3s ease,opacity .25s ease}
+.faq.open .faqa{max-height:260px;opacity:1}
+.faqa p{margin:0;padding:0 22px 20px;font-size:15px;line-height:1.6;color:var(--ink-700,#3f412f)}
+/* mobile apply bar */
+.applybar{display:none}
+.fsec-title{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(23px,2.5vw,30px);color:var(--laurel-800,#31490e);margin:0;letter-spacing:-.01em}
+.fblock+.fblock{margin-top:44px;padding-top:40px;border-top:1px solid var(--stone-200,#e3e7da)}
+.fsub{margin-top:30px}
+.fsub-title{font-size:16px;font-weight:700;color:var(--ink-900,#232418);margin:0 0 12px}
+.fsub-rule{height:1px;background:var(--laurel-200,#cfe5ae);margin:0 0 24px}
+.frow{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.frow+.frow{margin-top:22px}
+.frow.two{grid-template-columns:repeat(2,1fr)}
+.frow.one{grid-template-columns:1fr}
+.phoneg{display:flex;gap:10px}
+.phoneg .code{flex:0 0 96px}
+.phoneg .num{flex:1;min-width:0}
+textarea.inp{resize:vertical;min-height:120px;line-height:1.5}
+@media (max-width:820px){.frow,.frow.two{grid-template-columns:1fr}}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){.g3{grid-template-columns:repeat(2,1fr)}.tline{grid-template-columns:repeat(2,1fr)}.step:nth-child(3n)::after{display:block}.step:nth-child(2n)::after{display:none}.hero-grid{grid-template-columns:1fr !important}.form-grid{grid-template-columns:1fr !important}.ft-grid{grid-template-columns:1fr 1fr !important}}
+@media (max-width:960px){.msn-desktop{display:none}.msn-toggle{display:flex}.msn-bar{height:62px;padding:0 18px}.msn-root.msn-scrolled .msn-bar{height:62px}}
+@media (min-width:961px){.msn-overlay,.msn-drawer{display:none}}
+@media (max-width:820px){.vd-grid{grid-template-columns:1fr !important}.vd-grid>div:last-child{display:none !important}}
+@media (max-width:640px){.g3,.g2,.tline{grid-template-columns:1fr}.step::after{display:none}.hero-cta{flex-direction:column !important;align-items:stretch !important}.ft-grid{grid-template-columns:1fr !important}
+  .applybar{display:flex;position:fixed;left:0;right:0;bottom:0;z-index:120;gap:10px;padding:12px 16px calc(12px + env(safe-area-inset-bottom));background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-top:1px solid var(--stone-200,#e3e7da);box-shadow:0 -8px 24px -16px rgba(34,53,10,.4)}
+  .applybar .btn{flex:1;padding:14px}
+  main{padding-bottom:78px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important;animation:none !important}.reveal{opacity:1 !important;transform:none !important}.tick{opacity:1 !important;transform:none !important}}
+</style>
+</helmet>
+
+<div id="msn-root" class="msn-root">
+<header class="msn-header">
+  <div class="msn-bar">
+    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+      <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
+      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <span style="display:flex;flex-direction:column;line-height:1.08">
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:var(--laurel-900,#22350a)">Morning Star</span>
+        <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--laurel-600,#557a17)">Matriculation School</span>
+        <span style="font-size:9.5px;letter-spacing:.02em;font-weight:700;color:var(--laurel-700,#425f12);margin-top:2px">(Run by Lions Club of Karur Host Charitable Trust)</span>
+      </span>
+    </a>
+    <div class="msn-desktop">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:2px">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <a href="{{ link.href }}" class="{{ link.cls }}" aria-current="{{ link.ariaCurrent }}">{{ link.label }}</a>
+        </sc-for>
+      </nav>
+      <a href="#apply" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Apply Now <span aria-hidden="true">→</span></a>
+    </div>
+    <button id="msn-toggle" type="button" class="msn-toggle" onClick="{{ toggleDrawer }}" aria-label="Open menu" aria-expanded="false" aria-controls="msn-drawer">
+      <span class="msn-line"></span><span class="msn-line"></span><span class="msn-line"></span>
+    </button>
+  </div>
+</header>
+<div class="msn-overlay" onClick="{{ closeDrawer }}" aria-hidden="true"></div>
+<aside id="msn-drawer" class="msn-drawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:var(--laurel-900,#22350a)">Menu</span>
+    <button type="button" onClick="{{ closeDrawer }}" aria-label="Close menu" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--stone-100,#f0f2ea);border:none;border-radius:10px;cursor:pointer;font-size:20px;color:var(--laurel-900,#22350a)">✕</button>
+  </div>
+  <nav aria-label="Mobile" style="display:flex;flex-direction:column">
+    <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+      <a href="{{ link.href }}" class="msn-dlink" onClick="{{ closeDrawer }}">{{ link.label }} <span aria-hidden="true" style="color:var(--laurel-400,#8fbf45);font-size:15px">→</span></a>
+    </sc-for>
+  </nav>
+  <a href="#apply" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Apply Now <span aria-hidden="true">→</span></a>
+</aside>
+
+<main id="top">
+<!-- 1. HERO -->
+<section style="position:relative;background:linear-gradient(120deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="ph" aria-hidden="true" style="position:absolute;inset:0;opacity:.22;background-color:var(--laurel-800,#31490e);color:transparent"></div>
+  <div class="wrap" style="position:relative;padding-top:clamp(48px,7vw,84px);padding-bottom:clamp(52px,7vw,80px)">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="#top">Home</a> <span aria-hidden="true">/</span> <span style="color:#fff">Admission</span></nav>
+    <p style="display:inline-block;margin:18px 0 0;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:700;color:var(--laurel-950,#16240a);background:var(--laurel-300,#b5d687);padding:6px 14px;border-radius:999px;white-space:nowrap;max-width:100%">Admissions Open · 2026 to 27</p>
+    <h1 style="font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(32px,4.4vw,56px);line-height:1.05;letter-spacing:-.02em;color:#fff;margin:16px 0 14px;max-width:20ch;text-wrap:pretty">Admissions open, Academic Year 2026 to 27</h1>
+    <p style="font-size:clamp(16px,2vw,20px);line-height:1.5;color:var(--laurel-200,#cfe5ae);margin:0 0 30px;max-width:56ch">Give your child the right start. Join a school that nurtures growth, curiosity, and confidence.</p>
+    <div class="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap">
+      <a href="#apply" class="btn btn-cta btn-pulse">Apply Now <span aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<!-- 1b. VIJAYA DHASAMI SPECIAL -->
+<section class="sec" id="vijaya-dhasami" style="padding-top:clamp(36px,5vw,56px);padding-bottom:0">
+  <div class="wrap">
+    <div style="position:relative;overflow:hidden;border-radius:20px;background:var(--cream-100,#fffce9);border:1px solid #f0e4bd;padding:clamp(30px,4.5vw,52px);text-align:center">
+      <span style="position:absolute;top:20px;right:-46px;transform:rotate(45deg);background:var(--star-500,#de2c12);color:#fff;font-size:11px;font-weight:700;letter-spacing:.14em;padding:7px 56px">2026–27</span>
+      <div aria-hidden="true" style="font-size:42px;line-height:1;margin-bottom:8px">🪔</div>
+      <p style="margin:0;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--star-600,#c42710)">Vijaya Dhasami Special</p>
+      <h2 style="font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(26px,3.4vw,40px);color:var(--laurel-900,#22350a);margin:10px 0 12px;line-height:1.1">Admissions Open this Vijaya Dhasami</h2>
+      <div aria-hidden="true" style="width:60px;height:3px;background:var(--gold,#e8b53a);margin:0 auto 20px;border-radius:2px"></div>
+      <p style="font-size:clamp(15.5px,1.9vw,18px);line-height:1.6;color:var(--ink-700,#3f412f);margin:0 auto 26px;max-width:52ch">Mark this auspicious beginning with a place at Morning Star. Complete the Vijaya Dhasami admission application online in a few simple steps.</p>
+      <a href="https://form.svhrt.com/6aabb8f4bef3d743c1471764" target="_blank" rel="noopener" class="btn btn-cta btn-pulse" style="padding:15px 34px">Apply for Vijaya Dhasami Admission <span aria-hidden="true">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- 2. OVERVIEW -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Admissions</p>
+    <h2 class="h2">Welcome to admissions at Morning Star</h2>
+    <p class="lead" style="margin-bottom:30px">We're delighted you're considering Morning Star Matriculation School for your child's education. Our admission process is designed to be simple, transparent, and supportive, helping every family find the right fit for their child's learning journey.</p>
+    <div class="infostrip">
+      <sc-for list="{{ infoStrip }}" as="i" hint-placeholder-count="3">
+        <div class="infopill"><span aria-hidden="true" style="font-size:20px;color:var(--laurel-600,#557a17)">{{ i.glyph }}</span><span><span style="display:block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700;color:var(--ink-500,#63664f)">{{ i.label }}</span><span style="font-size:15px;font-weight:600;color:var(--laurel-900,#22350a)">{{ i.value }}</span></span></div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 3. PROCESS -->
+<section class="sec" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap">
+    <p class="eyebrow">How to Apply</p>
+    <h2 class="h2" style="margin-bottom:44px">A simple, guided journey</h2>
+    <div class="tline">
+      <sc-for list="{{ steps }}" as="st" hint-placeholder-count="6">
+        <div class="step">
+          <div style="display:flex;align-items:center;gap:12px"><div class="stepnum" aria-hidden="true">{{ st.n }}</div><span class="stepic" aria-hidden="true">{{ st.glyph }}</span></div>
+          <h3 style="font-family:'Spectral',serif;font-size:19px;font-weight:600;color:var(--laurel-900,#22350a);margin:0">{{ st.title }}</h3>
+          <p style="font-size:14.5px;line-height:1.55;color:var(--ink-700,#3f412f);margin:0">{{ st.detail }}</p>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 4. DOCUMENTS -->
+<section class="sec">
+  <div class="wrap">
+    <p class="eyebrow">Checklist</p>
+    <h2 class="h2" style="margin-bottom:36px">Documents needed for admission</h2>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <h3 style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--laurel-700,#425f12);margin:0 0 16px">For New Admissions</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ docsNew }}" as="d" hint-placeholder-count="4">
+            <div class="chkitem"><span class="tick" aria-hidden="true">✓</span><span style="font-size:15px;line-height:1.5;color:var(--ink-800,#2f3122)">{{ d }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <h3 style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--laurel-700,#425f12);margin:0 0 16px">For Transfer Students (additional)</h3>
+        <div style="display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ docsTransfer }}" as="d" hint-placeholder-count="3">
+            <div class="chkitem"><span class="tick" aria-hidden="true">✓</span><span style="font-size:15px;line-height:1.5;color:var(--ink-800,#2f3122)">{{ d }}</span></div>
+          </sc-for>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 5. FEE STRUCTURE -->
+<section class="sec" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap">
+    <p class="eyebrow">Transparent Fees</p>
+    <h2 class="h2">Fee structure, 2026 to 27</h2>
+    <p class="lead" style="margin-bottom:26px">We believe in transparent, upfront fee communication. Find the fee structure by grade level below. For the detailed breakup, download the fee document or contact the admission office.</p>
+    <div class="feewrap">
+      <table class="feetable">
+        <thead><tr><th scope="col">Grade Level</th><th scope="col" style="text-align:right">Annual School Fee</th><th scope="col" style="text-align:right">Book Fee <span style="font-weight:500;text-transform:none;letter-spacing:0">(one-time)</span></th><th scope="col" style="text-align:right">Total Fee</th></tr></thead>
+        <tbody>
+          <sc-for list="{{ fees }}" as="f" hint-placeholder-count="4">
+            <tr><td class="grade">{{ f.grade }}</td><td class="num">{{ f.tuition }}</td><td class="num">{{ f.admission }}</td><td class="num">{{ f.other }}</td></tr>
+          </sc-for>
+        </tbody>
+      </table>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px">
+      <a class="btn btn-cta" href="assets/docs/fee-structure-2026-27.pdf" download><span aria-hidden="true">↓</span> Download Fee Structure (PDF)</a>
+      <p style="font-size:13.5px;color:var(--ink-500,#63664f);margin:0">Note: Fees are subject to revision; please confirm current fees with the admission office.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6. ONLINE APPLICATION -->
+<section class="sec" id="apply">
+  <div class="wrap">
+    <p class="eyebrow">Apply Online</p>
+    <h2 class="h2">Start your application</h2>
+    <p class="lead" style="margin-bottom:32px">Fill out the admission application below. Fields marked with <span style="color:var(--star-500,#de2c12)">*</span> are required. Our admission team will review your details and reach out to guide you through the next steps.</p>
+    <form id="apply-form" class="card" style="padding:clamp(26px,3.4vw,44px)" novalidate onSubmit="{{ submitForm }}" aria-label="Admission application">
+
+      <!-- Applicant Details -->
+      <div class="fblock">
+        <h3 class="fsec-title">Applicant Details</h3>
+        <div class="fsub-rule" style="margin-top:20px"></div>
+        <div class="frow">
+          <div class="field"><label for="af-name">Name (As per the Birth Certificate) <span class="req" aria-hidden="true">*</span></label><input class="inp" id="af-name" name="name" type="text" placeholder="Kid Name" required autocomplete="off"><span class="errmsg" data-for="name">Please enter the applicant's name.</span></div>
+          <div class="field"><label for="af-gender">Gender <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-gender" name="gender" required><option value="">Select</option><sc-for list="{{ genders }}" as="g" hint-placeholder-count="3"><option value="{{ g }}">{{ g }}</option></sc-for></select><span class="errmsg" data-for="gender">Please select a gender.</span></div>
+          <div class="field"><label for="af-dob">Date of Birth <span class="req" aria-hidden="true">*</span></label><input class="inp" id="af-dob" name="dob" type="date" required><span class="errmsg" data-for="dob">Please select a date of birth.</span></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="af-aadhar">Aadhar Number <span class="req" aria-hidden="true">*</span></label><input class="inp" id="af-aadhar" name="aadhar" type="text" inputmode="numeric" maxlength="12" placeholder="12-digit number" required><span class="errmsg" data-for="aadhar">Enter a valid 12-digit Aadhar number.</span></div>
+          <div class="field"><label for="af-location">School Location <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-location" name="location" required><sc-for list="{{ locations }}" as="l" hint-placeholder-count="2"><option value="{{ l }}">{{ l }}</option></sc-for></select><span class="errmsg" data-for="location">Please select a location.</span></div>
+          <div class="field"><label for="af-ayear">Academic Year <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-ayear" name="ayear" required><option value="">Select</option><sc-for list="{{ academicYears }}" as="y" hint-placeholder-count="2"><option value="{{ y }}">{{ y }}</option></sc-for></select><span class="errmsg" data-for="ayear">Please select an academic year.</span></div>
+        </div>
+        <div class="frow">
+          <div class="field"><label for="af-seeking">Admission Sought To <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-seeking" name="seeking" required><option value="">Select</option><sc-for list="{{ gradeOptions }}" as="g" hint-placeholder-count="6"><option value="{{ g }}">{{ g }}</option></sc-for></select><span class="errmsg" data-for="seeking">Please choose the grade sought.</span></div>
+        </div>
+      </div>
+
+      <!-- Parent / Guardian Details -->
+      <div class="fblock">
+        <h3 class="fsec-title">Parent / Guardian Details</h3>
+        <div class="fsub">
+          <p class="fsub-title">Primary Contact Details</p>
+          <div class="fsub-rule"></div>
+          <div class="frow">
+            <div class="field"><label for="af-p1name">Name <span class="req" aria-hidden="true">*</span></label><input class="inp" id="af-p1name" name="p1name" type="text" placeholder="Your Name" required autocomplete="off"><span class="errmsg" data-for="p1name">Please enter a name.</span></div>
+            <div class="field"><label for="af-p1rel">Relation To The Applicant <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-p1rel" name="p1rel" required><option value="">Select Relation</option><sc-for list="{{ relations }}" as="r" hint-placeholder-count="4"><option value="{{ r }}">{{ r }}</option></sc-for></select><span class="errmsg" data-for="p1rel">Please select a relation.</span></div>
+            <div class="field"><label for="af-p1mobile">Mobile Number <span class="req" aria-hidden="true">*</span></label><div class="phoneg"><select class="inp code" name="p1code" aria-label="Country code"><option>+91</option></select><input class="inp num" id="af-p1mobile" name="p1mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter mobile number" required></div><span class="errmsg" data-for="p1mobile">Enter a valid 10-digit mobile number.</span></div>
+          </div>
+        </div>
+        <div class="fsub">
+          <p class="fsub-title">Secondary Contact Details</p>
+          <div class="fsub-rule"></div>
+          <div class="frow">
+            <div class="field"><label for="af-p2name">Name <span class="req" aria-hidden="true">*</span></label><input class="inp" id="af-p2name" name="p2name" type="text" placeholder="Your Name" required autocomplete="off"><span class="errmsg" data-for="p2name">Please enter a name.</span></div>
+            <div class="field"><label for="af-p2rel">Relation To The Applicant <span class="req" aria-hidden="true">*</span></label><select class="inp" id="af-p2rel" name="p2rel" required><option value="">Select Relation</option><sc-for list="{{ relations }}" as="r" hint-placeholder-count="4"><option value="{{ r }}">{{ r }}</option></sc-for></select><span class="errmsg" data-for="p2rel">Please select a relation.</span></div>
+            <div class="field"><label for="af-p2mobile">Mobile Number <span class="req" aria-hidden="true">*</span></label><div class="phoneg"><select class="inp code" name="p2code" aria-label="Country code"><option>+91</option></select><input class="inp num" id="af-p2mobile" name="p2mobile" type="tel" inputmode="numeric" maxlength="10" placeholder="Enter mobile number" required></div><span class="errmsg" data-for="p2mobile">Enter a valid 10-digit mobile number.</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Communication Address -->
+      <div class="fblock">
+        <h3 class="fsec-title">Communication Address</h3>
+        <div class="fsub-rule" style="margin-top:20px"></div>
+        <div class="frow one">
+          <div class="field"><label for="af-address">Communication Address <span class="req" aria-hidden="true">*</span></label><textarea class="inp" id="af-address" name="address" placeholder="Enter Your Address" required></textarea><span class="errmsg" data-for="address">Please enter your communication address.</span></div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-cta" style="margin-top:34px;padding:15px 40px">Submit Application <span aria-hidden="true">→</span></button>
+      <p id="af-success" role="status" style="display:none;margin:16px 0 0;padding:14px 16px;background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e);border-radius:10px;font-size:14.5px;font-weight:600">✓ Thank you! Your enquiry is opening in WhatsApp — please press send, and our admission team will contact you shortly.</p>
+    </form>
+  </div>
+</section>
+
+<!-- 7. FAQ -->
+<section class="sec" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap" style="max-width:860px">
+    <p class="eyebrow">Questions</p>
+    <h2 class="h2" style="margin-bottom:32px">Frequently asked questions</h2>
+    <div>
+      <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+        <div class="faq" data-faq>
+          <h3 style="margin:0"><button type="button" class="faqq" id="{{ f.btnId }}" aria-expanded="false" aria-controls="{{ f.panelId }}" onClick="{{ toggleFaq }}">{{ f.q }} <span class="faqi" aria-hidden="true">+</span></button></h3>
+          <div class="faqa" id="{{ f.panelId }}" role="region" aria-labelledby="{{ f.btnId }}"><p>{{ f.a }}</p></div>
+        </div>
+      </sc-for>
+    </div>
+  </div>
+</section>
+
+<!-- 8. CTA -->
+<section class="sec" id="cta" style="background:linear-gradient(135deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="wrap" style="text-align:center;max-width:760px">
+    <p class="eyebrow" style="color:var(--laurel-300,#b5d687)">We're Here to Help</p>
+    <h2 class="h2" style="color:#fff;font-size:clamp(30px,3.8vw,48px)">Still have questions?</h2>
+    <p class="lead" style="color:var(--laurel-200,#cfe5ae);margin:0 auto 32px">Our admission team is happy to guide you through every step of the way.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="#footer" class="btn btn-cta">Contact Admission Office <span aria-hidden="true">→</span></a>
+      <a href="#footer" class="btn btn-ghost-light">Schedule a Campus Visit</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:var(--laurel-950,#16240a);color:var(--laurel-200,#cfe5ae)" id="footer">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px">
+    <div class="ft-grid grid" style="grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <span style="display:flex;flex-direction:column;line-height:1.1"><span style="font-family:'Spectral',serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span></span>
+        </div>
+        <p style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--laurel-200,#cfe5ae);margin:0 0 18px">Nurturing minds, building futures.</p>
+        <p style="font-size:14px;line-height:1.7;margin:0">Palamapuram, Punnam,<br>Karur District, Tamil Nadu 639008<br><span style="color:var(--laurel-300,#b5d687)">Phone:</span> [ Add phone ]<br><span style="color:var(--laurel-300,#b5d687)">Email:</span> [ Add email ]</p>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Quick Links</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px"><sc-for list="{{ quickLinks }}" as="q" hint-placeholder-count="5"><li><a href="{{ q.href }}" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ q.label }}</a></li></sc-for></ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Resources</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px"><sc-for list="{{ resources }}" as="r" hint-placeholder-count="5"><li><a href="#" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ r }}</a></li></sc-for></ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Connect With Us</h4>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <a href="#" aria-label="Facebook" style="width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;font-weight:700;text-decoration:none">f</a>
+          <a href="https://www.instagram.com/morningstarmatricschool2024/" target="_blank" rel="noopener" aria-label="Instagram" style="width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none">◎</a>
+          <a href="https://youtube.com/@morningstarmatriculationkarur" target="_blank" rel="noopener" aria-label="YouTube" style="width:40px;height:40px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none">▶</a>
+        </div>
+        <p style="font-size:14px;margin:0">Follow us for updates and moments from campus.</p>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:13px;color:var(--laurel-300,#b5d687)">
+      <span>© 2026 Cybernaut EdTech Private Limited. All rights reserved.</span>
+      <span style="display:flex;gap:18px"><a href="#" style="color:var(--laurel-300,#b5d687)">Privacy Policy</a><a href="#" style="color:var(--laurel-300,#b5d687)">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="applybar"><a href="https://wa.me/919994959334?text=Hi%2C%20I%20would%20like%20to%20enquire%20about%20admission%20at%20Morning%20Star%20Matriculation%20School." target="_blank" rel="noopener" class="btn btn-outline">Enquiry</a><a href="#apply" class="btn btn-cta">Apply Now</a></div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  componentDidMount(){
+    this._scroll = () => { const r = document.getElementById('msn-root'); if (r) r.classList.toggle('msn-scrolled', window.scrollY > 8); };
+    this._key = (e) => { if (e.key === 'Escape') this._close(); };
+    window.addEventListener('scroll', this._scroll, { passive:true });
+    window.addEventListener('keydown', this._key);
+    requestAnimationFrame(() => this._initReveal());
+  }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('keydown', this._key);
+    if (this._io) this._io.disconnect();
+  }
+  _root(){ return document.getElementById('msn-root'); }
+  _setToggle(open){ const b = document.getElementById('msn-toggle'); if (b){ b.setAttribute('aria-expanded', open?'true':'false'); b.setAttribute('aria-label', open?'Close menu':'Open menu'); } }
+  _close(){ const r = this._root(); if (r) r.classList.remove('msn-open'); this._setToggle(false); }
+  _initReveal(){
+    const root = this._root(); if (!root) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const els = root.querySelectorAll('.sec .eyebrow, .sec .h2, .sec .lead, .card, .step, .chkitem, .infopill, .feewrap, .faq, .feetable tbody tr');
+    els.forEach(el => el.classList.add('reveal'));
+    root.querySelectorAll('.tline, .grid, .infostrip').forEach(g => { Array.from(g.children).forEach((c, i) => { if (c.classList.contains('reveal')) c.style.transitionDelay = (i * 90) + 'ms'; }); });
+    root.querySelectorAll('.chkitem').forEach((c, i) => c.style.transitionDelay = ((i % 4) * 80) + 'ms');
+    this._io = new IntersectionObserver((ents) => { ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); this._io.unobserve(e.target); } }); }, { threshold:0.12, rootMargin:'0px 0px -6% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+
+  renderVals(){
+    const NAV = [
+      { label:'Home', href:'index.html' },
+      { label:'About Us', href:'about.html' },
+      { label:'Our Programs', href:'programs.html' },
+      { label:'Resources', href:'resources.html' },
+      { label:'Contact', href:'contact.html' },
+    ];
+    // Admission isn't in the 5 visible nav items, it's the CTA button; mark none active here, CTA carries it.
+    return {
+      navLinks: NAV.map((it) => ({ label:it.label, href:it.href, cls:'msn-link', ariaCurrent:'false' })),
+      toggleDrawer: () => { const r = this._root(); if (!r) return; const open = !r.classList.contains('msn-open'); r.classList.toggle('msn-open', open); this._setToggle(open); },
+      closeDrawer: () => this._close(),
+
+      toggleFaq: (e) => {
+        const btn = e.currentTarget; const faq = btn.closest('[data-faq]'); if (!faq) return;
+        const open = !faq.classList.contains('open');
+        const root = this._root();
+        if (root) root.querySelectorAll('[data-faq]').forEach(f => { if (f !== faq){ f.classList.remove('open'); const b = f.querySelector('.faqq'); if (b) b.setAttribute('aria-expanded','false'); } });
+        faq.classList.toggle('open', open);
+        btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+      },
+
+      submitForm: (e) => {
+        e.preventDefault();
+        const form = document.getElementById('apply-form'); if (!form) return;
+        const nm = v => v.trim().length > 1;
+        const sel = v => !!v;
+        const mob = v => /^\d{10}$/.test(v.replace(/\D/g,''));
+        const rules = {
+          name:nm, gender:sel, dob:sel,
+          aadhar:v=>/^\d{12}$/.test(v.replace(/\D/g,'')), location:sel, ayear:sel, seeking:sel,
+          p1name:nm, p1rel:sel, p1mobile:mob,
+          p2name:nm, p2rel:sel, p2mobile:mob,
+          address:v=>v.trim().length>4,
+        };
+        let firstBad = null;
+        Object.keys(rules).forEach(k => {
+          const inp = form.querySelector('[name="'+k+'"]'); const msg = form.querySelector('.errmsg[data-for="'+k+'"]');
+          const ok = rules[k](inp.value);
+          inp.classList.toggle('err', !ok); if (msg) msg.classList.toggle('show', !ok);
+          inp.setAttribute('aria-invalid', ok ? 'false' : 'true');
+          if (!ok && !firstBad) firstBad = inp;
+        });
+        if (firstBad){ firstBad.focus(); return; }
+        const g = k => { const el = form.querySelector('[name="'+k+'"]'); return el ? el.value.trim() : ''; };
+        const msg = 'Admission Enquiry — Morning Star Matriculation School%0A%0A'
+          + 'Student: ' + encodeURIComponent(g('name')) + '%0A'
+          + 'Gender: ' + encodeURIComponent(g('gender')) + '%0A'
+          + 'DOB: ' + encodeURIComponent(g('dob')) + '%0A'
+          + 'Seeking Admission: ' + encodeURIComponent(g('seeking')) + ' (' + encodeURIComponent(g('ayear')) + ')%0A'
+          + 'Parent: ' + encodeURIComponent(g('p1name')) + ' (' + encodeURIComponent(g('p1rel')) + ')%0A'
+          + 'Mobile: ' + encodeURIComponent(g('p1mobile')) + '%0A'
+          + 'Location: ' + encodeURIComponent(g('location'));
+        window.open('https://wa.me/919994959334?text=' + msg, '_blank', 'noopener');
+        const ok = document.getElementById('af-success'); if (ok) ok.style.display = 'block';
+        form.reset();
+      },
+
+      infoStrip: [
+        { glyph:'❋', label:'Grades Offered', value:'Pre-Primary to Std 10' },
+        { glyph:'★', label:'Admission Open For', value:'Academic Year 2026 to 27' },
+        { glyph:'✆', label:'Admission Office', value:'+91 99949 59334' },
+      ],
+      steps: [
+        { n:'1', glyph:'✎', title:'Enquiry', detail:'Submit an enquiry form online or visit the school office.' },
+        { n:'2', glyph:'❋', title:'Campus Visit / Counseling', detail:'Meet our team, tour the campus, and get your questions answered.' },
+        { n:'3', glyph:'▤', title:'Application Submission', detail:'Fill and submit the admission application with the required documents.' },
+        { n:'4', glyph:'☺', title:'Student Interaction', detail:'A brief, friendly interaction to understand the child\u2019s readiness for the grade.' },
+        { n:'5', glyph:'✓', title:'Confirmation & Fee Payment', detail:'Complete admission by paying the fee within the given timeline.' },
+        { n:'6', glyph:'★', title:'Welcome Onboard', detail:'Receive orientation details and a welcome kit before school begins.' },
+      ],
+      docsNew: [
+        'Birth Certificate (original + copy)',
+        'Aadhar Card copy of the student',
+        'Passport-size photographs (as specified by the office)',
+        'Address proof',
+        'Community Certificate (if applicable)',
+      ],
+      docsTransfer: [
+        'Transfer Certificate (TC) from previous school',
+        'Previous year\u2019s report card / mark sheet',
+        'All documents listed for new admissions',
+      ],
+      fees: [
+        { grade:'Pre-Primary (LKG to UKG)', tuition:'₹12,000 – 13,000', admission:'₹3,000', other:'₹15,000 – 16,000' },
+        { grade:'Primary (Std 1 to 5)', tuition:'₹16,500 – 20,000', admission:'₹3,500 – 4,000', other:'₹20,000 – 24,000' },
+        { grade:'Middle (Std 6 to 8)', tuition:'₹22,000 – 23,500', admission:'₹4,500 – 5,000', other:'₹26,500 – 28,500' },
+        { grade:'High School (Std 9 to 10)', tuition:'₹25,000 – 27,000', admission:'₹5,000', other:'₹30,000 – 32,000' },
+      ],
+      gradeOptions: ['Nursery','LKG','UKG','Std 1','Std 2','Std 3','Std 4','Std 5','Std 6','Std 7','Std 8','Std 9','Std 10'],
+      genders: ['Male','Female','Other'],
+      relations: ['Father','Mother','Guardian','Other'],
+      locations: ['Karur'],
+      academicYears: ['2026 to 27','2027 to 28'],
+      faqs: [
+        { q:'What is the age criteria for admission to Pre-Primary (LKG/UKG)?', a:'Age requirements follow the norms set by the school and education authorities. Please confirm your child\u2019s eligibility with the admission office for the exact cut-off date.', btnId:'faq-b0', panelId:'faq-p0' },
+        { q:'Is there an entrance test for admission?', a:'There is no formal entrance test. We hold a brief, friendly interaction to understand the child\u2019s readiness for the grade applied to.', btnId:'faq-b1', panelId:'faq-p1' },
+        { q:'What is the last date to apply for the current academic year?', a:'Applications are accepted until seats are filled. We recommend applying early; contact the office for the current deadline.', btnId:'faq-b2', panelId:'faq-p2' },
+        { q:'Do you provide transport facility from our area?', a:'The school operates bus routes across Karur. Share your locality with the office to confirm route availability.', btnId:'faq-b3', panelId:'faq-p3' },
+        { q:'Is there a sibling discount on fees?', a:'Please check with the admission office for any concessions currently offered for siblings.', btnId:'faq-b4', panelId:'faq-p4' },
+        { q:'What documents are required at the time of interaction?', a:'Bring the originals and copies listed in the Documents section above, along with recent passport-size photographs.', btnId:'faq-b5', panelId:'faq-p5' },
+      ],
+      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'Gallery', 'FAQs'],
+    };
+  }
+}
+</script>
+</body>
+</html>

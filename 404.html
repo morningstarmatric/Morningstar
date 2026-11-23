@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found — Morning Star Matriculation School</title>
+<link rel="icon" href="assets/logo.jpeg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --laurel-950:#16240A;--laurel-900:#22350A;--laurel-800:#31490E;--laurel-700:#425F12;--laurel-600:#557A17;--laurel-500:#73A91E;--laurel-400:#8FBF45;--laurel-300:#B5D687;--laurel-200:#CFE5AE;--laurel-100:#E5F1CD;--laurel-050:#F4F9E9;
+  --cream-100:#FFFCE9;--star-600:#C42710;--star-500:#DE2C12;--star-100:#FBDDD7;
+  --stone-100:#F0F2EA;--stone-200:#E3E7DA;--stone-300:#CFD5C2;--ink-900:#232418;--ink-700:#3F412F;--ink-500:#63664F;
+  --font-display:'Spectral',Georgia,serif;--font-body:'Public Sans',system-ui,sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0}
+body{font-family:var(--font-body);color:var(--ink-900);background:#fff;display:flex;flex-direction:column;min-height:100vh}
+a{color:var(--laurel-700);text-decoration:none}
+a:hover{color:var(--laurel-950)}
+.wrap{max-width:1200px;margin:0 auto;padding:0 clamp(20px,5vw,72px);width:100%}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--laurel-900);color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;transition:top .2s}
+.skip-link:focus{top:12px}
+/* NAV */
+.nav{border-bottom:1px solid var(--stone-200);position:sticky;top:0;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);z-index:100}
+.bar{display:flex;align-items:center;height:76px;gap:22px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-logo{flex-shrink:0}
+.lions{object-fit:contain;flex-shrink:0}
+.divv{width:1px;height:38px;background:var(--stone-200);flex-shrink:0}
+.crest{width:44px;height:44px;border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0}
+.brand-txt{display:flex;flex-direction:column;line-height:1.1}
+.bt1{font-family:var(--font-display);font-weight:600;font-size:19px;letter-spacing:-.01em;color:var(--laurel-900)}
+.bt2{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--laurel-600)}
+.bt3{font-size:9.5px;letter-spacing:.02em;font-weight:700;color:var(--laurel-700);margin-top:2px}
+.desktop{display:flex;align-items:center;gap:28px;margin-left:auto}
+.desktop a{font-size:15px;font-weight:500;color:var(--laurel-800)}
+.desktop a:hover{color:var(--laurel-950)}
+.btn{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:15px;border-radius:999px;padding:12px 24px;cursor:pointer;border:none;transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px)}
+.btn-cta{background:var(--star-500);color:#fff;box-shadow:0 6px 18px rgba(222,44,18,.28)}
+.btn-primary{background:var(--laurel-600);color:#fff;box-shadow:0 6px 18px rgba(85,122,23,.3)}
+.btn-ghost{background:transparent;border:1.5px solid var(--laurel-700);color:var(--laurel-800)}
+.toggle{display:none;margin-left:auto;width:46px;height:46px;border:1px solid var(--stone-200);border-radius:12px;background:#fff;flex-direction:column;align-items:center;justify-content:center;gap:5px;cursor:pointer}
+.toggle span{width:20px;height:2px;background:var(--laurel-800);border-radius:2px}
+/* MAIN 404 */
+.main{flex:1;display:flex;align-items:center;justify-content:center;text-align:center;padding:clamp(56px,9vw,104px) 24px;background:linear-gradient(180deg,#fff 0%,var(--laurel-050) 100%)}
+.card{max-width:540px}
+.mark{width:96px;height:96px;border-radius:50%;background:var(--laurel-100);display:flex;align-items:center;justify-content:center;margin:0 auto 28px;border:2px solid var(--laurel-300)}
+.mark svg{width:52px;height:52px;stroke:var(--laurel-700)}
+.code{font-family:var(--font-display);font-weight:700;font-size:clamp(60px,10vw,80px);color:var(--laurel-900);line-height:1;margin:0 0 6px;letter-spacing:-.02em}
+.rule{width:54px;height:3px;background:var(--star-500);margin:16px auto 22px;border-radius:2px}
+.card h1{font-family:var(--font-display);font-size:clamp(24px,3.2vw,30px);color:var(--laurel-800);margin:0 0 14px;font-weight:600}
+.card p{font-size:16px;color:var(--ink-700);line-height:1.62;margin:0 0 30px}
+.cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.helplinks{margin-top:34px;font-size:14px;color:var(--ink-500)}
+.helplinks .lbl{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--laurel-600);margin-bottom:10px}
+.helplinks .row{display:flex;flex-wrap:wrap;gap:8px 22px;justify-content:center}
+.helplinks a{font-weight:500}
+/* FOOTER */
+.ft{background:var(--laurel-950);color:var(--laurel-200)}
+.ft a{color:var(--laurel-200)}
+.ft a:hover{color:#fff}
+.ft h4{color:#fff;font-family:var(--font-display);font-size:16px;margin:0 0 14px;font-weight:600}
+.ft-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px}
+.ft ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:9px;font-size:14px}
+.soc{width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff}
+.soc:hover{background:var(--laurel-600)}
+.ftbottom{border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:13px;color:var(--laurel-300)}
+.ftbottom .legal{display:flex;gap:18px}
+/* DRAWER */
+.overlay{position:fixed;inset:0;z-index:200;background:rgba(22,36,10,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .32s ease}
+.drawer{position:fixed;top:0;right:0;height:100vh;width:min(87vw,360px);z-index:210;background:#fff;box-shadow:-24px 0 48px -24px rgba(22,36,10,.4);transform:translateX(100%);transition:transform .34s cubic-bezier(.22,.61,.36,1);padding:26px 24px;overflow-y:auto}
+body.open .overlay{opacity:1;pointer-events:auto}
+body.open .drawer{transform:translateX(0)}
+.drawer .dclose{margin-left:auto;display:flex;width:42px;height:42px;border:1px solid var(--stone-200);border-radius:10px;background:#fff;align-items:center;justify-content:center;font-size:20px;color:var(--laurel-800);cursor:pointer}
+.dlink{display:flex;align-items:center;padding:16px 4px;font-size:18px;font-weight:500;color:var(--ink-900);border-bottom:1px solid var(--stone-200)}
+.dlink:hover{color:var(--laurel-700)}
+.drawer .btn-cta{margin-top:22px;width:100%;justify-content:center}
+@media (max-width:1000px){.ft-grid{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:960px){.desktop{display:none}.toggle{display:flex}.bar{height:64px}.bt3{display:none}}
+@media (min-width:961px){.overlay,.drawer{display:none}}
+@media (max-width:640px){.ft-grid{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms!important}}
+</style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to main content</a>
+<header class="nav">
+  <div class="wrap bar">
+    <a class="brand" href="index.html" aria-label="Morning Star Matriculation School — home">
+      <img class="lions brand-logo" src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" loading="lazy">
+      <span class="divv"></span>
+      <img class="crest" src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44">
+      <span class="brand-txt">
+        <span class="bt1">Morning Star</span>
+        <span class="bt2">Matriculation School</span>
+        <span class="bt3">(Run by Lions Club of Karur Host Charitable Trust)</span>
+      </span>
+    </a>
+    <nav class="desktop">
+      <a href="about.html">About</a>
+      <a href="programs.html">Programs</a>
+      <a href="resources.html">Resources</a>
+      <a href="contact.html">Contact</a>
+      <a class="btn btn-cta" href="admission.html">Admission <span aria-hidden="true">→</span></a>
+    </nav>
+    <button class="toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<main class="main" id="main">
+  <div class="card">
+    <div class="mark"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polygon points="16 8 10.5 10.5 8 16 13.5 13.5 16 8"/></svg></div>
+    <p class="code">404</p>
+    <div class="rule"></div>
+    <h1>We couldn't find that page</h1>
+    <p>The page you're looking for may have been moved, renamed, or no longer exists. Let's get you back to familiar ground.</p>
+    <div class="cta">
+      <a class="btn btn-primary" href="index.html">← Back to Home</a>
+      <a class="btn btn-ghost" href="contact.html">Contact the office</a>
+    </div>
+    <div class="helplinks">
+      <span class="lbl">Popular pages</span>
+      <div class="row">
+        <a href="about.html">About</a>
+        <a href="programs.html">Programs</a>
+        <a href="admission.html">Admission</a>
+        <a href="resources.html">Resources</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="ft">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px">
+    <div class="ft-grid">
+      <div class="ft-col">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <span style="display:flex;flex-direction:column;line-height:1.1">
+            <span style="font-family:var(--font-display);font-weight:600;font-size:18px;color:#fff">Morning Star</span>
+            <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300)">Matriculation School</span>
+          </span>
+        </div>
+        <p style="font-family:var(--font-display);font-style:italic;font-size:15px;color:var(--laurel-200);margin:0 0 18px">Nurturing minds, building futures.</p>
+        <p style="font-size:14px;line-height:1.7;margin:0 0 12px">Pazhamapuram, Punnam Village,<br>Erode Road, Karur, Tamil Nadu 639136<br><span style="color:var(--laurel-300)">Phone:</span> +91 99949 59334<br><span style="color:var(--laurel-300)">Email:</span> morningstarmatric@gmail.com</p>
+        <a href="https://maps.app.goo.gl/EQYqb2twqYmYNw1EA" target="_blank" rel="noopener" style="color:var(--laurel-300);font-weight:500">Get directions <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="ft-col">
+        <h4>Quick Links</h4>
+        <ul><li><a href="about.html">About Us</a></li><li><a href="programs.html">Programs</a></li><li><a href="admission.html">Admission</a></li><li><a href="resources.html">Resources</a></li><li><a href="contact.html">Contact</a></li></ul>
+      </div>
+      <div class="ft-col">
+        <h4>Resources</h4>
+        <ul><li><a href="resources.html">News &amp; Events</a></li><li><a href="resources.html">Academic Calendar</a></li><li><a href="resources.html">Fee Structure</a></li><li><a href="resources.html">Downloads</a></li><li><a href="resources.html">Gallery</a></li></ul>
+      </div>
+      <div class="ft-col">
+        <h4>Connect With Us</h4>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <a class="soc" href="#" aria-label="Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 8.5V7c0-.83.67-1 1.5-1H17V3h-2.5C11.9 3 11 4.9 11 6.5v2H9v3h2v9h3v-9h2.3l.7-3H14z"/></svg></a>
+          <a class="soc" href="https://www.instagram.com/morningstarmatricschool2024/" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a class="soc" href="https://youtube.com/@morningstarmatriculationkarur" target="_blank" rel="noopener" aria-label="YouTube"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2a2.6 2.6 0 0 0-1.8-1.8C18.6 6 12 6 12 6s-6.6 0-8.2.4A2.6 2.6 0 0 0 2 8.2 27 27 0 0 0 1.6 12 27 27 0 0 0 2 15.8a2.6 2.6 0 0 0 1.8 1.8C5.4 18 12 18 12 18s6.6 0 8.2-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22.4 12 27 27 0 0 0 22 8.2zM10 15V9l5.2 3L10 15z"/></svg></a>
+        </div>
+        <p style="font-size:14px;margin:0">Follow us for updates and moments from campus.</p>
+      </div>
+    </div>
+    <div class="ftbottom">
+      <span>© 2026 Cybernaut EdTech Private Limited. All rights reserved.</span>
+      <span class="legal"><a href="#">Privacy Policy</a><a href="#">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
+
+<div class="overlay" id="navOverlay"></div>
+<aside class="drawer" id="navDrawer" aria-label="Mobile menu">
+  <button class="dclose" id="navClose" aria-label="Close menu">✕</button>
+  <nav style="margin-top:10px">
+    <a class="dlink" href="index.html">Home</a>
+    <a class="dlink" href="about.html">About</a>
+    <a class="dlink" href="programs.html">Programs</a>
+    <a class="dlink" href="resources.html">Resources</a>
+    <a class="dlink" href="contact.html">Contact</a>
+    <a class="btn btn-cta" href="admission.html">Admission <span aria-hidden="true">→</span></a>
+  </nav>
+</aside>
+
+<script>
+(function(){
+  var b=document.body,t=document.getElementById('navToggle'),c=document.getElementById('navClose'),o=document.getElementById('navOverlay');
+  function open(){b.classList.add('open');t.setAttribute('aria-expanded','true');}
+  function close(){b.classList.remove('open');t.setAttribute('aria-expanded','false');}
+  t.addEventListener('click',open);c.addEventListener('click',close);o.addEventListener('click',close);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
+</body>
+</html>

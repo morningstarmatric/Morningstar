@@ -1,0 +1,1281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Resources — Morning Star Matriculation School</title>
+<link rel="icon" href="assets/logo.jpeg">
+<script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
+<script src="support.js"></script>
+</head>
+<body>
+<x-dc>
+<!-- @template name="School Resources" description="K-10 Resources page: banner hero, sticky scroll-spy pills, study materials (class/subject filter), academic calendar, circulars, news & events, and a TN-style e-books browser (standard tiles → medium/term filters → download rows), matches the School site brand." -->
+<helmet>
+<style id="ds-tokens">
+
+/* tokens/fonts.css */
+/* Webfonts. Display = Spectral (warm editorial serif, heritage voice).
+   Body = Public Sans (clean neutral modern sans).
+   NOTE: loaded from Google Fonts (no brand-owned font files were provided).
+   See readme.md → Typography for the substitution flag. */
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Public+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+/* tokens/colors.css */
+/* Morning Star — Color tokens.
+   Palette sampled from the school crest — GREEN + WHITE only.
+   PRIMARY: white / paper (the crest field and every major surface).
+   SECONDARY: Laurel Green (the crest wreath) — structure AND interaction.
+   No blue and no gold anywhere in the system. Star red survives as a single
+   hairline accent (the crest star); cream is a warm off-white band tint. */
+:root{
+  /* ---- White & paper (PRIMARY) ---- */
+  --white:#FFFFFF;
+  --paper:#FFFFFF;            /* card surfaces */
+  --paper-warm:#FDFCF6;       /* barely-warm page alternative */
+
+  /* ---- Laurel Green (SECONDARY brand — structure + interaction) ---- */
+  --laurel-950:#16240A;   /* deepest — dark bands, footer */
+  --laurel-900:#22350A;   /* headings */
+  --laurel-800:#31490E;
+  --laurel-700:#425F12;
+  --laurel-600:#557A17;   /* core action: buttons, links, focus */
+  --laurel-500:#73A91E;   /* core laurel — crest wreath, accents */
+  --laurel-400:#8FBF45;
+  --laurel-300:#B5D687;
+  --laurel-200:#CFE5AE;   /* muted text on dark green */
+  --laurel-100:#E5F1CD;
+  --laurel-050:#F4F9E9;
+
+  /* ---- Book Cream (warm off-white band tint) ---- */
+  --cream-050:#FFFEF4;
+  --cream-100:#FFFCE9;
+  --cream-200:#FFF9D5;
+  --cream-300:#F6EDB5;
+  --cream-400:#E7DA93;
+  --cream-500:#CFBF6E;
+  --cream-600:#A8974C;
+
+  /* ---- Star Red (hairline accent only — crest star) ---- */
+  --star-700:#A8210C;
+  --star-600:#C42710;
+  --star-500:#DE2C12;
+  --star-300:#EE8B7A;
+  --star-100:#FBDDD7;
+
+  /* ---- Neutrals (green-leaning greys → Ink) ---- */
+  --stone-050:#F7F8F4;
+  --stone-100:#F0F2EA;
+  --stone-200:#E3E7DA;
+  --stone-300:#CFD5C2;
+  --ink-900:#232418;     /* default body text (never pure black) */
+  --ink-700:#3F412F;
+  --ink-500:#63664F;
+  --ink-400:#878A70;
+
+  /* ---- Back-compat aliases: the retired blue ramp now resolves to deep green ---- */
+  --indigo-900:var(--laurel-950);
+  --indigo-800:var(--laurel-900);
+  --indigo-700:var(--laurel-800);
+  --indigo-600:var(--laurel-700);
+  --indigo-500:var(--laurel-600);
+  --indigo-300:var(--laurel-200);
+  --indigo-100:var(--laurel-100);
+  --indigo-050:var(--laurel-050);
+
+  /* ---- Back-compat aliases: the retired gold ramp now resolves to crest green ---- */
+  --gold-600:var(--laurel-600);
+  --gold-500:var(--laurel-500);
+  --gold-300:var(--laurel-300);
+  --gold-100:var(--laurel-100);
+
+  /* ---- Back-compat aliases (older ramp names) ---- */
+  --teal-900:var(--laurel-950);
+  --teal-800:var(--laurel-800);
+  --teal-700:var(--laurel-700);
+  --teal-600:var(--laurel-600);
+  --teal-500:var(--laurel-500);
+  --teal-300:var(--laurel-300);
+  --teal-100:var(--laurel-100);
+  --teal-050:var(--laurel-050);
+  --green-700:var(--laurel-800);
+  --green-600:var(--laurel-600);
+  --green-500:var(--laurel-500);
+  --green-300:var(--laurel-300);
+  --green-100:var(--laurel-100);
+  --saffron-700:var(--star-700);
+  --saffron-600:var(--star-600);
+  --saffron-500:var(--star-500);
+  --saffron-300:var(--star-300);
+  --saffron-100:var(--star-100);
+  --coral-700:var(--star-700);
+  --coral-600:var(--star-600);
+  --coral-500:var(--star-500);
+  --coral-300:var(--star-300);
+  --coral-100:var(--star-100);
+  --ivory:var(--white);
+  --sand-100:var(--stone-100);
+  --sand-200:var(--stone-200);
+  --sand-300:var(--stone-300);
+  --charcoal-900:var(--ink-900);
+  --charcoal-700:var(--ink-700);
+  --charcoal-500:var(--ink-500);
+  --charcoal-400:var(--ink-400);
+
+  /* ---- Semantic aliases ---- */
+  --brand-primary:var(--laurel-600);        /* actionable: buttons, links, active states */
+  --brand-primary-strong:var(--laurel-800);
+  --brand-secondary:var(--laurel-900);      /* institutional: headings, outline buttons */
+  --brand-surface:var(--white);
+  --brand-accent:var(--laurel-500);         /* bright crest green — tags, badges */
+  --brand-accent-warm:var(--star-500);      /* crest star red — hairline accent only */
+
+  --surface-page:var(--white);
+  --surface-card:var(--paper);
+  --surface-raised:var(--paper);
+  --surface-sunken:var(--stone-100);
+  --surface-warm:var(--cream-100);          /* optional warm band */
+  --surface-inverse:var(--laurel-950);
+  --surface-accent-soft:var(--laurel-050);
+  --surface-green-soft:var(--laurel-100);
+  --surface-coral-soft:var(--star-100);
+  --surface-gold-soft:var(--laurel-100);
+
+  --text-strong:var(--laurel-900);           /* headings, nav logo */
+  --text-body:var(--ink-900);
+  --text-muted:var(--ink-500);
+  --text-faint:var(--ink-400);
+  --text-on-brand:var(--white);
+  --text-on-brand-muted:var(--laurel-200);
+  --text-link:var(--laurel-700);
+  --text-link-hover:var(--laurel-950);
+
+  --border-hairline:var(--stone-200);
+  --border-soft:var(--stone-300);
+  --border-strong:var(--laurel-100);
+  --border-focus:var(--laurel-600);
+
+  --star:var(--star-500);
+}
+a{color:var(--text-link)}
+a:hover{color:var(--text-link-hover)}
+
+/* tokens/typography.css */
+/* Morning Star — Typography tokens */
+:root{
+  --font-display:'Spectral', Georgia, 'Times New Roman', serif;
+  --font-body:'Public Sans', system-ui, -apple-system, Segoe UI, Helvetica, Arial, sans-serif;
+
+  /* Type scale (editorial, generous) */
+  --fs-display:clamp(48px, 6vw, 82px); /* @kind font */
+  --fs-h1:clamp(38px, 4.4vw, 60px); /* @kind font */
+  --fs-h2:clamp(30px, 3vw, 42px); /* @kind font */
+  --fs-h3:24px; /* @kind font */
+  --fs-h4:20px; /* @kind font */
+  --fs-body-lg:19px; /* @kind font */
+  --fs-body:17px; /* @kind font */
+  --fs-body-sm:15px; /* @kind font */
+  --fs-caption:13px; /* @kind font */
+  --fs-metadata:12px; /* @kind font */
+
+  /* Line heights */
+  --lh-display:1.04; /* @kind font */
+  --lh-heading:1.12; /* @kind font */
+  --lh-body:1.62; /* @kind font */
+  --lh-tight:1.3; /* @kind font */
+
+  /* Weights */
+  --fw-regular:400; /* @kind font */
+  --fw-medium:500; /* @kind font */
+  --fw-semibold:600; /* @kind font */
+  --fw-bold:700; /* @kind font */
+
+  /* Tracking */
+  --ls-display:-0.02em; /* @kind font */
+  --ls-heading:-0.01em; /* @kind font */
+  --ls-eyebrow:0.16em; /* @kind font */
+  --ls-body:0; /* @kind font */
+}
+
+/* tokens/spacing.css */
+/* Morning Star — Spacing, radii, layout tokens */
+:root{
+  --space-1:4px;
+  --space-2:8px;
+  --space-3:12px;
+  --space-4:16px;
+  --space-5:24px;
+  --space-6:32px;
+  --space-7:48px;
+  --space-8:64px;
+  --space-9:96px;
+  --space-10:128px;
+
+  /* Section rhythm */
+  --section-y:clamp(64px, 9vw, 128px); /* @kind spacing */
+  --gutter:clamp(20px, 5vw, 72px); /* @kind spacing */
+  --content-max:1200px;
+  --measure:64ch; /* @kind spacing */
+
+  /* Radii — restrained */
+  --radius-xs:4px;
+  --radius-sm:8px;
+  --radius-md:12px;
+  --radius-lg:18px;
+  --radius-pill:999px;
+
+  /* Grid */
+  --grid-cols:12; /* @kind other */
+  --grid-gap:clamp(16px, 2vw, 28px);
+}
+
+/* tokens/effects.css */
+/* Morning Star — Shadows, borders, motion */
+:root{
+  /* Soft shadows (green-tinted, low spread) */
+  --shadow-xs:0 1px 2px rgba(34,53,10,0.07);
+  --shadow-sm:0 2px 8px rgba(34,53,10,0.08);
+  --shadow-md:0 10px 30px rgba(34,53,10,0.10);
+  --shadow-lg:0 24px 60px rgba(34,53,10,0.16);
+  --shadow-focus:0 0 0 3px rgba(85,122,23,0.35);
+
+  --border-thin:1px solid var(--border-hairline);
+  --border-card:1px solid var(--border-soft);
+
+  /* Motion */
+  --ease-out:cubic-bezier(0.22,0.61,0.36,1); /* @kind other */
+  --ease-in-out:cubic-bezier(0.65,0,0.35,1); /* @kind other */
+  --dur-fast:140ms; /* @kind other */
+  --dur-base:240ms; /* @kind other */
+  --dur-slow:520ms; /* @kind other */
+
+  --hover-lift:translateY(-3px); /* @kind other */
+  --press-scale:scale(0.985); /* @kind other */
+}
+@media (prefers-reduced-motion: reduce){
+  *{animation-duration:0.001ms !important;transition-duration:0.001ms !important;scroll-behavior:auto !important}
+}
+
+/* styles.css */
+@import url('tokens/fonts.css');
+@import url('tokens/colors.css');
+@import url('tokens/typography.css');
+@import url('tokens/spacing.css');
+@import url('tokens/effects.css');
+
+</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&family=Spectral:ital,wght@0,500;0,600;1,500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}
+body{margin:0;font-family:'Public Sans',system-ui,sans-serif;color:var(--ink-900,#232418);background:var(--white,#fff);-webkit-font-smoothing:antialiased}
+html{scroll-behavior:smooth}
+a{color:inherit}
+.wrap{max-width:1320px;margin:0 auto;padding:0 clamp(24px,4vw,56px)}
+.sec{padding:clamp(52px,7vw,90px) 0}
+.eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:700;color:var(--laurel-600,#557a17);margin:0 0 14px}
+.h2{font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1.07;letter-spacing:-.015em;color:var(--laurel-900,#22350a);margin:0 0 14px;text-wrap:pretty}
+.lead{font-size:17px;line-height:1.6;color:var(--ink-700,#3f412f);max-width:66ch;margin:0}
+.card{background:#fff;border:1px solid var(--stone-200,#e3e7da);border-radius:16px;box-shadow:0 2px 8px rgba(34,53,10,.06);transition:transform .25s ease,box-shadow .25s ease,border-color .25s ease}
+.card:hover{transform:translateY(-4px);box-shadow:0 16px 38px -18px rgba(34,53,10,.28);border-color:var(--laurel-200,#cfe5ae)}
+.ph{background-image:repeating-linear-gradient(135deg,rgba(85,122,23,.10) 0 2px,transparent 2px 11px);background-color:var(--laurel-050,#f4f9e9);display:flex;align-items:center;justify-content:center;color:var(--laurel-700,#425f12);font-family:ui-monospace,Menlo,monospace;font-size:11px;letter-spacing:.07em;text-align:center;padding:6px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-weight:600;font-size:15px;text-decoration:none;border-radius:999px;padding:13px 26px;cursor:pointer;border:none;transition:transform .18s ease,box-shadow .18s ease,background .2s ease}
+.btn-cta{background:var(--star-500,#de2c12);color:#fff;box-shadow:0 10px 24px -8px rgba(222,44,18,.5)}
+.btn-cta:hover{transform:translateY(-2px);box-shadow:0 14px 30px -8px rgba(222,44,18,.55)}
+.btn-outline{background:transparent;color:var(--laurel-800,#31490e);border:1.5px solid var(--laurel-300,#b5d687)}
+.btn-outline:hover{background:var(--laurel-050,#f4f9e9);border-color:var(--laurel-500,#73a91e);transform:translateY(-2px)}
+.btn-ghost-light{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.5)}.btn-ghost-light:hover{background:rgba(255,255,255,.12);transform:translateY(-2px)}
+.grid{display:grid;gap:22px}.g3{grid-template-columns:repeat(3,1fr)}
+.morelink{display:inline-flex;align-items:center;gap:6px;font-weight:600;font-size:14px;color:var(--laurel-700,#425f12);text-decoration:none}
+.morelink:hover{color:var(--laurel-950,#16240a)}
+/* badges */
+.badge{display:inline-flex;align-items:center;gap:5px;font-size:11.5px;font-weight:700;letter-spacing:.04em;padding:4px 11px;border-radius:999px;white-space:nowrap}
+.b-class{background:var(--laurel-100,#e5f1cd);color:var(--laurel-800,#31490e)}
+.b-subject{background:var(--stone-100,#f0f2ea);color:var(--ink-700,#3f412f)}
+.b-medium{background:var(--laurel-050,#f4f9e9);color:var(--laurel-700,#425f12);border:1px solid var(--laurel-200,#cfe5ae)}
+.b-term{background:var(--star-100,#fbddd7);color:var(--star-700,#a8210c)}
+/* Nav (shared) */
+.msn-header{position:sticky;top:0;z-index:100;background:rgba(255,255,255,.9);backdrop-filter:saturate(150%) blur(12px);-webkit-backdrop-filter:saturate(150%) blur(12px);border-bottom:1px solid transparent;transition:box-shadow .3s ease,border-color .3s ease}
+.msn-root.msn-scrolled .msn-header{border-bottom-color:var(--stone-200,#e3e7da);box-shadow:0 8px 26px -14px rgba(34,53,10,.4)}
+.msn-bar{max-width:1320px;margin:0 auto;padding:0 clamp(18px,4vw,56px);height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px;transition:height .3s ease}
+.msn-root.msn-scrolled .msn-bar{height:66px}
+.msn-desktop{display:flex;align-items:center;gap:30px}
+.msn-link{position:relative;display:inline-flex;align-items:center;padding:10px 15px;font-size:15px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-radius:8px;white-space:nowrap;transition:color .2s ease}
+.msn-link::after{content:"";position:absolute;left:15px;right:15px;bottom:5px;height:2px;border-radius:2px;background:var(--laurel-500,#73a91e);transform:scaleX(0);transform-origin:left center;transition:transform .28s cubic-bezier(.4,0,.2,1)}
+.msn-link:hover{color:var(--laurel-700,#425f12)}.msn-link:hover::after{transform:scaleX(1)}
+.msn-link:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:3px}
+.msn-link.msn-active{color:var(--laurel-700,#425f12)}.msn-link.msn-active::after{background:var(--star-500,#de2c12);transform:scaleX(1)}
+.msn-toggle{display:none;order:-1;flex-direction:column;justify-content:center;align-items:center;gap:6px;width:46px;height:46px;background:transparent;border:none;border-radius:10px;cursor:pointer}
+.msn-toggle:hover{background:var(--stone-100,#f0f2ea)}
+.msn-line{width:24px;height:2px;border-radius:2px;background:var(--laurel-900,#22350a);transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .2s ease}
+.msn-root.msn-open .msn-line:nth-child(1){transform:translateY(8px) rotate(45deg)}
+.msn-root.msn-open .msn-line:nth-child(2){opacity:0}
+.msn-root.msn-open .msn-line:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.msn-overlay{position:fixed;inset:0;z-index:200;background:rgba(22,36,10,.42);backdrop-filter:blur(2px);opacity:0;pointer-events:none;transition:opacity .32s ease}
+.msn-root.msn-open .msn-overlay{opacity:1;pointer-events:auto}
+.msn-drawer{position:fixed;top:0;right:0;height:100vh;width:min(87vw,360px);z-index:210;background:#fff;box-shadow:-24px 0 48px -24px rgba(22,36,10,.4);transform:translateX(100%);transition:transform .4s cubic-bezier(.4,0,.2,1);padding:22px 22px 28px;display:flex;flex-direction:column;overflow-y:auto}
+.msn-root.msn-open .msn-drawer{transform:translateX(0)}
+.msn-dlink{display:flex;align-items:center;justify-content:space-between;padding:16px 4px;font-size:18px;font-weight:500;text-decoration:none;color:var(--ink-900,#232418);border-bottom:1px solid var(--stone-200,#e3e7da);transition:color .2s ease}
+.msn-dlink:hover{color:var(--laurel-700,#425f12)}
+/* Resources */
+.crumb{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--laurel-200,#cfe5ae)}
+.crumb a{text-decoration:none;color:var(--laurel-200,#cfe5ae)}.crumb a:hover{color:#fff}
+.pillbar{position:sticky;top:65px;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:saturate(150%) blur(10px);-webkit-backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--stone-200,#e3e7da)}
+.pillrow{display:flex;gap:10px;overflow-x:auto;padding:13px 0;scrollbar-width:none}
+.pillrow::-webkit-scrollbar{display:none}
+.pill{white-space:nowrap;font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;border:1.5px solid var(--stone-300,#cfd5c2);color:var(--ink-700,#3f412f);text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
+.pill:hover{border-color:var(--laurel-400,#8fbf45)}
+.pill.active{background:var(--laurel-600,#557a17);border-color:var(--laurel-600,#557a17);color:#fff}
+.pill:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:2px}
+.stage{scroll-margin-top:132px}
+.chip{font-family:inherit;font-size:13.5px;font-weight:600;padding:8px 15px;border-radius:999px;border:1.5px solid var(--stone-300,#cfd5c2);background:#fff;color:var(--ink-700,#3f412f);cursor:pointer;transition:all .18s ease}
+.chip:hover{border-color:var(--laurel-400,#8fbf45)}
+.chip.active{background:var(--laurel-600,#557a17);border-color:var(--laurel-600,#557a17);color:#fff}
+.chip:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:2px}
+.row{position:relative;display:flex;align-items:center;gap:16px;padding:18px 20px;border:1px solid var(--stone-200,#e3e7da);border-radius:14px;background:#fff;overflow:hidden;box-shadow:0 1px 4px rgba(34,53,10,.04);transition:transform .3s cubic-bezier(.22,.61,.36,1),box-shadow .3s ease,border-color .3s ease}
+.row::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(var(--laurel-500,#73a91e),var(--laurel-700,#425f12));transform:scaleY(0);transform-origin:top;transition:transform .35s cubic-bezier(.22,.61,.36,1)}
+.row:hover{transform:translateY(-3px);box-shadow:0 18px 36px -20px rgba(34,53,10,.34);border-color:var(--laurel-200,#cfe5ae)}
+.row:hover::before{transform:scaleY(1)}
+.doticon{width:46px;height:46px;border-radius:12px;background:linear-gradient(150deg,var(--star-100,#fbddd7),#fff);color:var(--star-600,#c1250e);display:flex;align-items:center;justify-content:center;font-size:11.5px;font-weight:800;letter-spacing:.02em;flex-shrink:0;box-shadow:inset 0 0 0 1px rgba(193,37,14,.18);transition:transform .35s cubic-bezier(.34,1.56,.64,1)}
+.row:hover .doticon{transform:scale(1.08) rotate(-5deg)}
+.ebrows .row{animation:rowIn .5s cubic-bezier(.22,.61,.36,1) both}
+.ebrows .row:nth-child(2){animation-delay:.05s}.ebrows .row:nth-child(3){animation-delay:.1s}.ebrows .row:nth-child(4){animation-delay:.15s}.ebrows .row:nth-child(5){animation-delay:.2s}.ebrows .row:nth-child(6){animation-delay:.25s}.ebrows .row:nth-child(7){animation-delay:.3s}
+@keyframes rowIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.dl{display:inline-flex;align-items:center;gap:7px;font-size:14px;font-weight:700;color:#fff;text-decoration:none;white-space:nowrap;padding:10px 18px;border-radius:999px;border:none;background:linear-gradient(135deg,var(--laurel-600,#557a17),var(--laurel-800,#31490e));box-shadow:0 8px 18px -8px rgba(85,122,23,.6);transition:transform .25s ease,box-shadow .25s ease,filter .2s ease}
+.dl:hover{transform:translateY(-2px);box-shadow:0 14px 26px -8px rgba(85,122,23,.7);filter:brightness(1.05)}
+.dl:hover .dlic{transform:translateY(2px)}
+.dl:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:2px}
+.dlic{transition:transform .18s ease}
+.stdtile{position:relative;font-family:inherit;min-width:80px;padding:16px 12px;border-radius:16px;border:1.5px solid var(--stone-300,#cfd5c2);background:#fff;cursor:pointer;text-align:center;overflow:hidden;box-shadow:0 1px 4px rgba(34,53,10,.04);transition:transform .3s cubic-bezier(.34,1.4,.5,1),box-shadow .3s ease,border-color .25s ease;flex-shrink:0}
+.stdtile:hover{border-color:var(--laurel-400,#8fbf45);transform:translateY(-4px);box-shadow:0 14px 28px -14px rgba(34,53,10,.3)}
+.stdtile.active{background:linear-gradient(155deg,var(--laurel-500,#73a91e),var(--laurel-700,#425f12));border-color:var(--laurel-700,#425f12);transform:translateY(-4px) scale(1.06);box-shadow:0 18px 34px -14px rgba(85,122,23,.6)}
+.stdtile.active .st-n{color:#fff}.stdtile.active .st-l{color:var(--laurel-100,#e5f1cd)}
+.stdtile:focus-visible{outline:2px solid var(--laurel-600,#557a17);outline-offset:2px}
+.st-n{font-family:'Spectral',serif;font-size:24px;font-weight:600;color:var(--laurel-800,#31490e);line-height:1}
+.st-l{font-size:10px;letter-spacing:.08em;text-transform:uppercase;font-weight:700;color:var(--ink-500,#63664f);margin-top:5px}
+.ebook-filters{overflow:hidden;transition:max-height .4s ease,opacity .3s ease,margin .3s ease;max-height:0;opacity:0;margin-top:0}
+.ebook-filters.open{max-height:2000px;opacity:1;margin-top:24px}
+.ebrows{transition:opacity .25s ease;max-height:520px;overflow-y:auto;-webkit-overflow-scrolling:touch}
+.ebrows.fading{opacity:.25}
+.sm-soon-ic{animation:sm-float 3.2s ease-in-out infinite}
+.sm-soon::after{content:"";position:absolute;top:-40%;left:-30%;width:60%;height:180%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-16deg);animation:sm-sweep 4.5s ease-in-out infinite;pointer-events:none}
+.sm-soon-dots{display:inline-flex;gap:5px;margin-left:2px;vertical-align:middle}
+.sm-soon-dots i{width:6px;height:6px;border-radius:50%;background:var(--laurel-500,#73a91e);display:inline-block;animation:sm-blink 1.4s ease-in-out infinite}
+.sm-soon-dots i:nth-child(2){animation-delay:.2s}.sm-soon-dots i:nth-child(3){animation-delay:.4s}
+@keyframes sm-float{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-9px) rotate(3deg)}}
+@keyframes sm-blink{0%,100%{opacity:.25;transform:translateY(0)}50%{opacity:1;transform:translateY(-3px)}}
+@keyframes sm-sweep{0%{left:-40%}55%,100%{left:130%}}
+@media (prefers-reduced-motion:reduce){.sm-soon-ic,.sm-soon-dots i,.sm-soon::after{animation:none}}
+.gal{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:150px;gap:12px}
+.gal .tile{border:none;padding:0;border-radius:12px;overflow:hidden;cursor:pointer}
+.gal .tile:hover .ph{filter:brightness(.96)}
+.gal .tall{grid-row:span 2}
+.lb{position:fixed;inset:0;z-index:300;background:rgba(22,36,10,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:32px;opacity:0;pointer-events:none;transition:opacity .28s ease}
+.msn-root.lb-open .lb{opacity:1;pointer-events:auto}
+.lb-inner{width:auto;height:auto;max-width:min(920px,94vw);max-height:88vh;border-radius:14px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);object-fit:contain;background:#fff}
+.lb-close{position:fixed;top:22px;right:26px;z-index:2;width:44px;height:44px;border-radius:50%;border:none;background:rgba(255,255,255,.92);color:var(--laurel-900,#22350a);font-size:19px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s ease,background .2s ease}
+.lb-close:hover{transform:scale(1.08);background:#fff}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,.61,.36,1),transform .6s cubic-bezier(.22,.61,.36,1)}
+.ne-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:26px;perspective:1400px}
+.ne-card{position:relative;border-radius:18px;overflow:hidden;background:#fff;border:1px solid var(--stone-200,#e3e7da);display:flex;flex-direction:column;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.22,.61,.36,1),box-shadow .5s ease;box-shadow:0 2px 8px rgba(34,53,10,.06);will-change:transform}
+.ne-card:hover{box-shadow:0 34px 60px -26px rgba(34,53,10,.5),0 10px 22px -14px rgba(34,53,10,.4)}
+.ne-media{position:relative;height:172px;overflow:hidden;transform:translateZ(0)}
+.ne-media .ph{position:absolute;inset:0;transition:transform .6s cubic-bezier(.22,.61,.36,1)}
+.ne-card:hover .ne-media img{transform:scale(1.08)}
+.ne-badge{position:absolute;top:14px;left:14px;z-index:2;display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border-radius:999px;background:rgba(255,255,255,.94);color:var(--laurel-700,#425f12);font-size:11.5px;font-weight:800;letter-spacing:.05em;box-shadow:0 6px 16px -8px rgba(34,53,10,.5);transform:translateZ(50px)}
+.ne-scrim{position:absolute;inset:0;background:linear-gradient(to top,rgba(22,53,10,.5),transparent 55%);opacity:0;transition:opacity .5s ease}
+.ne-card:hover .ne-scrim{opacity:1}
+.ne-body{padding:22px;display:flex;flex-direction:column;gap:9px;flex:1;transform:translateZ(30px)}
+.ne-date{font-size:12px;font-weight:700;letter-spacing:.05em;color:var(--laurel-600,#557a17)}
+.ne-title{font-family:'Spectral',Georgia,serif;font-size:19px;font-weight:600;color:var(--laurel-900,#22350a);margin:0;line-height:1.25}
+.ne-ex{font-size:14.5px;line-height:1.55;color:var(--ink-700,#3f412f);margin:0;flex:1}
+.ne-card .morelink{transform:translateZ(20px)}
+@media(prefers-reduced-motion:reduce){.ne-card,.ne-media .ph{transition:box-shadow .3s ease}.ne-card:hover{transform:none!important}}
+.reveal.in{opacity:1;transform:none}
+@media (max-width:1000px){.g3{grid-template-columns:repeat(2,1fr)}.gal{grid-template-columns:repeat(2,1fr)}.ft-grid{grid-template-columns:1fr 1fr !important}}
+@media (max-width:960px){.msn-desktop{display:none}.msn-toggle{display:flex}.msn-bar{height:62px;padding:0 18px}.msn-root.msn-scrolled .msn-bar{height:62px}.pillbar{top:61px}}
+@media (min-width:961px){.msn-overlay,.msn-drawer{display:none}}
+@media (max-width:640px){.g3{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.gal .tall{grid-row:span 1}.row{flex-wrap:wrap}.row .dl{width:100%;justify-content:center}.ft-grid{grid-template-columns:1fr !important}.hero-cta{flex-direction:column !important;align-items:stretch !important}}
+@media (prefers-reduced-motion:reduce){*{transition-duration:.001ms !important}.reveal{opacity:1 !important;transform:none !important}}
+.fee-card{border:1px solid var(--stone-200,#e3e7da);border-radius:16px;overflow:hidden;background:#fff;box-shadow:0 2px 8px rgba(34,53,10,.06)}
+.fee-table{width:100%;border-collapse:collapse;font-size:14.5px}
+.fee-table th,.fee-table td{padding:14px 16px;text-align:center;white-space:nowrap}
+.fee-table thead th{background:var(--laurel-900,#22350a);color:#fff;font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:700}
+.fee-table thead th:first-child,.fee-table tbody td:first-child{text-align:left}
+.fee-table tbody tr{border-top:1px solid var(--stone-200,#e3e7da);transition:background .18s ease}
+.fee-table tbody tr:nth-child(even){background:var(--laurel-050,#f4f9e9)}
+.fee-table tbody tr:hover{background:var(--laurel-100,#e5f1cd)}
+.fee-cls{font-family:'Spectral',Georgia,serif;font-weight:700;color:var(--laurel-900,#22350a);font-size:16px}
+.fee-total{font-weight:700;color:var(--laurel-800,#31490e)}
+.fee-table tbody td .rs{font-size:11px;color:var(--ink-400,#878a70);margin-right:2px}
+.fee-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+@media (max-width:640px){.fee-table th,.fee-table td{padding:11px 12px;font-size:13px}}
+.skip-link{position:absolute;left:12px;top:-60px;z-index:400;background:var(--laurel-900,#22350a);color:#fff;padding:12px 20px;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:top .2s ease}.skip-link:focus{top:12px}
+</style>
+</helmet>
+
+<div id="msn-root" class="msn-root">
+<a href="#top" class="skip-link">Skip to main content</a>
+<header class="msn-header">
+  <div class="msn-bar">
+    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+      <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
+      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <span style="display:flex;flex-direction:column;line-height:1.08">
+        <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:19px;letter-spacing:-.01em;color:var(--laurel-900,#22350a)">Morning Star</span>
+        <span style="font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:600;color:var(--laurel-600,#557a17)">Matriculation School</span>
+        <span style="font-size:9.5px;letter-spacing:.02em;font-weight:700;color:var(--laurel-700,#425f12);margin-top:2px">(Run by Lions Club of Karur Host Charitable Trust)</span>
+      </span>
+    </a>
+    <div class="msn-desktop">
+      <nav aria-label="Primary" style="display:flex;align-items:center;gap:2px">
+        <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+          <a href="{{ link.href }}" class="{{ link.cls }}" aria-current="{{ link.ariaCurrent }}">{{ link.label }}</a>
+        </sc-for>
+      </nav>
+      <a href="admission.html" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
+    </div>
+    <button id="msn-toggle" type="button" class="msn-toggle" onClick="{{ toggleDrawer }}" aria-label="Open menu" aria-expanded="false" aria-controls="msn-drawer">
+      <span class="msn-line"></span><span class="msn-line"></span><span class="msn-line"></span>
+    </button>
+  </div>
+</header>
+<div class="msn-overlay" onClick="{{ closeDrawer }}" aria-hidden="true"></div>
+<aside id="msn-drawer" class="msn-drawer" role="dialog" aria-modal="true" aria-label="Site menu">
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">
+    <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:var(--laurel-900,#22350a)">Menu</span>
+    <button type="button" onClick="{{ closeDrawer }}" aria-label="Close menu" style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:var(--stone-100,#f0f2ea);border:none;border-radius:10px;cursor:pointer;font-size:20px;color:var(--laurel-900,#22350a)">✕</button>
+  </div>
+  <nav aria-label="Mobile" style="display:flex;flex-direction:column">
+    <sc-for list="{{ navLinks }}" as="link" hint-placeholder-count="5">
+      <a href="{{ link.href }}" class="msn-dlink" onClick="{{ closeDrawer }}">{{ link.label }} <span aria-hidden="true" style="color:var(--laurel-400,#8fbf45);font-size:15px">→</span></a>
+    </sc-for>
+  </nav>
+  <a href="admission.html" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
+</aside>
+
+<main id="top">
+<!-- 1. HERO -->
+<section style="position:relative;background:linear-gradient(120deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="ph" aria-hidden="true" style="position:absolute;inset:0;opacity:.22;background-color:var(--laurel-800,#31490e);color:transparent"></div>
+  <div class="wrap" style="position:relative;padding:clamp(48px,7vw,84px) clamp(24px,4vw,56px) clamp(52px,7vw,80px)">
+    <nav class="crumb" aria-label="Breadcrumb"><a href="#top">Home</a> <span aria-hidden="true">/</span> <span style="color:#fff">Resources</span></nav>
+    <h1 style="font-family:'Spectral',Georgia,serif;font-weight:500;font-size:clamp(34px,4.6vw,58px);line-height:1.06;letter-spacing:-.02em;color:#fff;margin:20px 0 14px;max-width:14ch;text-wrap:pretty">Resources</h1>
+    <p style="font-size:clamp(16px,2vw,20px);line-height:1.5;color:var(--laurel-200,#cfe5ae);margin:0;max-width:60ch">Everything students, parents, and teachers need, study materials, calendars, updates, and downloadable e-books, all in one place.</p>
+  </div>
+</section>
+
+<!-- 2. QUICK-JUMP PILLS -->
+<div class="pillbar">
+  <div class="wrap"><div class="pillrow" role="navigation" aria-label="Jump to resource section">
+    <sc-for list="{{ jumps }}" as="j" hint-placeholder-count="6">
+      <a href="{{ j.anchor }}" class="pill" data-target="{{ j.id }}">{{ j.label }}</a>
+    </sc-for>
+  </div></div>
+</div>
+<section style="padding:clamp(40px,6vw,64px) 0 0">
+  <div class="wrap"><p class="lead" style="max-width:74ch">From daily study materials to important circulars and downloadable e-books, our Resources section keeps students and parents informed and equipped throughout the academic year.</p></div>
+</section>
+
+<!-- E-BOOKS -->
+<section class="sec stage" id="ebooks" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap">
+    <p class="eyebrow">E-Books · PDF Downloadable</p>
+    <h2 class="h2" style="margin-bottom:8px">E-Books &amp; textbooks</h2>
+    <p style="font-size:13.5px;color:var(--ink-500,#63664f);max-width:70ch;margin:0 0 22px;line-height:1.55">Textbooks are published by the Tamil Nadu Textbook and Educational Services Corporation (TNTESC) and provided here for student reference.</p>
+    <div style="position:relative;max-width:520px;margin-bottom:30px">
+      <span aria-hidden="true" style="position:absolute;left:16px;top:50%;transform:translateY(-50%);color:var(--laurel-500,#73a91e)">⌕</span>
+      <label for="eb-search" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search e-books by class or subject</label>
+      <input id="eb-search" type="search" placeholder="Search e-books by class or subject…" onInput="{{ searchEbooks }}" style="width:100%;padding:14px 16px 14px 42px;border-radius:999px;border:1.5px solid var(--stone-300,#cfd5c2);font-size:15px;font-family:inherit;background:#fff;color:var(--ink-900,#232418)">
+    </div>
+    <h3 style="font-size:13px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500,#63664f);margin:0 0 14px">Step 1 · Choose a standard</h3>
+    <div style="display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;scrollbar-width:none" role="group" aria-label="Select standard">
+      <sc-for list="{{ standards }}" as="s" hint-placeholder-count="10">
+        <button type="button" class="{{ s.cls }}" data-std="{{ s.n }}" onClick="{{ selectStd }}" aria-pressed="{{ s.pressed }}"><div class="st-n">{{ s.n }}</div><div class="st-l">{{ s.tag }}</div></button>
+      </sc-for>
+    </div>
+    <div id="eb-filters" class="ebook-filters">
+      <div style="display:flex;flex-wrap:wrap;gap:24px;padding:22px;background:#fff;border:1px solid var(--stone-200,#e3e7da);border-radius:14px">
+        <div><h3 style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500,#63664f);margin:0 0 10px">Medium</h3><div style="display:flex;gap:8px"><sc-for list="{{ mediums }}" as="m" hint-placeholder-count="2"><button type="button" class="{{ m.cls }}" data-med="{{ m.val }}" onClick="{{ selectMedium }}">{{ m.label }}</button></sc-for></div></div>
+        <div><h3 style="font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-500,#63664f);margin:0 0 10px">Term</h3><div style="display:flex;gap:8px"><sc-for list="{{ terms }}" as="t" hint-placeholder-count="3"><button type="button" class="{{ t.cls }}" data-term="{{ t.val }}" onClick="{{ selectTerm }}">{{ t.label }}</button></sc-for></div></div>
+      </div>
+      <div id="eb-results" class="ebrows" style="margin-top:20px">
+        <sc-if value="{{ hasEbooks }}" hint-placeholder-val="{{ true }}">
+          <ul style="list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ ebookResults }}" as="e" hint-placeholder-count="4">
+              <li class="row"><span class="doticon" aria-hidden="true">PDF</span>
+                <div style="flex:1;min-width:0"><div style="font-size:16px;font-weight:600;color:var(--laurel-900,#22350a)">{{ e.subject }}</div><div style="display:flex;gap:7px;margin-top:7px;flex-wrap:wrap"><span class="badge b-medium">{{ e.medium }}</span><span class="badge b-term">{{ e.term }}</span><span style="font-size:12px;color:var(--ink-500,#63664f);align-self:center">{{ e.size }}</span></div></div>
+                <sc-if value="{{ e.avail }}" hint-placeholder-val="{{ true }}"><a class="dl" href="{{ e.file }}" download target="_blank" rel="noopener" aria-label="Download {{ e.subject }} textbook, Standard {{ e.std }}, {{ e.medium }}, {{ e.term }}"><span class="dlic" aria-hidden="true">↓</span> Download PDF</a></sc-if>
+                <sc-if value="{{ e.pending }}" hint-placeholder-val="{{ false }}"><span style="font-size:13px;font-weight:600;color:var(--ink-500,#63664f);padding:8px 14px;border-radius:999px;background:var(--stone-100,#f0f2ea);white-space:nowrap">Coming soon</span></sc-if>
+              </li>
+            </sc-for>
+          </ul>
+        </sc-if>
+        <sc-if value="{{ noEbooks }}" hint-placeholder-val="{{ false }}">
+          <p style="padding:28px;text-align:center;color:var(--ink-500,#63664f);font-size:15px;background:var(--laurel-050,#f4f9e9);border-radius:12px;margin:0">No textbooks for this combination yet, <strong style="color:var(--laurel-700,#425f12)">coming soon.</strong></p>
+        </sc-if>
+      </div>
+    </div>
+    <p id="eb-hint" style="color:var(--ink-500,#63664f);font-size:15px;margin:22px 0 0">Select a standard above to view available textbooks.</p>
+  </div>
+</section>
+
+<!-- 3. STUDY MATERIALS -->
+<section class="sec stage" id="study-materials">
+  <div class="wrap">
+    <p class="eyebrow">Study Materials</p>
+    <h2 class="h2">Notes, worksheets &amp; revision</h2>
+    <p class="lead" style="margin-bottom:28px">Curated notes, worksheets, and revision materials to support classroom learning at every stage, from Primary to High School.</p>
+    <div class="sm-soon" style="display:flex;flex-direction:column;align-items:center;text-align:center;gap:14px;padding:clamp(44px,7vw,72px) 24px;background:var(--laurel-050,#f4f9e9);border:1px solid var(--stone-200,#e3e7da);border-radius:18px;overflow:hidden;position:relative">
+      <span class="sm-soon-ic" style="display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:16px;background:#fff;box-shadow:0 6px 18px -8px rgba(34,53,10,.28);font-size:26px" aria-hidden="true">📚</span>
+      <h3 style="font-family:'Spectral',Georgia,serif;font-weight:700;font-size:clamp(22px,2.4vw,28px);color:var(--laurel-900,#22350a);margin:0">Coming soon <span class="sm-soon-dots" aria-hidden="true"><i></i><i></i><i></i></span></h3>
+      <p style="font-size:15.5px;line-height:1.6;color:var(--ink-700,#3f412f);margin:0;max-width:52ch">We're preparing downloadable notes, worksheets and revision materials for every class. Please check back shortly.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 4. ACADEMIC CALENDAR -->
+<section class="sec stage" id="academic-calendar" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,4vw,52px);align-items:center" class="cal-grid">
+    <div>
+      <p class="eyebrow">Academic Calendar</p>
+      <h2 class="h2">Academic Calendar 2026 to 27</h2>
+      <p class="lead" style="margin-bottom:24px">Stay updated with term dates, examination schedules, holidays, and important school events for the academic year.</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-cta" href="assets/docs/academic-calendar-2026-27.pdf" download><span aria-hidden="true">↓</span> Download Calendar (PDF)</a>
+        <a class="btn btn-outline" href="assets/docs/academic-calendar-2026-27.pdf" target="_blank" rel="noopener"><span aria-hidden="true">⤢</span> Open Full Screen</a>
+      </div>
+    </div>
+    <div class="card" style="padding:10px;overflow:hidden">
+      <a href="assets/docs/academic-calendar-2026-27.pdf" target="_blank" rel="noopener" aria-label="Open the academic calendar PDF full screen" style="display:block;border-radius:10px;overflow:hidden;background:#fff">
+        <img src="assets/docs/academic-calendar-preview.png" alt="Academic Calendar 2026 to 27 — schedule of academic events, June to October" loading="lazy" style="width:100%;height:auto;display:block">
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- 4b. FEE STRUCTURE -->
+<section class="sec stage" id="fee-structure">
+  <div class="wrap">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:16px;margin-bottom:28px">
+      <div>
+        <p class="eyebrow">Fee Structure</p>
+        <h2 class="h2">Fee Structure 2026 to 27</h2>
+        <p class="lead" style="margin:0">Term-wise book and school fees for the academic year 2026 to 2027, from LKG to Class X. All amounts are in Indian Rupees (₹).</p>
+      </div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap">
+        <a class="btn btn-cta" href="assets/docs/fee-structure-2026-27.pdf" download><span aria-hidden="true">↓</span> Download Fees (PDF)</a>
+        <a class="btn btn-outline" href="assets/docs/fee-structure-2026-27.pdf" target="_blank" rel="noopener"><span aria-hidden="true">⤢</span> Open Full Screen</a>
+      </div>
+    </div>
+    <div class="fee-card">
+      <div class="fee-scroll">
+        <table class="fee-table">
+          <thead>
+            <tr><th>Class</th><th>Book Fees</th><th>I Term</th><th>II Term</th><th>III Term</th><th>Total Fees</th></tr>
+          </thead>
+          <tbody>
+            <sc-for list="{{ feeRows }}" as="f" hint-placeholder-count="12">
+              <tr><td class="fee-cls">{{ f.cls }}</td><td><span class="rs">₹</span>{{ f.book }}</td><td><span class="rs">₹</span>{{ f.t1 }}</td><td><span class="rs">₹</span>{{ f.t2 }}</td><td><span class="rs">₹</span>{{ f.t3 }}</td><td class="fee-total"><span class="rs">₹</span>{{ f.total }}</td></tr>
+            </sc-for>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p style="font-size:13px;color:var(--ink-500,#63664f);margin:16px 0 0">School fees are collected in three terms. Book fees are payable once at the start of the year. For any clarification, please contact the school office.</p>
+  </div>
+</section>
+
+<!-- 6. NEWS & EVENTS -->
+<section class="sec stage" id="news-events" style="background:var(--laurel-050,#f4f9e9)">
+  <div class="wrap">
+    <p class="eyebrow">News &amp; Events</p>
+    <h2 class="h2">Latest happenings</h2>
+    <p class="lead" style="margin-bottom:32px">Catch up on the latest at Morning Star, celebrations, achievements, and upcoming events.</p>
+    <div class="ne-grid" id="ne-grid">
+      <sc-for list="{{ news }}" as="n" hint-placeholder-count="3">
+        <article class="ne-card" style="cursor:default">
+          <div class="ne-media"><img src="{{ n.img }}" alt="{{ n.title }}" loading="lazy" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:top center;transition:transform .6s cubic-bezier(.22,.61,.36,1)"><div class="ne-scrim" aria-hidden="true"></div><span class="ne-badge">{{ n.category }}</span></div>
+          <div class="ne-body">
+            <span class="ne-date">{{ n.date }}</span>
+            <h3 class="ne-title">{{ n.title }}</h3>
+            <p class="ne-ex">{{ n.excerpt }}</p>
+            <button type="button" class="morelink" data-img="{{ n.img }}" data-title="{{ n.title }}" onClick="{{ openNews }}" style="cursor:zoom-in;background:none;border:none;padding:0;font:inherit">View Poster <span aria-hidden="true">→</span></button>
+          </div>
+        </article>
+      </sc-for>
+    </div>
+  </div>
+  <div class="lb" onClick="{{ closeNews }}"><button type="button" class="lb-close" aria-label="Close" onClick="{{ closeNews }}">✕</button><img id="lb-img" class="lb-inner" src="" alt="" onClick="{{ stopProp }}"></div>
+</section>
+
+<!-- CTA -->
+<section class="sec" id="cta" style="background:linear-gradient(135deg,var(--laurel-900,#22350a),var(--laurel-950,#16240a))">
+  <div class="wrap" style="text-align:center;max-width:760px">
+    <p class="eyebrow" style="color:var(--laurel-300,#b5d687)">We're Here to Help</p>
+    <h2 class="h2" style="color:#fff;font-size:clamp(30px,3.8vw,48px)">Need help finding something?</h2>
+    <p class="lead" style="color:var(--laurel-200,#cfe5ae);margin:0 auto 32px">Our school office is happy to point you to the right resource or answer any question.</p>
+    <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
+      <a href="#footer" class="btn btn-cta">Contact the School Office <span aria-hidden="true">→</span></a>
+      <a href="#footer" class="btn btn-ghost-light">Ask a Question</a>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer style="background:var(--laurel-950,#16240a);color:var(--laurel-200,#cfe5ae)" id="footer">
+  <div class="wrap" style="padding-top:64px;padding-bottom:40px">
+    <div class="ft-grid grid" style="grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
+      <div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <span style="display:flex;flex-direction:column;line-height:1.1"><span style="font-family:'Spectral',serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span></span>
+        </div>
+        <p style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--laurel-200,#cfe5ae);margin:0 0 18px">Nurturing minds, building futures.</p>
+        <p style="font-size:14px;line-height:1.7;margin:0">Palamapuram, Punnam,<br>Karur District, Tamil Nadu 639008<br><span style="color:var(--laurel-300,#b5d687)">Phone:</span> [ Add phone ]<br><span style="color:var(--laurel-300,#b5d687)">Email:</span> [ Add email ]</p>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Quick Links</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px"><sc-for list="{{ quickLinks }}" as="q" hint-placeholder-count="5"><li><a href="{{ q.href }}" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ q.label }}</a></li></sc-for></ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Resources</h4>
+        <ul style="margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:11px"><sc-for list="{{ resources }}" as="r" hint-placeholder-count="5"><li><a href="{{ r.href }}" style="text-decoration:none;color:var(--laurel-200,#cfe5ae)">{{ r.label }}</a></li></sc-for></ul>
+      </div>
+      <div>
+        <h4 style="font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#fff;margin:0 0 16px;font-weight:700">Connect With Us</h4>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <a href="#" aria-label="Facebook" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;font-weight:700;text-decoration:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M14 8.5V7c0-.83.67-1 1.5-1H17V3h-2.5C11.9 3 11 4.9 11 6.5v2H9v3h2v9h3v-9h2.3l.7-3H14z"/></svg></a>
+          <a href="https://www.instagram.com/morningstarmatricschool2024/" target="_blank" rel="noopener" aria-label="Instagram" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://youtube.com/@morningstarmatriculationkarur" target="_blank" rel="noopener" aria-label="YouTube" style="width:44px;height:44px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;background:rgba(255,255,255,.08);color:#fff;text-decoration:none"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M22 8.2a2.6 2.6 0 0 0-1.8-1.8C18.6 6 12 6 12 6s-6.6 0-8.2.4A2.6 2.6 0 0 0 2 8.2 27 27 0 0 0 1.6 12 27 27 0 0 0 2 15.8a2.6 2.6 0 0 0 1.8 1.8C5.4 18 12 18 12 18s6.6 0 8.2-.4a2.6 2.6 0 0 0 1.8-1.8A27 27 0 0 0 22.4 12 27 27 0 0 0 22 8.2zM10 15V9l5.2 3L10 15z"/></svg></a>
+        </div>
+        <p style="font-size:14px;margin:0">Follow us for updates and moments from campus.</p>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.12);margin-top:44px;padding-top:22px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;font-size:13px;color:var(--laurel-300,#b5d687)">
+      <span>© 2026 Cybernaut EdTech Private Limited. All rights reserved.</span>
+      <span style="display:flex;gap:18px"><a href="#" style="color:var(--laurel-300,#b5d687)">Privacy Policy</a><a href="#" style="color:var(--laurel-300,#b5d687)">Terms of Use</a></span>
+    </div>
+  </div>
+</footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:900}}">
+class Component extends DCLogic {
+  state = { std:null, medium:'English', term:'Term 1', search:'' };
+  componentDidMount(){
+    this._scroll = () => { const r = document.getElementById('msn-root'); if (r) r.classList.toggle('msn-scrolled', window.scrollY > 8); };
+    this._key = (e) => { if (e.key === 'Escape'){ this._close(); this._closeLb(); } };
+    window.addEventListener('scroll', this._scroll, { passive:true });
+    window.addEventListener('keydown', this._key);
+    requestAnimationFrame(() => { this._initReveal(); this._initSpy(); this._initTilt(); });
+  }
+  componentWillUnmount(){
+    window.removeEventListener('scroll', this._scroll);
+    window.removeEventListener('keydown', this._key);
+    if (this._io) this._io.disconnect();
+    if (this._spy) this._spy.disconnect();
+    if (this._tiltCleanup) this._tiltCleanup();
+  }
+  _initTilt(){
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    if (window.matchMedia && window.matchMedia('(hover:none)').matches) return;
+    const grid = document.getElementById('ne-grid'); if (!grid) return;
+    const cards = Array.from(grid.querySelectorAll('.ne-card'));
+    const MAX = 9;
+    const onMove = (card) => (e) => {
+      const r = card.getBoundingClientRect();
+      const px = (e.clientX - r.left) / r.width - 0.5;
+      const py = (e.clientY - r.top) / r.height - 0.5;
+      card.style.transform = 'perspective(900px) rotateX(' + (-py*MAX).toFixed(2) + 'deg) rotateY(' + (px*MAX).toFixed(2) + 'deg) translateY(-6px)';
+    };
+    const onLeave = (card) => () => { card.style.transform = ''; };
+    const handlers = [];
+    cards.forEach(card => {
+      const m = onMove(card), l = onLeave(card);
+      card.addEventListener('mousemove', m); card.addEventListener('mouseleave', l);
+      handlers.push([card, m, l]);
+    });
+    this._tiltCleanup = () => handlers.forEach(([c,m,l]) => { c.removeEventListener('mousemove', m); c.removeEventListener('mouseleave', l); });
+  }
+  _root(){ return document.getElementById('msn-root'); }
+  _setToggle(open){ const b = document.getElementById('msn-toggle'); if (b){ b.setAttribute('aria-expanded', open?'true':'false'); b.setAttribute('aria-label', open?'Close menu':'Open menu'); } }
+  _close(){ const r = this._root(); if (r) r.classList.remove('msn-open'); this._setToggle(false); }
+  _closeLb(){ const r = this._root(); if (r) r.classList.remove('lb-open'); }
+  _openNews(e){ const c = e.currentTarget; const img = c.getAttribute('data-img'); const title = c.getAttribute('data-title') || ''; const el = document.getElementById('lb-img'); if (el){ el.setAttribute('src', img); el.setAttribute('alt', title); } const r = this._root(); if (r) r.classList.add('lb-open'); }
+  _initReveal(){
+    const root = this._root(); if (!root) return;
+    if (window.matchMedia && window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    const els = root.querySelectorAll('.sec .eyebrow, .sec .h2, .sec .lead, .card, .row, .gal .tile');
+    els.forEach(el => el.classList.add('reveal'));
+    root.querySelectorAll('.grid, .gal').forEach(g => { Array.from(g.children).forEach((c, i) => { if (c.classList.contains('reveal')) c.style.transitionDelay = ((i % 4) * 70) + 'ms'; }); });
+    this._io = new IntersectionObserver((ents) => { ents.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); this._io.unobserve(e.target); } }); }, { threshold:0.1, rootMargin:'0px 0px -6% 0px' });
+    els.forEach(el => this._io.observe(el));
+  }
+  _initSpy(){
+    const root = this._root(); if (!root) return;
+    const ids = ['ebooks','study-materials','academic-calendar','news-events'];
+    const setActive = (id) => { root.querySelectorAll('.pill').forEach(p => p.classList.toggle('active', p.getAttribute('data-target') === id)); };
+    this._spy = new IntersectionObserver((ents) => { ents.forEach(e => { if (e.isIntersecting) setActive(e.target.id); }); }, { rootMargin:'-45% 0px -50% 0px', threshold:0 });
+    ids.forEach(id => { const el = document.getElementById(id); if (el) this._spy.observe(el); });
+  }
+  _applySM(){
+    const s = this.state; const list = document.getElementById('sm-list'); const empty = document.getElementById('sm-empty');
+    if (!list) return; let shown = 0;
+    Array.from(list.children).forEach(li => {
+      const okC = !s.smClass || li.getAttribute('data-class') === s.smClass;
+      const okS = !s.smSubject || li.getAttribute('data-subject') === s.smSubject;
+      const vis = okC && okS; li.style.display = vis ? '' : 'none'; if (vis) shown++;
+    });
+    if (empty) empty.style.display = shown ? 'none' : 'block';
+  }
+  _fadeResults(){
+    const box = document.getElementById('eb-results'); if (!box) return;
+    box.classList.add('fading'); clearTimeout(this._ebT); this._ebT = setTimeout(() => box.classList.remove('fading'), 260);
+  }
+
+  renderVals(){
+    const s = this.state;
+    const openNews = (e) => this._openNews(e);
+    const closeNews = () => this._closeLb();
+    const stopProp = (e) => e.stopPropagation();
+    const NAV = [
+      { label:'Home', href:'index.html' },
+      { label:'About Us', href:'about.html' },
+      { label:'Our Programs', href:'programs.html' },
+      { label:'Resources', href:'resources.html' },
+      { label:'Contact', href:'contact.html' },
+    ];
+    const SM = [
+      { title:'Class 3, English Grammar Worksheet Set', cls:'3', subj:'English' },
+      { title:'Class 5, Mathematics Revision Notes', cls:'5', subj:'Maths' },
+      { title:'Class 6, Science Chapter Summaries', cls:'6', subj:'Science' },
+      { title:'Class 8, Social Science Map Practice', cls:'8', subj:'Social Science' },
+      { title:'Class 10, Mathematics Model Question Bank', cls:'10', subj:'Maths' },
+      { title:'Class 10, Science One-Mark Revision', cls:'10', subj:'Science' },
+    ];
+    const CLASSES = ['3','5','6','8','10'];
+    const SUBJECTS = ['English','Maths','Science','Social Science'];
+    const chip = (active) => active ? 'chip active' : 'chip';
+
+    const STD_TAGS = { '10':'SSLC' };
+    // Subjects offered per standard (TN Samacheer). Std 1–2 use EVS; Std 3–10 split Science + Social Science.
+    const PRIMARY = ['Tamil','English','Mathematics','Environmental Science'];
+    const UPPER = ['Tamil','English','Mathematics','Science','Social Science'];
+    const SUBJECTS_BY_STD = { '1':PRIMARY, '2':PRIMARY, '3':UPPER, '4':UPPER, '5':UPPER, '6':UPPER, '7':UPPER, '8':UPPER, '9':UPPER, '10':UPPER };
+    // Real download links, keyed 'std|medium|term|subject'. Add one line per book as PDFs come in.
+    const gd = id => 'https://drive.google.com/file/d/' + id + '/view';
+    const EB_LINKS = {
+      // ---- Standard 5 · Term 1 ----
+      '5|Tamil|Term 1|Tamil': gd('1FHywKcRdyk7JAB63wTpOJaU6SRWHaPdq'),
+      '5|English|Term 1|Tamil': gd('1FHywKcRdyk7JAB63wTpOJaU6SRWHaPdq'),
+      '5|Tamil|Term 1|English': gd('1oHy0az30ZWxa2PLraB6SyofLI483JF12'),
+      '5|English|Term 1|English': gd('1oHy0az30ZWxa2PLraB6SyofLI483JF12'),
+      '5|Tamil|Term 1|Mathematics': gd('1OFxRa_ItrbbifG61lO_faImIf-ehkSrU'),
+      '5|Tamil|Term 1|Science': gd('1bxQDmvEglCcnIuraZmThdXggFAEB_VFb'),
+      '5|Tamil|Term 1|Social Science': gd('1PwPXepX1SHtiDcrY7JW1hfzokRML3FCk'),
+      '5|English|Term 1|Mathematics': gd('1GEkxrb1IdB6Wp2YOcXqpBQHLzsomkdj8'),
+      '5|English|Term 1|Science': gd('1tDOy5oGbaiAaHdT7LkmGKpqUK4ZQcfV1'),
+      '5|English|Term 1|Social Science': gd('1EHfutgm8ClamH9R972zcU4uTu9bVpmie'),
+      // ---- Standard 5 · Term 2 ----
+      '5|Tamil|Term 2|Tamil': gd('1GJkuDhJLQOwSEoxE8WH-h7phP-U0FEze'),
+      '5|English|Term 2|Tamil': gd('1GJkuDhJLQOwSEoxE8WH-h7phP-U0FEze'),
+      '5|Tamil|Term 2|English': gd('1iUGwHXFk4xNhzuhm1Pp-tmINtbZG0eHg'),
+      '5|English|Term 2|English': gd('1iUGwHXFk4xNhzuhm1Pp-tmINtbZG0eHg'),
+      '5|Tamil|Term 2|Mathematics': gd('1zNFPBMldgem8zfoU02yGGa8OQXd-8ig9'),
+      '5|Tamil|Term 2|Science': gd('1WNIMwBBx9obcf81MDr_u3V81o0cliOWc'),
+      '5|Tamil|Term 2|Social Science': gd('1nhpGAmoNGMgGdlDJhKzKE3ELeWM4L5aL'),
+      '5|English|Term 2|Mathematics': gd('1tIS2n35fbI_KP8wdZuLThA_veDCEm_FU'),
+      '5|English|Term 2|Science': gd('1G-Y3U5cJCFQo2v2pwibDlhSuEKmrK_Ll'),
+      '5|English|Term 2|Social Science': gd('1E49QJOHBZMQfYjyIqtn84H22JQf7p528'),
+      // ---- Standard 5 · Term 3 ----
+      '5|Tamil|Term 3|Tamil': gd('1rVUj2sGKjcuxJNs7bgYWNPSm23jlFUmw'),
+      '5|English|Term 3|Tamil': gd('1rVUj2sGKjcuxJNs7bgYWNPSm23jlFUmw'),
+      '5|Tamil|Term 3|English': gd('1hZ9MA-GVinS6V7X4GTahzR-XJleFzI1H'),
+      '5|English|Term 3|English': gd('1hZ9MA-GVinS6V7X4GTahzR-XJleFzI1H'),
+      '5|Tamil|Term 3|Mathematics': gd('1RnZQXVwXoD_A6aO_8avRlO_VyZ9NI6bs'),
+      '5|Tamil|Term 3|Science': gd('1aIJnWO2a0tACCsY6u0tm0W1go_wutKVB'),
+      '5|Tamil|Term 3|Social Science': gd('1NMWWunJ3CkJGddKGeaMPNRevDa9plToX'),
+      '5|English|Term 3|Mathematics': gd('1ZC1GTJy9vPuy41eMI4a1Ltdsdvi1EUZz'),
+      '5|English|Term 3|Science': gd('1CtmOQ7URcnmSIUgPbPmlKPNzB9I1sfpG'),
+      '5|English|Term 3|Social Science': gd('1jCcFdsCQlvn_CzyA1Lvj_j5ioJrypHxF'),
+      // ---- Standard 6 · Term 1 ----
+      '6|Tamil|Term 1|Tamil': gd('1qpcfleoHROxIrZ8rastenjROAHcFSh0I'),
+      '6|English|Term 1|Tamil': gd('1qpcfleoHROxIrZ8rastenjROAHcFSh0I'),
+      '6|Tamil|Term 1|English': gd('1ltzKEtCfRa7RWhzNOt2eiUFkX7BV_Oie'),
+      '6|English|Term 1|English': gd('1ltzKEtCfRa7RWhzNOt2eiUFkX7BV_Oie'),
+      '6|Tamil|Term 1|Mathematics': gd('1a2cjzkMTSC1yXxPH-X3nvm0yXxhKYEaS'),
+      '6|Tamil|Term 1|Science': gd('1HeN_3ffnP9A3LsQ8aq8UKtOg-Yf5mumb'),
+      '6|Tamil|Term 1|Social Science': gd('1xz06ozIbOQT4LyUlKj5-ik12VFYIRFKC'),
+      '6|English|Term 1|Mathematics': gd('1kob9vr4Q8r4ZOrDmr-nC11DWlm76FDKB'),
+      '6|English|Term 1|Science': gd('1MNffWH1uuujW9LsRneDOCY8g6H0-RsEz'),
+      '6|English|Term 1|Social Science': gd('1WJn-q7WYeqQ2sSCluUCji3XoMZevh0kv'),
+      // ---- Standard 6 · Term 2 ----
+      '6|Tamil|Term 2|Tamil': gd('1uWGQ0gcI0PLygQoeTLZ4eR89ov1Xe1ke'),
+      '6|English|Term 2|Tamil': gd('1uWGQ0gcI0PLygQoeTLZ4eR89ov1Xe1ke'),
+      '6|Tamil|Term 2|English': gd('1pUQboSvXoGi1Hzg4x-Ahk93cTd6xFbrn'),
+      '6|English|Term 2|English': gd('1pUQboSvXoGi1Hzg4x-Ahk93cTd6xFbrn'),
+      '6|Tamil|Term 2|Mathematics': gd('1tgN9ejhtBWPcFzZR8_bJ8waqeJIC4PuX'),
+      '6|Tamil|Term 2|Science': gd('1z8NtNrp0uqYsNSVLCVwCnLrW5uJB7pvc'),
+      '6|Tamil|Term 2|Social Science': gd('1Q87SpVWx0D64OAnuM7goGASkPCRIIpBG'),
+      '6|English|Term 2|Mathematics': gd('11CojQwk9eoK6sMAFizBbhkHbNB3EUTGj'),
+      '6|English|Term 2|Science': gd('1qgd4KO23frMWGpKFNYW5yKM-8nwAAt_b'),
+      '6|English|Term 2|Social Science': gd('152VLmu2VZcCh7_EnkbPOjEOHHizLvnNU'),
+      // ---- Standard 6 · Term 3 ----
+      '6|Tamil|Term 3|Tamil': gd('1OI4lSN0EqO1yHSuaMR2wuS8kNWscvy_X'),
+      '6|English|Term 3|Tamil': gd('1OI4lSN0EqO1yHSuaMR2wuS8kNWscvy_X'),
+      '6|Tamil|Term 3|English': gd('1eOmviL_XhZiEIrajYgXPCsLWbEr1UcEu'),
+      '6|English|Term 3|English': gd('1eOmviL_XhZiEIrajYgXPCsLWbEr1UcEu'),
+      '6|Tamil|Term 3|Mathematics': gd('14pP6nnWIpEons5XFlg1P5KJvGOSDa76j'),
+      '6|Tamil|Term 3|Science': gd('1V6nnO3ARfkAcSS6Emrt3g8eyAyY4QJqW'),
+      '6|Tamil|Term 3|Social Science': gd('1rSWywqBgNDqQRFabnYECq6o73YleuOoa'),
+      '6|English|Term 3|Mathematics': gd('1YIDLBVpyMZwdO8TXdPnLgvRlddPCNxxe'),
+      '6|English|Term 3|Science': gd('1vqOdWwPcqzhAp2JJRJo3zwhXujBJ8Zes'),
+      '6|English|Term 3|Social Science': gd('1naTkL2uwerLgSmDrn1R6CjdPZveHcx8H'),
+      // ---- Standard 7 · Term 1 ----
+      '7|Tamil|Term 1|Tamil': gd('1f1P6f7AB9-k12AnHix7M2z0Zy2dERSBV'),
+      '7|English|Term 1|Tamil': gd('1f1P6f7AB9-k12AnHix7M2z0Zy2dERSBV'),
+      '7|Tamil|Term 1|English': gd('1b2EED31yKzQieMKxIa_3WMCL2ds7ORKk'),
+      '7|English|Term 1|English': gd('1b2EED31yKzQieMKxIa_3WMCL2ds7ORKk'),
+      '7|Tamil|Term 1|Mathematics': gd('1GUfYf_snY2kd5LVN81V15E1Vxtnj6sse'),
+      '7|Tamil|Term 1|Science': gd('1HJ34uBhBcXcYYVLBP3MP0y7UPZDEHDA5'),
+      '7|Tamil|Term 1|Social Science': gd('18c2c4DhrponI63IPPbniA-fqdvZB_whC'),
+      '7|English|Term 1|Mathematics': gd('1bpenRUx9usbrPjipYqK8kYUOfv3Tiymg'),
+      '7|English|Term 1|Science': gd('1Y4NbNZqZOJtCZXW87hDRLJQ3C7x1Zl7o'),
+      '7|English|Term 1|Social Science': gd('1fMrlLG9nhcCpEi7tozJ7RQb1LeFuvTTY'),
+      // ---- Standard 7 · Term 2 ----
+      '7|Tamil|Term 2|Tamil': gd('1IvIPrpxpgZn15jmn_Um1gWCMDX_VyVxm'),
+      '7|English|Term 2|Tamil': gd('1IvIPrpxpgZn15jmn_Um1gWCMDX_VyVxm'),
+      '7|Tamil|Term 2|English': gd('1oJHY-iH5_H25hbEf2OLiwTNw7Dtpqk15'),
+      '7|English|Term 2|English': gd('1oJHY-iH5_H25hbEf2OLiwTNw7Dtpqk15'),
+      '7|Tamil|Term 2|Mathematics': gd('1GZbFWcjO24kvO-1jocR6LmS6f3PZ0wSe'),
+      '7|Tamil|Term 2|Science': gd('1irDvwgqKUcEs2FvKRD_lOzxJRk0IXNmw'),
+      '7|Tamil|Term 2|Social Science': gd('1LGe8DxtAJ4d2J5PDbhyig1g_y0ibjAWn'),
+      '7|English|Term 2|Mathematics': gd('1Y9eQz3IRI6TM2ivgbMWZK-vfD2ZsVhjE'),
+      '7|English|Term 2|Science': gd('106M_WS1ythsrrCPwuIwq0uQpMHxnFqi2'),
+      '7|English|Term 2|Social Science': gd('1Qstuyhs87a12jmgEEmBSUFrofJ_LAuxQ'),
+      // ---- Standard 7 · Term 3 ----
+      '7|Tamil|Term 3|Tamil': gd('1eks90EpMJGvb_NfiR_olAl-Ecz1os1XM'),
+      '7|English|Term 3|Tamil': gd('1eks90EpMJGvb_NfiR_olAl-Ecz1os1XM'),
+      '7|Tamil|Term 3|English': gd('1MYO8Kv9YYvtZeTAJ5Jw7BYHkMuvb7ebm'),
+      '7|English|Term 3|English': gd('1MYO8Kv9YYvtZeTAJ5Jw7BYHkMuvb7ebm'),
+      '7|Tamil|Term 3|Mathematics': gd('1FnM_uDZWGovT-c_QpiyUjEcuIZr4VsUG'),
+      '7|Tamil|Term 3|Science': gd('1s0z8bTMTNFckoc1JhDzXj3jWPyhDoZIc'),
+      '7|Tamil|Term 3|Social Science': gd('1x9o_BQ94A-bkMkV5rgd9h8pgnhd0x5Lj'),
+      '7|English|Term 3|Mathematics': gd('1rCRy-TadMRQJDcvhuGTkhleqTEhMmZSH'),
+      '7|English|Term 3|Science': gd('1iXXylFUBEowbyeMxbImtSZ2FROCONNs2'),
+      '7|English|Term 3|Social Science': gd('1M6D4vbBReagaN81oUKd0HJ_tMELUz7tr'),
+      // ---- Standard 8 · Term 1 ----
+      '8|Tamil|Term 1|Tamil': gd('1gZL_2CXBM-40x6Lo2ctp6tBs-VOFOpyS'),
+      '8|English|Term 1|Tamil': gd('1gZL_2CXBM-40x6Lo2ctp6tBs-VOFOpyS'),
+      '8|Tamil|Term 1|English': gd('11UydJ3z4w9yrCopV_XjO86BJ1IYPmMZQ'),
+      '8|English|Term 1|English': gd('11UydJ3z4w9yrCopV_XjO86BJ1IYPmMZQ'),
+      '8|Tamil|Term 1|Mathematics': gd('10pGDBigsvjO_ch_yQnCY8M3O6Uf06Yvb'),
+      '8|Tamil|Term 1|Science': gd('1mUXCIMEOnSgzYcE3raERFupaQo87Avj9'),
+      '8|Tamil|Term 1|Social Science': gd('1RAwJzAzsK2rtuf5jgxbl4b-wEqseh8J7'),
+      '8|English|Term 1|Mathematics': gd('138ztV8fweSBlDOBS9gIsu0JB_Bb8rnl2'),
+      '8|English|Term 1|Science': gd('1ni3b92-F8A2JWbAOltd56YM_fzO3CoP5'),
+      '8|English|Term 1|Social Science': gd('1tpYUiBP7G-vVs-RzfyABB_3S6bbVPgvt'),
+      // ---- Standard 9 (annual) ----
+      '9|Tamil|Term 1|Tamil': gd('1IqE9XzrctCmKUX-o4UjMFgiAZh8BKmup'),
+      '9|English|Term 1|Tamil': gd('1IqE9XzrctCmKUX-o4UjMFgiAZh8BKmup'),
+      '9|Tamil|Term 1|English': gd('1YEpBX4SdbVTMuhaERpYTpUkhwoNO2RvD'),
+      '9|English|Term 1|English': gd('1YEpBX4SdbVTMuhaERpYTpUkhwoNO2RvD'),
+      '9|Tamil|Term 1|Mathematics': gd('1gp6z1UOuqoH6MCuZt_qNi492R3vZUWaj'),
+      '9|Tamil|Term 1|Science': gd('1qjiZG4GOIfW5dmsNW-iwmPDmiVuxWrzM'),
+      '9|Tamil|Term 1|Social Science': gd('1JdytKDzqXFJU1MFfa-sSkb7T6u8rmDBU'),
+      '9|English|Term 1|Mathematics': gd('1WxLnjLPhAGkTylUHNFvh8UL34Z8eqC4J'),
+      '9|English|Term 1|Science': gd('1_u7XKyzl_ZLbnAhENq9WyFKck_McGI0J'),
+      '9|English|Term 1|Social Science': gd('1BmvNWHU5y92DDIRy71aUuy-enaMACNlp'),
+      // ---- Standard 10 (annual) ----
+      '10|Tamil|Term 1|Tamil': gd('126HDzwgKz1gNaSXWJSow2upisHXVe57-'),
+      '10|English|Term 1|Tamil': gd('126HDzwgKz1gNaSXWJSow2upisHXVe57-'),
+      '10|Tamil|Term 1|English': gd('1IM8pIb30Td-Od7Xb5kV-kPLns9_TxvQ3'),
+      '10|English|Term 1|English': gd('1IM8pIb30Td-Od7Xb5kV-kPLns9_TxvQ3'),
+      '10|Tamil|Term 1|Mathematics': gd('1BLAJHjMzbBuYesS2qL6NDEl7Tf3xmNBC'),
+      '10|Tamil|Term 1|Science': gd('16mbZtP_8H902it-bbWOAzOZ58bPpgqFL'),
+      '10|Tamil|Term 1|Social Science': gd('1gT8-P5oMKwVw3rcMN0JdWhW9iei00qKs'),
+      '10|English|Term 1|Mathematics': gd('13XJXdPhuGqU3BG3BPrsmzZwUUFOuH6Of'),
+      '10|English|Term 1|Science': gd('1n9pMjxmIWqE5llQpHDdh-vFu8Gemsw1k'),
+      '10|English|Term 1|Social Science': gd('1neVsjraP49u5rtfQBAzMcojHTtoMhqtb'),
+      // ---- Standard 12 (annual) ----
+      '12|Tamil|Term 1|Accountancy': gd('141fKnksSn5MXhRR365QVrtTYbIHjYUbS'),
+      '12|English|Term 1|Accountancy': gd('1eLhaQRA6fbVbWw95V2_wKcwpXNYeZtPE'),
+      '12|Tamil|Term 1|Advance Tamil': gd('1Txs5lk7PAoJA2YQO9ksgHQcmdCNGM9vh'),
+      '12|English|Term 1|Advance Tamil': gd('1Txs5lk7PAoJA2YQO9ksgHQcmdCNGM9vh'),
+      '12|Tamil|Term 1|Agricultural Science': gd('1A33PP5riBa1Evju9cAfdCx4PM5YV7sBr'),
+      '12|Tamil|Term 1|Auditing': gd('17PJS8K8IJnzzzMLzsQ15kVHB3GcBJZSP'),
+      '12|English|Term 1|Auditing': gd('1F5pJqyz4HuBLfgkuSPH89kBGqNJYUoPS'),
+      '12|Tamil|Term 1|Basic Automobile Engineering': gd('130X_1FAywhOCchQXAzD0ki_d3ivxBb-c'),
+      '12|English|Term 1|Basic Automobile Engineering': gd('1EPvOXVyRst3hfixkDmWuQeKRdT0dTQrh'),
+      '12|Tamil|Term 1|Basic Civil Engineering': gd('1D6kogT46yEGwpN7q6dPwibp5GNVnk4Xa'),
+      '12|English|Term 1|Basic Civil Engineering': gd('1Qf5yueEK6rjY267GNv-TuQXhlx6wyDgT'),
+      '12|Tamil|Term 1|Basic Electrical Engineering': gd('1-FIn4TdlnXcK3Vc3fwrWg7QSbTd3QH5_'),
+      '12|English|Term 1|Basic Electrical Engineering': gd('125v64f5RonWVPR6D5U1dYJf3DIAkiWZo'),
+      '12|Tamil|Term 1|Basic Electronics Engineering': gd('1FaGtLeNlEbgTXC19hGSAcIeQZ2EW9Mtp'),
+      '12|English|Term 1|Basic Electronics Engineering': gd('1iMsmL8M6hfbPDyBfWN7X1SJeABEfRxpW'),
+      '12|Tamil|Term 1|Basic Mechanical Engineering': gd('1c6SJcQ-gdgPQK_x98GYgwZJ8zAkoEqSo'),
+      '12|English|Term 1|Basic Mechanical Engineering': gd('1VrD9F9prnAABSPT72hTI25buYtCEqGyf'),
+      '12|Tamil|Term 1|Bio Botany': gd('1pfq2aInRk1E-CFjabwCb3APV0wNEfs2x'),
+      '12|English|Term 1|Bio Botany': gd('1XYCv-aPGvX5oRwZtRLcXq9T4YSAUC8DP'),
+      '12|Tamil|Term 1|Bio Chemistry': gd('1aI5V7qhby5_w1jpGYtmsM4gS0Es1om91'),
+      '12|English|Term 1|Bio Chemistry': gd('1mwlk7L7fgsFpblAfmUj_L8ET4fwddywg'),
+      '12|Tamil|Term 1|Bio Zoology': gd('1WxpPH-nh3Lp1fyY19bQNaS9H2B1rzv4P'),
+      '12|English|Term 1|Bio Zoology': gd('14RU-BpdOeFzXz_5EEoG_od36_6NSB2BO'),
+      '12|Tamil|Term 1|Botany Volume 1': gd('1K7bJ4ugqYfnj-yj-rY3KwNZnNM94hPYg'),
+      '12|English|Term 1|Botany Volume 1': gd('1lx3v56AdZ4heCqNLTiwuZJgTCfNWtaJT'),
+      '12|Tamil|Term 1|Business Mathematics and Statistics': gd('1KZU5YD3oclJKrwE6mS-aEBIIto6nc4Yz'),
+      '12|English|Term 1|Business Mathematics and Statistics': gd('1YiteFy4mldubJKWjUKtcf1kRYlN4jyyT'),
+      '12|Tamil|Term 1|Chemistry Volume 1': gd('1rTqMSG006EbBr3VJS70Cdkc9HOq2Emk_'),
+      '12|English|Term 1|Chemistry Volume 1': gd('1KWtBVDVWbnYk3DQN4iDXmz0A7vulrVm0'),
+      '12|Tamil|Term 1|Chemistry Volume 2': gd('1JF-l39S7d9zsml5n32oGmGFku2Id4MbR'),
+      '12|English|Term 1|Chemistry Volume 2': gd('1xgADsJ_eEO70BYhE2UHtLtYlL1H18Mfv'),
+      '12|Tamil|Term 1|Commerce': gd('1gYHsYiAlJwad8sZt6rhK-_K0Q3msN2hQ'),
+      '12|English|Term 1|Commerce': gd('132xHRYGirXtqGJDUmZ1ACW8SZPeie4PD'),
+      '12|Tamil|Term 1|Communicative English': gd('16Z336erK2EFOq5u3spKsk-oRkXE6Vejs'),
+      '12|English|Term 1|Communicative English': gd('16Z336erK2EFOq5u3spKsk-oRkXE6Vejs'),
+      '12|Tamil|Term 1|Computer Applications': gd('1kGcURUrshkTWOFsbvpJ-0A4jf2Xv9FZz'),
+      '12|English|Term 1|Computer Applications': gd('1kbU2Uxg6gtSh_OzH8SZ_ObEWTxkDrahk'),
+      '12|Tamil|Term 1|Computer Science': gd('1fomidm-ZE996YCP18ZENp1bsO-hkibjh'),
+      '12|English|Term 1|Computer Science': gd('1MVd5CiTqlkf47d5MVJlCuYHzuvvyzaps'),
+      '12|Tamil|Term 1|Economics': gd('19_O1kokpJiN_7CdPlA2wddNTe1Gs3kPc'),
+      '12|English|Term 1|Economics': gd('1d1qixVtbC6Jk1cAjN89RqM-CEq58KF9P'),
+      '12|Tamil|Term 1|Employability Skills': gd('18y4ey3-w7Lp8rAaMyS4ieppaQEfyKcHN'),
+      '12|English|Term 1|Employability Skills': gd('1cF_Jrbm19IoD9IjeIx0Dms33-1W1njgm'),
+      '12|Tamil|Term 1|English': gd('1AGMM_G3KdHQHyrOkoDm3WtWvNzdalTy-'),
+      '12|English|Term 1|English': gd('1AGMM_G3KdHQHyrOkoDm3WtWvNzdalTy-'),
+      '12|Tamil|Term 1|Food Service Management': gd('1rEJp20If0w7X7NxWVQ0DBSwuGsbPU3IL'),
+      '12|English|Term 1|Food Service Management': gd('1D1FQeR2SZVzskVZ-Y9Lu36hrgoF0ILMt'),
+      '12|Tamil|Term 1|General Nursing': gd('1m1vGfLkHGhPV7TukRP01Uli1yf_wELQg'),
+      '12|English|Term 1|General Nursing': gd('1kHRCeDCZSCQggtQ3EuadakKkLb8nMvfO'),
+      '12|Tamil|Term 1|Geography': gd('1JvmY3Q6aIK29Tz11Ci5iwyk72k39hY6-'),
+      '12|English|Term 1|Geography': gd('1qzoYKOvJUflR0vmeyaCAuHF1SAkI9M_k'),
+      '12|Tamil|Term 1|History': gd('1xTzHWDRSt-yrBI1OWXXfSpb7mMFhC1vj'),
+      '12|English|Term 1|History': gd('1g2bTvJ7iDUbr8BbfPLEOI-0bismofCFH'),
+      '12|Tamil|Term 1|Home Science': gd('1xK6zD147QRsF5CW2VZOJS5TIJo1oIS2x'),
+      '12|English|Term 1|Home Science': gd('1FKmRoxPmzKwsKPIYqZyDFZh94OUsMTKN'),
+      '12|Tamil|Term 1|Mathematics Volume 1': gd('1fzvsKbCtL8QoqXO7bO-VzcPEez5L4Q2c'),
+      '12|English|Term 1|Mathematics Volume 1': gd('1_auJ33Wb1pI2_DxahdqJ1poiRUh6hqvm'),
+      '12|Tamil|Term 1|Mathematics Volume 2': gd('1XdaQTr6BsERWUJNQr-yUsxr7bKnfMxtw'),
+      '12|English|Term 1|Mathematics Volume 2': gd('1EpNZmRikhWY6zsYRMnAtC4N_K6S3iB34'),
+      '12|Tamil|Term 1|Micro Biology': gd('1hB9q5VG9WDGz9dHLohakwHbr8u7jP5YF'),
+      '12|English|Term 1|Micro Biology': gd('1PgSOCuZZcvlSuyWiN02IRRJGXnJgJJ7-'),
+      '12|Tamil|Term 1|Nutrition and Dietetics': gd('1EAuhYrJSSKMHJKr5OxcKHJJeoRBe8j5e'),
+      '12|English|Term 1|Nutrition and Dietetics': gd('17594-naLW9JSeuWhel8a9PuzXE1IbWcf'),
+      '12|Tamil|Term 1|Office Management and Secretaryship & Typography and Computer Applications': gd('1bAs4BxSz7IyU7ZRVWmNNdhcWz2xdH-oJ'),
+      '12|English|Term 1|Office Management and Secretaryship & Typography and Computer Applications': gd('1SNHZEPM3w4aJCSKm4YyWcIacq00xLUy0'),
+      '12|Tamil|Term 1|Physics Volume 1': gd('14FUtTFH7mSh2JXLzITGD5B2ZQ_AV0JpN'),
+      '12|English|Term 1|Physics Volume 1': gd('1fCGFMpgWHYwnDwj1C2q7ZnKzSvuJnTpC'),
+      '12|Tamil|Term 1|Physics Volume 2': gd('1NLTmtWajs8ddggYND5vOwPdNvp2ENbj7'),
+      '12|English|Term 1|Physics Volume 2': gd('1Wym407rJT8FWOOwnwGEOLVrA0VDJmQYv'),
+      '12|Tamil|Term 1|Political Science': gd('18Gdrs13T8ZsWiGB2GA8y7EqG-0mGrj4X'),
+      '12|English|Term 1|Political Science': gd('1EA6HkTicMU9aHmqOlS1gcI4Y8V0I-TT5'),
+      '12|Tamil|Term 1|Statistics': gd('1zizunTacoY2_tS0ZDQr6GEoKF-tydVB6'),
+      '12|English|Term 1|Statistics': gd('1TAggkf6z0l1lvJ6RskYD7WBXeDqQ7ksE'),
+      '12|Tamil|Term 1|Tamil': gd('1hOWONobVmT-F5GCLiv4dRC41SY-CIs1P'),
+      '12|English|Term 1|Tamil': gd('1hOWONobVmT-F5GCLiv4dRC41SY-CIs1P'),
+      '12|Tamil|Term 1|Textiles Technology': gd('1A0J0g_9O0TcilLnr2OI09HErxciRbSni'),
+      '12|English|Term 1|Textiles Technology': gd('1Lq2xHFbBHYzQ8ELtxUYrXU-CFYUJgFvC'),
+      '12|Tamil|Term 1|Textiles and Dress Designing': gd('1ugWs5kvAPRYM_OEStR31vg1un1c1naYH'),
+      '12|English|Term 1|Textiles and Dress Designing': gd('1ZB_QWhgaxbwQAJtduDEou1l-eah7i-uR'),
+      '12|Tamil|Term 1|Zoology': gd('1wqwHobasDzct80YtalPH_ME3DIOesfgz'),
+      // ---- Standard 11 (annual, Tamil medium) ----
+      '11|Tamil|Term 1|Accountancy': gd('1fS7LbYzAbizSoxGyXJSXXfjLAlOCd7WJ'),
+      '11|English|Term 1|Accountancy': gd('1rOSwsHM5I9BA1G7kXWIQ6T13tM6kOW8O'),
+      '11|Tamil|Term 1|Advance Tamil': gd('1lETqZiNL_pgLmrxJjah8OB12qmrwrxcA'),
+      '11|English|Term 1|Advance Tamil': gd('1lETqZiNL_pgLmrxJjah8OB12qmrwrxcA'),
+      '11|Tamil|Term 1|Agricultural Science': gd('1AjG6mMKSjS4FG4MVZzEtftfxaIe2Fq50'),
+      '11|Tamil|Term 1|Auditing': gd('1B3zvNRA-n10gSBEWLmyAaUCNrM4KoNRs'),
+      '11|Tamil|Term 1|Basic Automobile Engineering': gd('1EqqmcOIxWZ2WjblUOhtaWGlwiFbC6EtW'),
+      '11|English|Term 1|Basic Automobile Engineering': gd('1niI7ltC6nPjqlOUPuR0LSqmHPvgPnt_g'),
+      '11|Tamil|Term 1|Basic Civil Engineering': gd('1FKKkcEQ-WD63_c_nkpvPpR-37E07B8xR'),
+      '11|English|Term 1|Basic Civil Engineering': gd('1et7mdrpdU_Soeg_CXJrxtTLY-vEGlsPG'),
+      '11|Tamil|Term 1|Basic Electrical Engineering': gd('1P9LYovhPYmcFhtDXBOnnJM2077ujQRZ1'),
+      '11|English|Term 1|Basic Electrical Engineering': gd('1ZF5J_w-7bwDKUznar4zodQuHCSd7e7rI'),
+      '11|Tamil|Term 1|Basic Electronics Engineering': gd('1-3Q9tXTmuMyBeHWsaQFOLpUnHaHUVYYF'),
+      '11|English|Term 1|Basic Electronics Engineering': gd('1r_MwzIW_07vEMl5d-jBMfC2-LC-h8fQ9'),
+      '11|Tamil|Term 1|Basic Mechanical Engineering': gd('1v0IjljTP0yjPNpG7pfn9dIfiBQS6mLAi'),
+      '11|English|Term 1|Basic Mechanical Engineering': gd('1zO5de1qyBKvvkoY1JsLaeco8qvYYAhLI'),
+      '11|Tamil|Term 1|Bio Botany': gd('1WhrlxgNcm4gHSx3hZ1fLH7amLFj6bL6y'),
+      '11|English|Term 1|Bio Botany': gd('1wAJv0eB6m7qWWINKnWqxXFrlkLgL9PGH'),
+      '11|Tamil|Term 1|Bio Chemistry': gd('1YSRY_qnGeVW7BHkoZSlAiyV3JR6QHd_h'),
+      '11|English|Term 1|Bio Chemistry': gd('1yjh8SbFtOIM-HZad-23C3D2WEOS5mwxG'),
+      '11|Tamil|Term 1|Bio Zoology': gd('1ydfb1nRWwL_RtRQjA4oM3isLdk7V8Cq-'),
+      '11|English|Term 1|Bio Zoology': gd('1gaw03pij4IWDLPAh_i1edEVjFtjItj2R'),
+      '11|Tamil|Term 1|Botany Volume 1': gd('1PWhHAuDQ1wKk-pFrCCBKhQxNnoz4uPZ5'),
+      '11|English|Term 1|Botany Volume 1': gd('1aWx73BIByaSLTvfmDKxu9I46-JDu_1ST'),
+      '11|Tamil|Term 1|Business Mathematics and Statistics': gd('1OQJBpbPlUPWkKFjnHad0UTgs1p6IdPXy'),
+      '11|English|Term 1|Business Mathematics and Statistics': gd('1DTxo0gHsJ_zUlktD2vfO9cSNOXC11pAQ'),
+      '11|Tamil|Term 1|Chemistry Volume 1': gd('1E-uNMxAkhjmqT6WxZlYZ9nWuw40wwZBJ'),
+      '11|English|Term 1|Chemistry Volume 1': gd('1Jk3r4naN2lepCZWCEfVkwKJqRQVyRpmP'),
+      '11|Tamil|Term 1|Chemistry Volume 2': gd('1RhqNvf0-9gr5F6CPv55Gg53kUIqR-hWp'),
+      '11|English|Term 1|Chemistry Volume 2': gd('1TYM3G81puqOPLPgo5-k7FWgy3GaF8bAF'),
+      '11|Tamil|Term 1|Commerce': gd('1bZvLkuRsE-qSMbKkKKm-nejBKBPTZfyS'),
+      '11|English|Term 1|Commerce': gd('1RBIAEgk7pN9a6yVo_VskTTe0OyN3i9fN'),
+      '11|Tamil|Term 1|Communicative English': gd('1b7PHrUL7VwMGqnLQdeqf11CCl7ac7Amr'),
+      '11|English|Term 1|Communicative English': gd('1phb6UaPmzaN_zu0pQs4L-pHkHxhdO6ka'),
+      '11|Tamil|Term 1|Computer Applications': gd('1NA9zy2bU4uX4YA9BQ8TjJTayYrfAk4i7'),
+      '11|English|Term 1|Computer Applications': gd('1Ri6AIy3ZeWLE9cVm1qSBLMr6BKmRnEnl'),
+      '11|Tamil|Term 1|Computer Science': gd('13yzsz9M9cRjARYH0KSkWehMluZDqu5Qo'),
+      '11|English|Term 1|Computer Science': gd('1lRlshw8ztG8uoo6JgEtua7lbB73CP4sc'),
+      '11|Tamil|Term 1|Economics': gd('1k7A2SMULxhsIEH7Wu0c4HKYKhVGIo6DC'),
+      '11|English|Term 1|Economics': gd('1Hk0C9Z4dz0DeAkDTiFv1WXiL33u4naw0'),
+      '11|Tamil|Term 1|Employability Skills': gd('1Q4W_AUMzrXOyWIoRUHblFnmcTaIJ15xH'),
+      '11|English|Term 1|Employability Skills': gd('1QbIQvTJi41Dbksirg0t3K0pDeyJx28nl'),
+      '11|Tamil|Term 1|English': gd('1hqgnwsBQs52Lbwg_9nEwlEBpt_wVmaLH'),
+      '11|English|Term 1|English': gd('1hqgnwsBQs52Lbwg_9nEwlEBpt_wVmaLH'),
+      '11|Tamil|Term 1|Food Service Management': gd('1TzuyJVgCyU6UOi_QXEvlevJROSAJRjRN'),
+      '11|English|Term 1|Food Service Management': gd('1fEer-MeZ3MRBkz_hRasz8sW62Ws4Khh7'),
+      '11|Tamil|Term 1|General Nursing': gd('1HExC3PSqyG77-5qkHs6Hzh-u6qRAL_S9'),
+      '11|English|Term 1|General Nursing': gd('1LyP4ZlcRAfFds88vrJfaqMhW5tyK1bXy'),
+      '11|Tamil|Term 1|Geography': gd('1fXOw8QblfLUe1y1oaag8I16985Mqyefc'),
+      '11|English|Term 1|Geography': gd('1hIujaw9i073QWwEaHkqW2l3bIpI68GmU'),
+      '11|Tamil|Term 1|History': gd('1Q5yFFyNyDpnqlludG5bDvfUB5l5snRkg'),
+      '11|English|Term 1|History': gd('1Y--xODHY7nysfJQjx3NqHobMP37NdehE'),
+      '11|Tamil|Term 1|Home Science': gd('11noHC8etaiBBfRyN1C6jz1-QU-dHGQQK'),
+      '11|English|Term 1|Home Science': gd('1Gf99ipz6XwbwvsFU0xw-5x_8Of9yD3Pe'),
+      '11|Tamil|Term 1|Mathematics Volume 1': gd('1GMWimYfgDs59fCNkV3pNiLTPt4eDa48A'),
+      '11|English|Term 1|Mathematics Volume 1': gd('12u6WLVsxzxvSRUa6KlaQz4vi8cxwZ6xS'),
+      '11|Tamil|Term 1|Mathematics Volume 2': gd('1o4KgsRPqhKSsJ4vgJeeY_lyTgNeHDMIU'),
+      '11|English|Term 1|Mathematics Volume 2': gd('1untv9Niccely-Gbu81onCZVS2TyCp45D'),
+      '11|Tamil|Term 1|Micro Biology': gd('1L4bJ5hfVDGrdazAvnR5tMdb2fa5t7FNF'),
+      '11|English|Term 1|Micro Biology': gd('1X5fUQEseG3PgIIOGlaIt45ZJvFZ7sUvh'),
+      '11|Tamil|Term 1|Nutrition and Dietetics': gd('1J4GEySF6sihtG5ItBlfwbv7NgG-ctq-N'),
+      '11|English|Term 1|Nutrition and Dietetics': gd('1q3RvYMk_-m8GJjk6WJztr7S287F_cfnv'),
+      '11|Tamil|Term 1|Office Management and Secretaryship & Typography and Computer Applications': gd('16fYZFzhz2LGMUanYMJ42xxw08lPugUbw'),
+      '11|English|Term 1|Office Management and Secretaryship & Typography and Computer Applications': gd('1C8Dh5nMp6g1vPJMp_77ZiiKPlsJcioTn'),
+      '11|Tamil|Term 1|Physics Volume 1': gd('1AbZJV35jGduoQoVHoXnKzIstFRqHMUGv'),
+      '11|English|Term 1|Physics Volume 1': gd('1gPm6SqSPzqqSYPtr7p1hb8H8liJfzyzI'),
+      '11|Tamil|Term 1|Physics Volume 2': gd('1UOqpYez_8C4LwDqlHyB-Gr7t6bM_HTG-'),
+      '11|English|Term 1|Physics Volume 2': gd('1t18PLQjnmz3LbyHv6KcvCVaApRGZozWQ'),
+      '11|Tamil|Term 1|Political Science': gd('1gxhGnM6_N-nW3n-aa2RuPuXxYnlM0Hpm'),
+      '11|English|Term 1|Political Science': gd('1993cjCjZxOZEWRfxQJom2S83Jpp0yhwQ'),
+      '11|Tamil|Term 1|Statistics': gd('1UO0Nd5630sOb3ip4YpnvoYpim1KYc9f0'),
+      '11|English|Term 1|Statistics': gd('1d_Uy170w7gx_BdRWLpYCcVu5269Fagdr'),
+      '11|Tamil|Term 1|Tamil': gd('1CY9YKyWkqPyjZD2cMYnm9muKg4j9DKmm'),
+      '11|English|Term 1|Tamil': gd('1CY9YKyWkqPyjZD2cMYnm9muKg4j9DKmm'),
+      '11|Tamil|Term 1|Textiles Technology': gd('1WmPpRV29fsgf-8V20ScrxHJkTC_VRg5P'),
+      '11|English|Term 1|Textiles and Dress Designing': gd('1mF87eWhSr6B34f3GYHj3NONs9yJY3xi7'),
+      '11|Tamil|Term 1|Textiles and Dress Designing': gd('1ZastaNcDZXQGm1zOZ0md9pKhuWePG4Jl'),
+      '11|Tamil|Term 1|Zoology': gd('1vUlm-LD0AQMPG3AKpxURDk08sAFbONSE'),
+      '11|English|Term 1|Zoology': gd('1Db2qI5sKoco8fgTIk_j2PSsrph6CF1kZ'),
+      // ---- Standard 4 · Term 1 ----
+      '4|Tamil|Term 1|Tamil': gd('1uM46CSgwVEpW-jvH1XBA9812tN0E77nc'),
+      '4|English|Term 1|Tamil': gd('1uM46CSgwVEpW-jvH1XBA9812tN0E77nc'),
+      '4|Tamil|Term 1|English': gd('1RM1AK5USUpuMu_iB4gldWjZMVIljkuYX'),
+      '4|English|Term 1|English': gd('1RM1AK5USUpuMu_iB4gldWjZMVIljkuYX'),
+      '4|Tamil|Term 1|Mathematics': gd('15AzbJbNv2s89yYqCb7LSHRff_WK_l8ZI'),
+      '4|Tamil|Term 1|Science': gd('1U_-WH8xmbUhJy5uGvSZ77qvoDcqUd8bu'),
+      '4|Tamil|Term 1|Social Science': gd('1HUpwNwrHVoUazDmJMFjAQ-dCr_M0Ivzy'),
+      '4|English|Term 1|Mathematics': gd('1tTZHJ1d8bqg9-JOTv1YgeJ6U77el_KXX'),
+      '4|English|Term 1|Science': gd('1BsI5kdBsOXoh64A3D6qwLn8e5xFlhaWa'),
+      '4|English|Term 1|Social Science': gd('1TuQbfnp2xgkJWNega0erv9YfuWAKUmrr'),
+      '4|Tamil|Term 2|Tamil': gd('1ZDv8phmlCo8Vz3S1esNJHDsABz0Znzm-'),
+      '4|English|Term 2|Tamil': gd('1ZDv8phmlCo8Vz3S1esNJHDsABz0Znzm-'),
+      '4|Tamil|Term 2|English': gd('17lJPaTKm01dfUEWosuD_ACBIhbWvXzbn'),
+      '4|English|Term 2|English': gd('17lJPaTKm01dfUEWosuD_ACBIhbWvXzbn'),
+      '4|Tamil|Term 2|Mathematics': gd('1tAvt_-gAkKojcQJ72LVIRhtqgRiN58Kz'),
+      '4|Tamil|Term 2|Science': gd('1RMIHZYVHqMhzmZ3HttUgXqeDH2lteyg1'),
+      '4|Tamil|Term 2|Social Science': gd('1nJNWr8wFFZqnwS9jGIKREjtg5oK9hPUC'),
+      '4|English|Term 2|Mathematics': gd('1291e19osrfWMNLjhLAGQJY5IegYcYoQj'),
+      '4|English|Term 2|Science': gd('1XN-pWnga86fTlTjzA3D6RSmJTjfalKdQ'),
+      '4|English|Term 2|Social Science': gd('1uqN4eYGpwuFnI7bDvWhj_cf2sPBspH36'),
+      '4|Tamil|Term 3|Tamil': gd('1bwrlCy5shJJXLeq2V9zAXltFBniGtOMp'),
+      '4|English|Term 3|Tamil': gd('1bwrlCy5shJJXLeq2V9zAXltFBniGtOMp'),
+      '4|Tamil|Term 3|English': gd('1Z2V3Oe77XR5kgdN7oHgf3PzIRDPk3rmY'),
+      '4|English|Term 3|English': gd('1Z2V3Oe77XR5kgdN7oHgf3PzIRDPk3rmY'),
+      '4|Tamil|Term 3|Mathematics': gd('14eC_GbY0vxpAwBgPXyyGioPy2mz-0y6p'),
+      '4|Tamil|Term 3|Science': gd('1nULfOqj5oxl2zWlljI_i_0XhdLLiPTQe'),
+      '4|Tamil|Term 3|Social Science': gd('14KuqFkK2WTu3lfqx4-eksHB6jTCYQlqd'),
+      '4|English|Term 3|Mathematics': gd('19bAVTFQrJWDYZAI_aED_hs3piOhZAGse'),
+      '4|English|Term 3|Science': gd('1MVeyFccxobcUYJjG4gzGlwz-wTyOJOoo'),
+      '4|English|Term 3|Social Science': gd('1wjF8oHyFTkqqUDm5Iscf5vU4OIzuOFkR'),
+      // ---- Standard 3 · Term 1 ----
+      '3|Tamil|Term 1|Tamil': gd('1lil8trjT3FVBwxUmouuxzFHBUuFIjrN2'),
+      '3|English|Term 1|Tamil': gd('1lil8trjT3FVBwxUmouuxzFHBUuFIjrN2'),
+      '3|Tamil|Term 1|English': gd('1EcS2727IxXJGsipcvs3bXhBh9Oqhr-TK'),
+      '3|English|Term 1|English': gd('1EcS2727IxXJGsipcvs3bXhBh9Oqhr-TK'),
+      '3|Tamil|Term 1|Mathematics': gd('1eYYJoLIrIIcLwL9G0W0FJhtPRcQrtZkp'),
+      '3|Tamil|Term 1|Science': gd('1AeGJewvgKp4v3R5dvLUeHS1UDUxd-zVZ'),
+      '3|English|Term 1|Science': gd('1S_Q_tmrgCB3MR4EnktP-_m1Fehbb7gTi'),
+      '3|Tamil|Term 1|Social Science': gd('1z-_sDJzjNKPlo7deoTi6qeWcUzIeFiBU'),
+      '3|English|Term 1|Mathematics': gd('1vTtm88cCjaCQnIQD7W4oax2b0Y4msWLt'),
+      '3|English|Term 1|Social Science': gd('1O9SykGg6iepuYz3HKxETHyyvLKhQmBCu'),
+      '3|Tamil|Term 2|Tamil': gd('1pLg9eZpGwGJllePApnogyF29buigtEh8'),
+      '3|English|Term 2|Tamil': gd('1pLg9eZpGwGJllePApnogyF29buigtEh8'),
+      '3|Tamil|Term 2|English': gd('1qOCs09K2ap5caLEJccxcS1UDAWDbxF8J'),
+      '3|English|Term 2|English': gd('1qOCs09K2ap5caLEJccxcS1UDAWDbxF8J'),
+      '3|English|Term 2|Mathematics': gd('1SyTjOsJ8jnqe_sygsFkNbPrs4qAHX9oc'),
+      '3|English|Term 2|Science': gd('1-eJMoXdixBPf1qOfK4AgIL_Q8lfongj0'),
+      '3|English|Term 2|Social Science': gd('1HhX0Wi_64EDwwXYsabOsSlL4JK5AOguh'),
+      '3|Tamil|Term 3|Tamil': gd('1087HwJFVe72KaA62MonVV3pBn9jxoS8N'),
+      '3|English|Term 3|Tamil': gd('1087HwJFVe72KaA62MonVV3pBn9jxoS8N'),
+      '3|Tamil|Term 3|English': gd('1kuRA35dVKCvL1Sb2GGKzbfc50CGSgQZ8'),
+      '3|English|Term 3|English': gd('1kuRA35dVKCvL1Sb2GGKzbfc50CGSgQZ8'),
+      '3|Tamil|Term 3|Mathematics': gd('1jJmtjg_bLHH9y0Uq6d_2Nvu4aU4EqPcy'),
+      '3|Tamil|Term 3|Science': gd('1Lg0ezrr7loGSiDy8ip6lHy6tWI12n2wR'),
+      '3|Tamil|Term 3|Social Science': gd('1sCbcIer9HcQH_Xou-5CXN6UHjFt20a8E'),
+      '3|English|Term 3|Mathematics': gd('1Rbxgkmde7aifGDkkERunGkbQFfcz9FQ2'),
+      '3|English|Term 3|Science': gd('10cJIVLSzIyXKjZD98v2l5dzkZW1aOIs8'),
+      '3|English|Term 3|Social Science': gd('1-TXia3T53g3rOjdrinleuBE4HOtGW9ea'),
+      '3|Tamil|Term 2|Mathematics': gd('17E_3qUPIl-t5VoEje3zFJb9RladKW3P7'),
+      '3|Tamil|Term 2|Science': gd('1zKAgySSvhxMS8zgbobzpfXzSyiEKWJPL'),
+      '3|Tamil|Term 2|Social Science': gd('1o89tbrirJpsh2WGAfLlEeJXGKO684kh8'),
+      // ---- Standard 2 · Term 1 ----
+      '2|Tamil|Term 1|Tamil': gd('1yo9_2NeU0rTTzfht0hbWoqM8OhKfsVuA'),
+      '2|English|Term 1|Tamil': gd('1yo9_2NeU0rTTzfht0hbWoqM8OhKfsVuA'),
+      '2|Tamil|Term 1|English': gd('1A7sOPIR3sy3aMRdBPgu3kUvohylc5P5p'),
+      '2|English|Term 1|English': gd('1A7sOPIR3sy3aMRdBPgu3kUvohylc5P5p'),
+      '2|Tamil|Term 1|Mathematics': gd('1inzzJ3RWHi7QgpkfnhQnDibHISig-iWp'),
+      '2|Tamil|Term 1|Environmental Science': gd('17G2PKosZEObQaGLwPXwt7o7i0IlNawup'),
+      '2|English|Term 1|Mathematics': gd('1f0fa2OrfeWwU3gjFWRR4wf5n4TexpROV'),
+      '2|English|Term 1|Environmental Science': gd('1wEDy7imJFbY4QZsfkVXiySN20vHnYv9F'),
+      '2|Tamil|Term 2|Tamil': gd('16tqEnthTRk1ZBNd5GAG7zncAjaC6TIVt'),
+      '2|English|Term 2|Tamil': gd('16tqEnthTRk1ZBNd5GAG7zncAjaC6TIVt'),
+      '2|Tamil|Term 2|English': gd('1VKMy3aNQT1EdFz7mB3Auelrl5kP6XqCB'),
+      '2|English|Term 2|English': gd('1VKMy3aNQT1EdFz7mB3Auelrl5kP6XqCB'),
+      '2|Tamil|Term 2|Mathematics': gd('1sGoh9olCObw5SLMQ5X2jgrvkckAc2V7g'),
+      '2|Tamil|Term 2|Environmental Science': gd('1hmIKncEWlKN9y_YzREMhto7sZRC2Xd0h'),
+      '2|English|Term 2|Mathematics': gd('1_n8XXh-LLEQFUnaOTg68eaSQXqKEf8H2'),
+      '2|English|Term 2|Environmental Science': gd('1qcaH3R4E7E5llu6SbEHjqYuvo6TczxMV'),
+      '2|Tamil|Term 3|Tamil': gd('1LsZipqDOKGhMYYC4zgGWOinaWZGQ7kAw'),
+      '2|English|Term 3|Tamil': gd('1LsZipqDOKGhMYYC4zgGWOinaWZGQ7kAw'),
+      '2|Tamil|Term 3|English': gd('1Qc1XCDJmPyLGAWADHkY6o_APOPjjEElu'),
+      '2|English|Term 3|English': gd('1Qc1XCDJmPyLGAWADHkY6o_APOPjjEElu'),
+      '2|Tamil|Term 3|Mathematics': gd('1sGoh9olCObw5SLMQ5X2jgrvkckAc2V7g'),
+      '2|Tamil|Term 3|Environmental Science': gd('1I0qKN0V_z6ajU757COaxf9q4q8T2UoRQ'),
+      '2|English|Term 3|Mathematics': gd('1vYd7muMEDBp-1e2tWi_4-XGG87dOmbsx'),
+      '2|English|Term 3|Environmental Science': gd('1bWUxaZvLBdqB3GGzUFAVyhOCIe8ao9RE'),
+      // ---- Standard 1 · Tamil medium ----
+      '1|Tamil|Term 1|Tamil': gd('1trZDDzg8UAHeruqEuL21uhX8G79lD7Te'),
+      '1|Tamil|Term 1|English': gd('1_m9cxlpt_hReyEqLymwkElAxdXpJp_4V'),
+      '1|Tamil|Term 1|Mathematics': gd('1dcVQrXW15RQerVqaBTG3I2ivtEGuNsVt'),
+      '1|Tamil|Term 1|Environmental Science': gd('1gVr25_UXrqQtq_bpDqsp-JLpMuxF-PDW'),
+      '1|Tamil|Term 2|Tamil': gd('1NRmAYrIKQzcAQujr1D8Z0wX9YRAaxj6l'),
+      '1|Tamil|Term 2|English': gd('1PhZfYehaUoC3faqWP40yreJurmsxWbOT'),
+      '1|Tamil|Term 2|Mathematics': gd('1QqKJXN3LXz-LkMC8uGiHYL3XR8BvwrPt'),
+      '1|Tamil|Term 2|Environmental Science': gd('18DXUL_T4m4vvtYernUxiiV8AgY20Zc2c'),
+      '1|Tamil|Term 3|Tamil': gd('1ODPhioB-XBwGqkjL7TQj0_WlXvmyem3h'),
+      '1|Tamil|Term 3|English': gd('1M4e_8luoXCf0Wujx-apAr4HG17F2x0v9'),
+      '1|Tamil|Term 3|Mathematics': gd('1-cNA2sV92tk_RissO4pBZBp7-fJIJBNN'),
+      '1|Tamil|Term 3|Environmental Science': gd('1fLOKMyzqJWigNv0-IAUDpN9sTBjSu0UN'),
+      // ---- Standard 1 · English medium ----
+      '1|English|Term 1|Tamil': gd('1trZDDzg8UAHeruqEuL21uhX8G79lD7Te'),
+      '1|English|Term 1|English': gd('1_m9cxlpt_hReyEqLymwkElAxdXpJp_4V'),
+      '1|English|Term 1|Mathematics': gd('1WwGYYUvOJ6We3aYQWQsXXaWcO7DuwiEM'),
+      '1|English|Term 1|Environmental Science': gd('1UofaoJEiCp2MYqQoki_vmN8-nYipsqKk'),
+      '1|English|Term 2|Tamil': gd('1NRmAYrIKQzcAQujr1D8Z0wX9YRAaxj6l'),
+      '1|English|Term 2|English': gd('1PhZfYehaUoC3faqWP40yreJurmsxWbOT'),
+      '1|English|Term 2|Mathematics': gd('1lY0X3j-a2ojQgjmvMJXyBbEbJn0iCUfp'),
+      '1|English|Term 2|Environmental Science': gd('1-vndcnXUymTZzod44wDsvz2G89Ep2VyT'),
+      '1|English|Term 3|Tamil': gd('1ODPhioB-XBwGqkjL7TQj0_WlXvmyem3h'),
+      '1|English|Term 3|English': gd('1M4e_8luoXCf0Wujx-apAr4HG17F2x0v9'),
+      '1|English|Term 3|Mathematics': gd('1FL1scNnEUOB86Obbn8FFw6pLmoQzpZ1Y'),
+      '1|English|Term 3|Environmental Science': gd('1hrN60doih5msK4tLqXRA7SzQyAJu2v6i'),
+    };
+    let ebookResults = [];
+    if (s.std){
+      const subs = SUBJECTS_BY_STD[s.std] || UPPER;
+      const q = (s.search || '').trim().toLowerCase();
+      ebookResults = subs
+        .filter(sub => !q || sub.toLowerCase().includes(q) || s.std.includes(q))
+        .map(sub => {
+          const file = EB_LINKS[s.std + '|' + s.medium + '|' + s.term + '|' + sub];
+          return { subject:sub, std:s.std, medium:s.medium, term:s.term, size:'PDF', file:file || '', avail:!!file, pending:!file };
+        });
+    }
+    const hasEbooks = !!s.std && ebookResults.length > 0;
+    const noEbooks = !!s.std && ebookResults.length === 0;
+
+    // toggle filter panel + hint visibility imperatively-safe via classes on next tick
+    requestAnimationFrame(() => {
+      const f = document.getElementById('eb-filters'); const hint = document.getElementById('eb-hint');
+      if (f) f.classList.toggle('open', !!s.std);
+      if (hint) hint.style.display = s.std ? 'none' : 'block';
+    });
+
+    return {
+      openNews, closeNews, stopProp,
+      navLinks: NAV.map((it,i) => ({ label:it.label, href:it.href, cls: i===3 ? 'msn-link msn-active' : 'msn-link', ariaCurrent: i===3 ? 'page' : 'false' })),
+      toggleDrawer: () => { const r = this._root(); if (!r) return; const open = !r.classList.contains('msn-open'); r.classList.toggle('msn-open', open); this._setToggle(open); },
+      closeDrawer: () => this._close(),
+      jumps: [
+        { id:'ebooks', anchor:'#ebooks', label:'E-Books' },
+        { id:'study-materials', anchor:'#study-materials', label:'Study Materials' },
+        { id:'academic-calendar', anchor:'#academic-calendar', label:'Academic Calendar' },
+        { id:'fee-structure', anchor:'#fee-structure', label:'Fee Structure' },
+        { id:'news-events', anchor:'#news-events', label:'News & Events' },
+      ],
+
+      smClasses: [{ val:'', label:'All' }].concat(CLASSES.map(c => ({ val:c, label:'Class '+c }))).map(o => ({ ...o, cls: chip((s.smClass||'') === o.val) })),
+      smSubjects: [{ val:'', label:'All' }].concat(SUBJECTS.map(x => ({ val:x, label:x }))).map(o => ({ ...o, cls: chip((s.smSubject||'') === o.val) })),
+      filterSM: (e) => { const kind = e.currentTarget.getAttribute('data-kind'); const val = e.currentTarget.getAttribute('data-val'); this.setState(kind === 'class' ? { smClass:val } : { smSubject:val }); requestAnimationFrame(() => this._applySM()); },
+      studyMaterials: SM,
+
+      calDates: [
+        { event:'Academic year begins', when:'Jun 2026' },
+        { event:'First-term examinations', when:'Sep 2026' },
+        { event:'Half-yearly examinations', when:'Dec 2026' },
+        { event:'Parent to Teacher Meeting (PTM)', when:'Jan 2027' },
+        { event:'Annual examinations', when:'Apr 2027' },
+      ],
+      circulars: [
+        { date:'12 Aug 2026', title:'Independence Day Celebration, Schedule', note:'Assembly and cultural programme, 15 Aug, 8:30 AM.' },
+        { date:'02 Aug 2026', title:'First-Term Examination Timetable', note:'Detailed subject-wise schedule for all classes.' },
+        { date:'20 Jul 2026', title:'Revised School Bus Route, Punnam Area', note:'Effective from 25 Jul 2026.' },
+        { date:'10 Jun 2026', title:'Reopening & Book Distribution Notice', note:'Classes resume; textbook distribution details inside.' },
+      ],
+      news: [
+        { date:'03 Sep 2026', category:'Sports', img:'assets/news/athletina-sports.jpeg', title:'ATHLETINA 2K26 · 3rd Annual Sports Day', excerpt:'Thursday, 10:01 AM onwards at the school ground. Track & field events, march past, and prize distribution.' },
+        { date:'25 Aug 2026', category:'Talent Fest', img:'assets/news/thiran-talent-fest.jpeg', title:'THIRAN 26 · State-Level Talent Fest', excerpt:'Our students take part in the inter-school talent fest at M. Kumarasamy College of Engineering, Karur.' },
+        { date:'23 Aug 2026', category:'Community', img:'assets/news/eye-camp.jpeg', title:'Free Eye Screening Camp', excerpt:'Sunday, 8:00 AM to 1:00 PM on campus, with Karur Host Lions and Madurai Aravind Eye Hospital.' },
+        { date:'11 Aug 2026', category:'Awareness', img:'assets/news/anti-drug-pledge.jpeg', title:'The Mass Anti-Drug Pledge 2026', excerpt:'10:00 AM at the Smart Class Forum. Students pledge for a drug-free Tamil Nadu.' },
+        { date:'10 Aug 2026', category:'Health', img:'assets/news/deworming-day.jpeg', title:'National Deworming Day', excerpt:'On-campus deworming drive with health talks, \u201cHealthy Children, Bright Future.\u201d Nutrition, growth and stronger immunity for every child.' },
+        { date:'08 Aug 2026', category:'Tour', img:'assets/news/educational-tour.jpeg', title:'Educational Tour to Coimbatore', excerpt:'Saturday, departure 7:30 AM, return 5:30 PM. Science Centre, Traffic Park and Semmozhi Poonga.' },
+        { date:'01 Aug 2026', category:'STEM', img:'assets/news/robotics-bootcamp.jpeg', title:'One-Day Robotics Boot Camp 2026', excerpt:'10:00 AM to 4:00 PM in the Smart Class for Classes 3 to 9. Robotics, AI and innovation.' },
+        { date:'31 Jul 2026', category:'Events', img:'assets/news/kg-ptm.jpeg', title:'KG Parent-Teacher Meeting (LKG & UKG)', excerpt:'Thursday, 11:30 AM at the Meeting Hall, with the "Recognise Your Child by Their Eyes" activity.' },
+        { date:'15 Jul 2026', category:'Announcement', img:'assets/news/edutube-launch.jpeg', title:'Morning Star EduTube · YouTube Channel Launch', excerpt:'Wednesday, 10:31 AM. Our official channel goes live, Learn, Inspire, Achieve.' },
+        { date:'10 Jul 2026', category:'KG', img:'assets/news/toys-day.jpeg', title:'Toys Day Celebration', excerpt:'Friday, 11:30 AM for KG classes. A day of teddy hugs, games and joy.' },
+        { date:'25 Jun 2026', category:'Events', img:'assets/news/paytm-meet.jpeg', title:'P.A.Y.T.M. 2K26 · Parents & You Together Meet', excerpt:'Thursday. Hall-wise parent interaction, principal\u2019s vision, and class PTMs.' },
+        { date:'19 Jun 2026', category:'Wellness', img:'assets/news/june-festa-yoga.jpeg', title:'June Festa 2K26 · International Yoga Day', excerpt:'10:00 AM to 11:30 AM. Mass yoga, action songs and a healthy-habits pledge.' },
+        { date:'16 Jun 2026', category:'Literacy', img:'assets/news/reading-movement.jpeg', title:'Reading Movement Launch', excerpt:'Our school reading movement begins, storytelling and library reading in a natural setting to grow a lifelong love of books.' },
+        { date:'05 Jun 2026', category:'Eco', img:'assets/news/world-environment-day.jpeg', title:'World Environment Day & Eco Club Inaugural', excerpt:'Friday on campus. Tree plantation, green pledge and student presentations.' },
+        { date:'04 Jun 2026', category:'Events', img:'assets/news/school-reopening.jpeg', title:'School Reopening & Facility Inauguration', excerpt:'Thursday, 9:30 AM. Grand launch of AY 2026-2027 with new Library, Computer Lab and Yoga Room.' },
+      ],
+
+      standards: Array.from({length:10}, (_,i) => { const n = String(i+1); return { n, tag: STD_TAGS[n] || 'Std', cls: s.std === n ? 'stdtile active' : 'stdtile', pressed: s.std === n ? 'true' : 'false' }; }),
+      mediums: ['Tamil','English'].map(m => ({ val:m, label:m, cls: chip(s.medium === m) })),
+      terms: (Number(s.std) >= 8 ? ['Term 1'] : ['Term 1','Term 2','Term 3']).map(t => ({ val:t, label:t, cls: chip(s.term === t) })),
+      selectStd: (e) => { const n = e.currentTarget.getAttribute('data-std'); const next = s.std === n ? null : n; const upd = { std: next }; if (Number(next) >= 8) upd.term = 'Term 1'; this.setState(upd); this._fadeResults(); },
+      selectMedium: (e) => { this.setState({ medium: e.currentTarget.getAttribute('data-med') }); this._fadeResults(); },
+      selectTerm: (e) => { this.setState({ term: e.currentTarget.getAttribute('data-term') }); this._fadeResults(); },
+      searchEbooks: (e) => { this.setState({ search: e.target.value }); this._fadeResults(); },
+      ebookResults, hasEbooks, noEbooks,
+
+      feeRows: [
+        { cls:'LKG', book:'3,000', t1:'7,000', t2:'4,500', t3:'3,500', total:'18,000' },
+        { cls:'UKG', book:'3,000', t1:'7,500', t2:'5,000', t3:'3,500', total:'19,000' },
+        { cls:'I', book:'3,500', t1:'9,000', t2:'6,000', t3:'4,500', total:'23,000' },
+        { cls:'II', book:'3,500', t1:'9,500', t2:'6,000', t3:'5,000', total:'24,000' },
+        { cls:'III', book:'4,000', t1:'10,000', t2:'6,000', t3:'5,000', total:'25,000' },
+        { cls:'IV', book:'4,000', t1:'10,500', t2:'6,500', t3:'5,000', total:'26,000' },
+        { cls:'V', book:'4,000', t1:'11,000', t2:'6,500', t3:'5,500', total:'27,000' },
+        { cls:'VI', book:'4,500', t1:'11,500', t2:'7,500', t3:'6,000', total:'29,500' },
+        { cls:'VII', book:'4,500', t1:'12,000', t2:'8,000', t3:'6,000', total:'30,500' },
+        { cls:'VIII', book:'5,000', t1:'12,500', t2:'8,000', t3:'6,000', total:'31,500' },
+        { cls:'IX', book:'5,000', t1:'13,000', t2:'8,500', t3:'6,500', total:'33,000' },
+        { cls:'X', book:'5,000', t1:'14,000', t2:'9,000', t3:'7,000', total:'35,000' },
+      ],
+      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      resources: [{ label:'Academic Calendar', href:'#academic-calendar' },{ label:'Downloads (Fees, Forms)', href:'#study-materials' },{ label:'News & Events', href:'#news-events' },{ label:'E-Books', href:'#ebooks' }],
+    };
+  }
+}
+</script>
+</body>
+</html>
