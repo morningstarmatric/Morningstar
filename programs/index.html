@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Our Programs — Morning Star Matriculation School</title>
-<link rel="icon" href="assets/logo.jpeg">
+<link rel="icon" href="/assets/logo.jpeg">
+<link rel="canonical" href="https://morningstarmatric.com/programs/">
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -506,10 +507,10 @@ html,body{overflow-x:clip}
 <a href="#top" class="skip-link">Skip to main content</a>
 <header class="msn-header">
   <div class="msn-bar">
-    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
-      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+    <a href="/" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="/assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
       <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
-      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <img src="/assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
       <span style="display:flex;flex-direction:column;line-height:1.08">
         <span style="font-family:'Spectral',Georgia,serif;font-weight:700;font-size:24px;line-height:1;letter-spacing:-.012em;color:var(--laurel-900,#22350a);font-feature-settings:'liga','kern'">Morning Star</span>
         <span style="display:flex;align-items:center;gap:8px;margin-top:5px;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--laurel-700,#425f12)">Matriculation School<span aria-hidden="true" style="width:4px;height:4px;border-radius:50%;background:#e8b53a;flex:0 0 4px"></span><span style="letter-spacing:.2em;color:var(--ink-500,#63664f)">Karur</span></span>
@@ -522,7 +523,7 @@ html,body{overflow-x:clip}
           <a href="{{ link.href }}" class="{{ link.cls }}" aria-current="{{ link.ariaCurrent }}">{{ link.label }}</a>
         </sc-for>
       </nav>
-      <a href="admission.html" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
+      <a href="/admission/" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
     </div>
     <button id="msn-toggle" type="button" class="msn-toggle" onClick="{{ toggleDrawer }}" aria-label="Open menu" aria-expanded="false" aria-controls="msn-drawer">
       <span class="msn-line"></span><span class="msn-line"></span><span class="msn-line"></span>
@@ -540,7 +541,7 @@ html,body{overflow-x:clip}
       <a href="{{ link.href }}" class="msn-dlink" onClick="{{ closeDrawer }}">{{ link.label }} <span aria-hidden="true" style="color:var(--laurel-400,#8fbf45);font-size:15px">→</span></a>
     </sc-for>
   </nav>
-  <a href="admission.html" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
+  <a href="/admission/" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
 </aside>
 
 <main id="top">
@@ -727,7 +728,7 @@ html,body{overflow-x:clip}
     <div class="ft-grid grid" style="grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <img src="/assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
           <span style="display:flex;flex-direction:column;line-height:1.1">
             <span style="font-family:'Spectral',serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span>
             <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span>
@@ -930,11 +931,11 @@ class Component extends DCLogic {
       users: () => svg([p('M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2'), c(9,7,4), p('M22 21v-2a4 4 0 0 0-3-3.87'), p('M16 3.13a4 4 0 0 1 0 7.75')]),
     };
     const NAV = [
-      { label:'Home', href:'index.html' },
-      { label:'About Us', href:'about.html' },
-      { label:'Our Programs', href:'programs.html' },
-      { label:'Resources', href:'resources.html' },
-      { label:'Contact', href:'contact.html' },
+      { label:'Home', href:'/' },
+      { label:'About Us', href:'/about/' },
+      { label:'Our Programs', href:'/programs/' },
+      { label:'Resources', href:'/resources/' },
+      { label:'Contact', href:'/contact/' },
     ];
     return {
       navLinks: NAV.map((it,i) => ({ label:it.label, href:it.href, cls: i===2 ? 'msn-link msn-active' : 'msn-link', ariaCurrent: i===2 ? 'page' : 'false' })),
@@ -959,7 +960,7 @@ class Component extends DCLogic {
         { glyph:icons.clipboard(), no:'03', title:'Continuous assessment, not just exam-based evaluation', desc:'Regular, low-pressure check-ins track real understanding, not only exam-day performance.' },
         { glyph:icons.users(), no:'04', title:'Personal attention through manageable class sizes', desc:'Smaller classes let teachers know, guide and support every single child individually.' },
       ],
-      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
       resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'Gallery', 'FAQs'],
     };
   }

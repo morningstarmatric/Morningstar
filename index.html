@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Morning Star Matriculation School — Karur</title>
-<link rel="icon" href="assets/logo.jpeg">
+<link rel="icon" href="/assets/logo.jpeg">
+<link rel="canonical" href="https://morningstarmatric.com/">
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -661,10 +662,10 @@ html,body{overflow-x:clip}
 <!-- NAV -->
 <header class="msn-header">
   <div class="msn-bar">
-    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
-      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+    <a href="/" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="/assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
       <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
-      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <img src="/assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
       <span style="display:flex;flex-direction:column;line-height:1.08">
         <span style="font-family:'Spectral',Georgia,serif;font-weight:700;font-size:24px;line-height:1;letter-spacing:-.012em;color:var(--laurel-900,#22350a);font-feature-settings:'liga','kern'">Morning Star</span>
         <span style="display:flex;align-items:center;gap:8px;margin-top:5px;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--laurel-700,#425f12)">Matriculation School<span aria-hidden="true" style="width:4px;height:4px;border-radius:50%;background:#e8b53a;flex:0 0 4px"></span><span style="letter-spacing:.2em;color:var(--ink-500,#63664f)">Karur</span></span>
@@ -677,7 +678,7 @@ html,body{overflow-x:clip}
           <a href="{{ link.href }}" class="{{ link.cls }}" aria-current="{{ link.ariaCurrent }}">{{ link.label }}</a>
         </sc-for>
       </nav>
-      <a href="admission.html" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
+      <a href="/admission/" class="btn btn-cta" style="padding:11px 22px;font-size:14.5px">Admission <span aria-hidden="true">→</span></a>
     </div>
     <button id="msn-toggle" type="button" class="msn-toggle" onClick="{{ toggleDrawer }}" aria-label="Open menu" aria-expanded="false" aria-controls="msn-drawer">
       <span class="msn-line"></span><span class="msn-line"></span><span class="msn-line"></span>
@@ -695,7 +696,7 @@ html,body{overflow-x:clip}
       <a href="{{ link.href }}" class="msn-dlink" onClick="{{ closeDrawer }}">{{ link.label }} <span aria-hidden="true" style="color:var(--laurel-400,#8fbf45);font-size:15px">→</span></a>
     </sc-for>
   </nav>
-  <a href="admission.html" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
+  <a href="/admission/" class="btn btn-cta" style="margin-top:22px;padding:16px" onClick="{{ closeDrawer }}">Admission <span aria-hidden="true">→</span></a>
 </aside>
 
 <main id="top">
@@ -708,7 +709,7 @@ html,body{overflow-x:clip}
       <h1 class="hero-h1">Where every child's journey begins with confidence.</h1>
       <p class="hero-sub">A nurturing K-10 environment in Karur that blends academic excellence with joyful, values-driven learning.</p>
       <div class="hero-cta" style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;margin-top:34px">
-        <a href="admission.html" class="btn btn-cta">Apply for Admission <span aria-hidden="true">→</span></a>
+        <a href="/admission/" class="btn btn-cta">Apply for Admission <span aria-hidden="true">→</span></a>
         <span style="display:inline-flex;align-items:center;gap:8px;font-weight:700;font-size:14px;letter-spacing:.03em;color:#fff;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);padding:10px 18px;border-radius:999px">KG to 10th</span>
       </div>
       <div class="stat-row" style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:46px;border-top:1px solid rgba(255,255,255,.14)">
@@ -721,7 +722,7 @@ html,body{overflow-x:clip}
       </div>
     </div>
     <div class="hero-figure">
-      <img class="hero-photo" src="assets/gallery/campus-gate.png" alt="Morning Star Matriculation School campus" style="object-fit:cover;display:block" loading="eager">
+      <img class="hero-photo" src="/assets/gallery/campus-gate.png" alt="Morning Star Matriculation School campus" style="object-fit:cover;display:block" loading="eager">
     </div>
   </div>
 </section>
@@ -729,13 +730,13 @@ html,body{overflow-x:clip}
 <!-- 2. ABOUT -->
 <section class="sec" id="about">
   <div class="wrap about-grid" style="display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(32px,5vw,64px);align-items:center">
-    <img src="assets/gallery/campus-building.png" alt="Morning Star school campus" style="width:100%;height:clamp(300px,38vw,420px);border-radius:18px;object-fit:cover;display:block;box-shadow:0 2px 8px rgba(34,53,10,.06)" loading="lazy">
+    <img src="/assets/gallery/campus-building.png" alt="Morning Star school campus" style="width:100%;height:clamp(300px,38vw,420px);border-radius:18px;object-fit:cover;display:block;box-shadow:0 2px 8px rgba(34,53,10,.06)" loading="lazy">
     <div>
       <p class="eyebrow">Welcome</p>
       <h2 class="h2">Welcome to Morning Star Matriculation School</h2>
       <p class="lead" style="margin-bottom:16px">For decades, Morning Star Matriculation School has been shaping young minds in Karur through a balanced blend of strong academics, values, and holistic development.</p>
       <p class="lead">We believe every child deserves an environment where curiosity is encouraged, confidence is built, and character is formed. Guided by our motto, <em style="font-family:'Spectral',Georgia,serif;color:var(--laurel-800,#31490e)">Love <span style="color:var(--star-500,#de2c12)">·</span> Education <span style="color:var(--star-500,#de2c12)">·</span> Service</em>.</p>
-      <a href="about.html" class="morelink" style="margin-top:22px">Read our full story <span aria-hidden="true">→</span></a>
+      <a href="/about/" class="morelink" style="margin-top:22px">Read our full story <span aria-hidden="true">→</span></a>
     </div>
   </div>
 </section>
@@ -754,7 +755,7 @@ html,body{overflow-x:clip}
           <div class="{{ wbFlipCls }}"><div class="wb-body"><div class="wb-rn">{{ pC.num }}</div><p class="wb-kick">Reason {{ pC.num }}</p><h3>{{ pC.title }}</h3><p class="wb-tx">{{ pC.detail }}</p></div></div>
           <span class="wb-foot">{{ wbLabel }}</span>
         </div>
-        <div class="{{ wbCoverCls }}" onClick="{{ wbOpen }}"><div class="wb-face front"><span class="band" aria-hidden="true"></span><div class="wb-crest" aria-hidden="true"><img src="assets/crest-full.png" alt=""></div><p class="wb-ceyebrow">Morning Star · Karur</p><h2 class="wb-ctitle">Why<br>Morning Star</h2><div class="wb-crule" aria-hidden="true"></div><p class="wb-csub">TEN REASONS TO JOIN OUR FAMILY</p><p class="wb-hint">Click to open the book →</p></div><div class="wb-face back" aria-hidden="true"><span class="band"></span></div></div>
+        <div class="{{ wbCoverCls }}" onClick="{{ wbOpen }}"><div class="wb-face front"><span class="band" aria-hidden="true"></span><div class="wb-crest" aria-hidden="true"><img src="/assets/crest-full.png" alt=""></div><p class="wb-ceyebrow">Morning Star · Karur</p><h2 class="wb-ctitle">Why<br>Morning Star</h2><div class="wb-crule" aria-hidden="true"></div><p class="wb-csub">TEN REASONS TO JOIN OUR FAMILY</p><p class="wb-hint">Click to open the book →</p></div><div class="wb-face back" aria-hidden="true"><span class="band"></span></div></div>
       </div>
       <div class="wb-nav">
         <button type="button" class="wb-btn" onClick="{{ wbPrev }}" aria-label="Previous pages"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
@@ -789,7 +790,7 @@ html,body{overflow-x:clip}
           </div>
           <div class="prog-side">
             <span class="prog-grade2">{{ p.grades }}</span>
-            <a href="programs.html" class="morelink">Learn More <span aria-hidden="true">→</span></a>
+            <a href="/programs/" class="morelink">Learn More <span aria-hidden="true">→</span></a>
           </div>
         </article>
       </sc-for>
@@ -827,10 +828,10 @@ html,body{overflow-x:clip}
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-bottom:40px" class="ach-showcase">
       <figure style="margin:0;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(34,53,10,.14);background:var(--stone-100,#f0f2ea)">
-        <img src="assets/achievements/trophies-cabinet.jpg" alt="Awards won by Morning Star students including Best School Award, Tamil Nadu State Yogasana Championship memento and district-level trophies" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover" loading="lazy">
+        <img src="/assets/achievements/trophies-cabinet.jpg" alt="Awards won by Morning Star students including Best School Award, Tamil Nadu State Yogasana Championship memento and district-level trophies" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover" loading="lazy">
       </figure>
       <figure style="margin:0;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(34,53,10,.14);background:var(--stone-100,#f0f2ea)">
-        <img src="assets/achievements/athletina-trophies.jpg" alt="ATHLETINA 2K26 Overall Championship and March Past Winners trophies alongside the Best School Award" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover" loading="lazy">
+        <img src="/assets/achievements/athletina-trophies.jpg" alt="ATHLETINA 2K26 Overall Championship and March Past Winners trophies alongside the Best School Award" style="display:block;width:100%;aspect-ratio:16/10;object-fit:cover" loading="lazy">
       </figure>
     </div>
 
@@ -906,8 +907,8 @@ html,body{overflow-x:clip}
     <h2 class="h2" style="color:#fff;font-size:clamp(32px,4vw,52px)">Join the Morning Star family today</h2>
     <p class="lead" style="color:var(--laurel-200,#cfe5ae);margin:0 auto 32px">Admissions are open for the academic year. Give your child the start they deserve.</p>
     <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap">
-      <a href="admission.html" class="btn btn-cta">Apply Now <span aria-hidden="true">→</span></a>
-      <a href="contact.html" class="btn btn-ghost-light">Contact Us</a>
+      <a href="/admission/" class="btn btn-cta">Apply Now <span aria-hidden="true">→</span></a>
+      <a href="/contact/" class="btn btn-ghost-light">Contact Us</a>
     </div>
   </div>
 </section>
@@ -919,7 +920,7 @@ html,body{overflow-x:clip}
     <div class="ft-grid" style="display:grid;grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
       <div class="ft-col">
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <img src="/assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
           <span style="display:flex;flex-direction:column;line-height:1.1">
             <span style="font-family:'Spectral',Georgia,serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span>
             <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span>
@@ -969,7 +970,7 @@ html,body{overflow-x:clip}
 class Component extends DCLogic {
   componentDidMount(){
     // Preload + decode every book photo up front so page turns never wait on an image.
-    this._bookImgs = ['classroom','drawing-class','chess-class','computer-lab','library','outdoor-studies','yoga-class','independence-day','playground','karate-class'].map(n => { const im = new Image(); im.decoding = 'sync'; im.src = 'assets/gallery/book/'+n+'.jpg'; if (im.decode) im.decode().catch(()=>{}); return im; });
+    this._bookImgs = ['classroom','drawing-class','chess-class','computer-lab','library','outdoor-studies','yoga-class','independence-day','playground','karate-class'].map(n => { const im = new Image(); im.decoding = 'sync'; im.src = '/assets/gallery/book/'+n+'.jpg'; if (im.decode) im.decode().catch(()=>{}); return im; });
     this._scroll = () => { const r = document.getElementById('msn-root'); if (r) r.classList.toggle('msn-scrolled', window.scrollY > 8); };
     this._key = (e) => { if (e.key === 'Escape'){ this._close(); this._closeLb(); } };
     window.addEventListener('scroll', this._scroll, { passive:true });
@@ -1102,11 +1103,11 @@ class Component extends DCLogic {
     };
     const TOUR_VIDEO = 'https://drive.google.com/file/d/1Rf-TIQDm4S5ECpok4Nu_PaTIqFVBVFcR/preview';
     const NAV = [
-      { label:'Home', href:'index.html' },
-      { label:'About Us', href:'about.html' },
-      { label:'Our Programs', href:'programs.html' },
-      { label:'Resources', href:'resources.html' },
-      { label:'Contact', href:'contact.html' },
+      { label:'Home', href:'/' },
+      { label:'About Us', href:'/about/' },
+      { label:'Our Programs', href:'/programs/' },
+      { label:'Resources', href:'/resources/' },
+      { label:'Contact', href:'/contact/' },
     ];
     const WHY = [
       ['Quality Education at an Affordable Cost','Affordable Cost','Comprehensive education at a reasonable fee, so families can give their children a strong foundation without an excessive financial burden.'],
@@ -1120,7 +1121,7 @@ class Component extends DCLogic {
       ['A Student-Centred School','Student-Centred','A place where students are heard, encouraged, supported and challenged, so every child feels this is their school.'],
       ['Building the Future, Not Just Exams','Future-Ready','Our goal is not simply high scores, but young people who face the world with knowledge, confidence, character and competence.'],
     ];
-    const WHY_IMG = ['classroom','drawing-class','chess-class','computer-lab','library','outdoor-studies','yoga-class','independence-day','playground','karate-class'].map(n => 'assets/gallery/book/'+n+'.jpg');
+    const WHY_IMG = ['classroom','drawing-class','chess-class','computer-lab','library','outdoor-studies','yoga-class','independence-day','playground','karate-class'].map(n => '/assets/gallery/book/'+n+'.jpg');
     const _wa = this.state.whyActive || 0;
     const _pad = n => String(n+1).padStart(2,'0');
     const _sp = this.state.bookSpread || 0;
@@ -1145,7 +1146,7 @@ class Component extends DCLogic {
       openLightbox: (e) => { this._lbReturn = e.currentTarget; const cap = e.currentTarget.getAttribute('data-cap') || 'Photo'; const vid = e.currentTarget.getAttribute('data-video'); const src = e.currentTarget.getAttribute('data-img') || ''; const inner = document.getElementById('lb-inner'); if (inner){ inner.classList.remove('ph'); if (vid){ inner.innerHTML = '<iframe src="'+vid+'" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;border-radius:16px;background:#000"></iframe>'; } else { inner.innerHTML = src ? '<img src="'+src+'" alt="'+cap+'" style="width:100%;height:100%;object-fit:contain;border-radius:16px">' : '[ '+cap+' ]'; } } const r = this._root(); if (r) r.classList.add('lb-open'); requestAnimationFrame(() => { const btn = r && r.querySelector('.lb-close'); if (btn) btn.focus(); }); },
       openVideo: (e) => { if (e && e.preventDefault) e.preventDefault(); this._lbReturn = e && e.currentTarget; const inner = document.getElementById('lb-inner'); if (inner){ inner.classList.remove('ph'); inner.innerHTML = '<iframe src="' + TOUR_VIDEO + '" allow="autoplay; fullscreen" allowfullscreen style="width:100%;height:100%;border:0;border-radius:16px;background:#000"></iframe>'; } const r = this._root(); if (r) r.classList.add('lb-open'); requestAnimationFrame(() => { const btn = r && r.querySelector('.lb-close'); if (btn) btn.focus(); }); },
       closeLightbox: () => this._closeLb(),
-      heroImg: 'assets/gallery/campus-gate.png',
+      heroImg: '/assets/gallery/campus-gate.png',
       aboutImg: IMG.campus2,
       stop: (e) => e.stopPropagation(),
 
@@ -1200,29 +1201,29 @@ class Component extends DCLogic {
       ],
       facilities: ['Classrooms', 'Library', 'Science Labs', 'Playground & Sports', 'Auditorium', 'Transport'],
       facilitiesLoop: (() => { const base = [
-        { name:'Chess Class', img:'assets/gallery/chess-class.png' },
-        { name:'Karate Class', img:'assets/gallery/karate-class.png' },
-        { name:'Yoga', img:'assets/gallery/yoga-class.png' },
-        { name:'Drawing', img:'assets/gallery/drawing-class.png' },
-        { name:'Classrooms', img:'assets/gallery/classroom.png' },
-        { name:'Library', img:'assets/gallery/library.png' },
-        { name:'Computer Labs', img:'assets/gallery/computer-lab.png' },
-        { name:'Playground & Sports', img:'assets/gallery/playground.png' },
-        { name:'Auditorium', img:'assets/gallery/auditorium.png' },
-        { name:'Transport', img:'assets/gallery/transport.png' },
+        { name:'Chess Class', img:'/assets/gallery/chess-class.png' },
+        { name:'Karate Class', img:'/assets/gallery/karate-class.png' },
+        { name:'Yoga', img:'/assets/gallery/yoga-class.png' },
+        { name:'Drawing', img:'/assets/gallery/drawing-class.png' },
+        { name:'Classrooms', img:'/assets/gallery/classroom.png' },
+        { name:'Library', img:'/assets/gallery/library.png' },
+        { name:'Computer Labs', img:'/assets/gallery/computer-lab.png' },
+        { name:'Playground & Sports', img:'/assets/gallery/playground.png' },
+        { name:'Auditorium', img:'/assets/gallery/auditorium.png' },
+        { name:'Transport', img:'/assets/gallery/transport.png' },
       ]; return base.concat(base).map((f, i) => ({ name:f.name, img:f.img || '', noImg: f.img ? '' : true, ariaHidden: i >= base.length ? 'true' : 'false', tabindex: i >= base.length ? '-1' : '0' })); })(),
       ...(() => { const gal = [
         { cap:'Life at Morning Star', img:IMG.life1 },
-        { cap:'Independence Day Celebration', img:'assets/gallery/morning-drill.png' },
+        { cap:'Independence Day Celebration', img:'/assets/gallery/morning-drill.png' },
         { cap:'Anti-Drug Awareness Pledge', img:IMG.life2 },
         { cap:'Morning Drill', img:IMG.art1 },
         { cap:'Our Campus', img:IMG.art2 },
         { cap:'Classroom Activities', img:IMG.art3 },
         { cap:'Student Activities', img:IMG.art4 },
         { cap:'Learning in Action', img:IMG.art5 },
-        { cap:'Outdoor Studies', img:'assets/gallery/outdoor-studies.png' },
+        { cap:'Outdoor Studies', img:'/assets/gallery/outdoor-studies.png' },
       ]; return { galleryAll: gal, galleryHero: gal[0], gallerySide: gal.slice(1,3), galleryStrip: gal.slice(3) }; })(),
-      faculty: (() => { const P='assets/staff/'; return [
+      faculty: (() => { const P='/assets/staff/'; return [
         { name:'K. Samyathal', qual:'M.A., B.Ed.', role:'Teacher — Tamil', img:P+'samyathal.png' },
         { name:'S. Manju Parkavi', qual:'M.Sc., B.Ed.', role:'Teacher', img:P+'manju.png' },
         { name:'P. Mohanraj', qual:'M.Sc., B.Ed.', role:'Teacher', img:P+'mohanraj.png' },
@@ -1236,7 +1237,7 @@ class Component extends DCLogic {
         { name:'R. Harish Kumar', qual:'B.Com. (CA)', role:'Administrative Officer', img:'' },
         { name:'R. Manjushree', qual:'M.Sc., B.Ed.', role:'B.T. Assistant', img:P+'manjushree.png' },
       ]; })(),
-      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
       resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'FAQs'],
     };
   }

@@ -4,10 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Admission — Morning Star Matriculation School</title>
-<link rel="icon" href="assets/logo.jpeg">
+<link rel="icon" href="/assets/logo.jpeg">
+<link rel="canonical" href="https://morningstarmatric.com/admission/">
 <script src="https://unpkg.com/react@18.3.1/umd/react.production.min.js" crossorigin="anonymous"></script>
 <script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.production.min.js" crossorigin="anonymous"></script>
-<script src="support.js"></script>
+<script src="/support.js"></script>
 </head>
 <body>
 <x-dc>
@@ -420,10 +421,10 @@ html,body{overflow-x:clip}
 <div id="msn-root" class="msn-root">
 <header class="msn-header">
   <div class="msn-bar">
-    <a href="index.html" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
-      <img src="assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
+    <a href="/" aria-label="Morning Star School, home" style="display:flex;align-items:center;gap:12px;text-decoration:none;flex-shrink:0;margin-right:auto">
+      <img src="/assets/lions-logo.png" alt="Lions Clubs International" width="40" height="40" style="object-fit:contain;flex-shrink:0" loading="lazy">
       <span style="width:1px;height:38px;background:var(--stone-200,#e3e7da);flex-shrink:0"></span>
-      <img src="assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
+      <img src="/assets/logo.jpeg" alt="Morning Star Matriculation School crest" width="44" height="44" style="border-radius:50%;background:#fff;object-fit:cover;box-shadow:0 2px 8px rgba(34,53,10,.14);flex-shrink:0" loading="lazy">
       <span style="display:flex;flex-direction:column;line-height:1.08">
         <span style="font-family:'Spectral',Georgia,serif;font-weight:700;font-size:24px;line-height:1;letter-spacing:-.012em;color:var(--laurel-900,#22350a);font-feature-settings:'liga','kern'">Morning Star</span>
         <span style="display:flex;align-items:center;gap:8px;margin-top:5px;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;font-weight:700;color:var(--laurel-700,#425f12)">Matriculation School<span aria-hidden="true" style="width:4px;height:4px;border-radius:50%;background:#e8b53a;flex:0 0 4px"></span><span style="letter-spacing:.2em;color:var(--ink-500,#63664f)">Karur</span></span>
@@ -560,7 +561,7 @@ html,body{overflow-x:clip}
       </table>
     </div>
     <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:22px">
-      <a class="btn btn-cta" href="assets/docs/fee-structure-2026-27.pdf" download><span aria-hidden="true">↓</span> Download Fee Structure (PDF)</a>
+      <a class="btn btn-cta" href="/assets/docs/fee-structure-2026-27.pdf" download><span aria-hidden="true">↓</span> Download Fee Structure (PDF)</a>
       <p style="font-size:13.5px;color:var(--ink-500,#63664f);margin:0">Note: Fees are subject to revision; please confirm current fees with the admission office.</p>
     </div>
   </div>
@@ -666,7 +667,7 @@ html,body{overflow-x:clip}
     <div class="ft-grid grid" style="grid-template-columns:1.4fr 1fr 1fr 1.2fr;gap:40px">
       <div>
         <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
-          <img src="assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
+          <img src="/assets/logo.jpeg" alt="" width="46" height="46" style="border-radius:50%;background:#fff;object-fit:cover">
           <span style="display:flex;flex-direction:column;line-height:1.1"><span style="font-family:'Spectral',serif;font-weight:600;font-size:18px;color:#fff">Morning Star</span><span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--laurel-300,#b5d687)">Matriculation School</span></span>
         </div>
         <p style="font-family:'Spectral',serif;font-style:italic;font-size:15px;color:var(--laurel-200,#cfe5ae);margin:0 0 18px">Nurturing minds, building futures.</p>
@@ -731,11 +732,11 @@ class Component extends DCLogic {
 
   renderVals(){
     const NAV = [
-      { label:'Home', href:'index.html' },
-      { label:'About Us', href:'about.html' },
-      { label:'Our Programs', href:'programs.html' },
-      { label:'Resources', href:'resources.html' },
-      { label:'Contact', href:'contact.html' },
+      { label:'Home', href:'/' },
+      { label:'About Us', href:'/about/' },
+      { label:'Our Programs', href:'/programs/' },
+      { label:'Resources', href:'/resources/' },
+      { label:'Contact', href:'/contact/' },
     ];
     // Admission isn't in the 5 visible nav items, it's the CTA button; mark none active here, CTA carries it.
     return {
@@ -832,7 +833,7 @@ class Component extends DCLogic {
         { q:'Is there a sibling discount on fees?', a:'Please check with the admission office for any concessions currently offered for siblings.', btnId:'faq-b4', panelId:'faq-p4' },
         { q:'What documents are required at the time of interaction?', a:'Bring the originals and copies listed in the Documents section above, along with recent passport-size photographs.', btnId:'faq-b5', panelId:'faq-p5' },
       ],
-      quickLinks: [{ label:'Home', href:'index.html' },{ label:'About Us', href:'about.html' },{ label:'Our Programs', href:'programs.html' },{ label:'Admission', href:'admission.html' },{ label:'Contact', href:'contact.html' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
       resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'Gallery', 'FAQs'],
     };
   }
