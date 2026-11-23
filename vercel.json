@@ -1,31 +1,4 @@
 {
   "cleanUrls": true,
-  "trailingSlash": true,
-  "redirects": [
-    {
-      "source": "/about.html",
-      "destination": "/about/",
-      "permanent": true
-    },
-    {
-      "source": "/programs.html",
-      "destination": "/programs/",
-      "permanent": true
-    },
-    {
-      "source": "/admission.html",
-      "destination": "/admission/",
-      "permanent": true
-    },
-    {
-      "source": "/contact.html",
-      "destination": "/contact/",
-      "permanent": true
-    },
-    {
-      "source": "/resources.html",
-      "destination": "/resources/",
-      "permanent": true
-    }
-  ]
+  "trailingSlash": false
 }
