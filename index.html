@@ -437,15 +437,16 @@ a{color:inherit}
 @media(max-width:640px){.wbook-inner{height:clamp(420px,90vw,480px)}.wb-tx{max-width:none}}
 @media(max-width:760px){
 .wbook,.wbook.open{transform:none !important;max-width:520px}
-.wbook-inner{height:clamp(640px,168vw,760px)}
+.wbook-inner{height:clamp(700px,188vw,820px);perspective:2200px}
 .wb-stack{display:none}
-.wb-photo{right:0;left:0;top:0;bottom:auto;width:auto;height:44%;margin:0;border-radius:16px 16px 0 0}
+.wb-photo{right:0;left:0;top:0;bottom:auto;width:auto;height:50%;margin:0;border-radius:16px 16px 0 0}
 .wb-photo::after{display:none}
-.wbook.open .wb-page,.wbook.open .wb-leaf{top:calc(44% - 6px)}
+.wbook.open .wb-page,.wbook.open .wb-leaf{top:50%}
+.wb-leaf .wb-lf.back{border-radius:16px 16px 0 0 !important}
+.wb-leaf .wb-sheen{display:none}
 .wb-page,.wb-leaf .wb-lf{padding:26px 22px 40px 30px;border-radius:0 0 16px 16px}
 .wb-leaf{transform-origin:top center;border-radius:0 0 16px 16px}
-.wb-leaf.fwd{animation:wbLeafFm .8s cubic-bezier(.42,0,.25,1) both}
-.wb-leaf.bwd{animation:wbLeafBm .8s cubic-bezier(.42,0,.25,1) both}
+.wb-leaf.fwd,.wb-leaf.bwd{animation:none}
 .wb-leaf .wb-lf.back{transform:rotateX(180deg)}
 .wb-page::before,.wb-leaf .wb-lf::before{width:10px}
 .wb-rn{font-size:52px}
@@ -1049,8 +1050,10 @@ class Component extends DCLogic {
     inner.appendChild(leaf);
     // Preload the incoming photo so the leaf back and the revealed page don't flash a half-decoded image.
     if (nextSrc){ const pre = new Image(); pre.src = nextSrc; }
-    const from = dir>0 ? 'rotateY(0deg)' : 'rotateY(-180deg)';
-    const to   = dir>0 ? 'rotateY(-180deg)' : 'rotateY(0deg)';
+    const mob = window.matchMedia && window.matchMedia('(max-width:760px)').matches;
+    const ax = mob ? 'rotateX' : 'rotateY'; const end = mob ? '180deg' : '-180deg';
+    const from = dir>0 ? ax+'(0deg)' : ax+'('+end+')';
+    const to   = dir>0 ? ax+'('+end+')' : ax+'(0deg)';
     // Swap the underlying spread to the incoming page at the flip's midpoint, while the leaf is edge-on
     // (nothing readable), so the outgoing photo stays put during the first half and there is no stale-image flash.
     let swapped = false;
