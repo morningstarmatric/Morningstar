@@ -410,7 +410,7 @@ html,body{overflow-x:clip}
 .msn-header{transition:padding .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .5s ease,border-color .5s ease}
 .msn-bar{border:1px solid transparent;border-radius:0;transition:height .6s cubic-bezier(.22,.61,.36,1),max-width .7s cubic-bezier(.22,.61,.36,1),border-radius .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .6s ease,border-color .5s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
 .msn-root.msn-scrolled .msn-header{background:transparent !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border-bottom-color:transparent !important;box-shadow:none !important;padding-top:10px}
-.msn-root.msn-scrolled .msn-bar{position:relative;max-width:1240px;width:calc(100% - 24px);margin:0 auto;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.38));backdrop-filter:blur(26px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.06);border-color:rgba(255,255,255,.7);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.4),0 10px 30px -10px rgba(22,36,10,.28),0 2px 6px rgba(22,36,10,.06)}
+.msn-root.msn-scrolled .msn-bar{position:relative;max-width:1240px;width:calc(100% - 24px);margin:0 auto;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.78));backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);border-color:rgba(255,255,255,.7);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.4),0 10px 30px -10px rgba(22,36,10,.28),0 2px 6px rgba(22,36,10,.06)}
 .msn-root.msn-scrolled .msn-bar::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 140% at 12% -30%,rgba(255,255,255,.7),transparent 45%),radial-gradient(90% 120% at 100% 130%,rgba(181,214,135,.18),transparent 55%);mix-blend-mode:screen}
 .msn-root.msn-scrolled .msn-bar>*{position:relative;z-index:1}
 
@@ -688,10 +688,10 @@ class Component extends DCLogic {
     };
     const NAV = [
       { label:'Home', href:'/' },
-      { label:'About Us', href:'/about/' },
-      { label:'Our Programs', href:'/programs/' },
-      { label:'Resources', href:'/resources/' },
-      { label:'Contact', href:'/contact/' },
+      { label:'About Us', href:'/about' },
+      { label:'Our Programs', href:'/programs' },
+      { label:'Resources', href:'/resources' },
+      { label:'Contact', href:'/contact' },
     ];
     return {
       navLinks: NAV.map((it,i) => ({ label:it.label, href:it.href, cls: i===4 ? 'msn-link msn-active' : 'msn-link', ariaCurrent: i===4 ? 'page' : 'false' })),
@@ -733,7 +733,7 @@ class Component extends DCLogic {
         form.reset();
       },
 
-      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about' },{ label:'Our Programs', href:'/programs' },{ label:'Admission', href:'/admission' },{ label:'Contact', href:'/contact' }],
       resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'Gallery', 'FAQs'],
     };
   }

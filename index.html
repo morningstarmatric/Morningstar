@@ -435,6 +435,30 @@ a{color:inherit}
 .wb-dot.on{background:var(--laurel-600,#557a17);transform:scale(1.3)}
 .wb-label{font-size:13px;color:var(--laurel-700,#425f12);font-weight:600;min-width:74px;text-align:center}
 @media(max-width:640px){.wbook-inner{height:clamp(420px,90vw,480px)}.wb-tx{max-width:none}}
+@media(max-width:760px){
+.wbook,.wbook.open{transform:none !important;max-width:520px}
+.wbook-inner{height:clamp(640px,168vw,760px)}
+.wb-stack{display:none}
+.wb-photo{right:0;left:0;top:0;bottom:auto;width:auto;height:44%;margin:0;border-radius:16px 16px 0 0}
+.wb-photo::after{display:none}
+.wbook.open .wb-page,.wbook.open .wb-leaf{top:calc(44% - 6px)}
+.wb-page,.wb-leaf .wb-lf{padding:26px 22px 40px 30px;border-radius:0 0 16px 16px}
+.wb-leaf{transform-origin:top center;border-radius:0 0 16px 16px}
+.wb-leaf.fwd{animation:wbLeafFm .8s cubic-bezier(.42,0,.25,1) both}
+.wb-leaf.bwd{animation:wbLeafBm .8s cubic-bezier(.42,0,.25,1) both}
+.wb-leaf .wb-lf.back{transform:rotateX(180deg)}
+.wb-page::before,.wb-leaf .wb-lf::before{width:10px}
+.wb-rn{font-size:52px}
+.wb-page h3{font-size:24px;overflow-wrap:break-word}
+.wb-tx{font-size:15px;line-height:1.55;max-width:none}
+.wb-foot{right:22px;bottom:14px}
+.wb-nav{gap:12px;flex-wrap:wrap}
+.wb-dots{max-width:none;gap:6px;flex-wrap:nowrap}
+.wb-dot{width:7px;height:7px}
+}
+@keyframes wbLeafFm{0%{transform:rotateX(0)}100%{transform:rotateX(176deg)}}
+@keyframes wbLeafBm{0%{transform:rotateX(176deg)}100%{transform:rotateX(0)}}
+
 @media(prefers-reduced-motion:reduce){.wb-cover{transition:opacity .4s ease}.wb-cover.open{transform:none;opacity:0}.wb-flip.k0 .wb-body,.wb-flip.k1 .wb-body{animation:none}.wb-hint{animation:none}}
 .ewhy-wrap{display:grid;grid-template-columns:minmax(260px,340px) 1fr;gap:28px;align-items:stretch}
 .ewhy-nums{display:flex;flex-direction:column;gap:4px}
@@ -650,7 +674,7 @@ html,body{overflow-x:clip}
 .msn-header{transition:padding .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .5s ease,border-color .5s ease}
 .msn-bar{border:1px solid transparent;border-radius:0;transition:height .6s cubic-bezier(.22,.61,.36,1),max-width .7s cubic-bezier(.22,.61,.36,1),border-radius .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .6s ease,border-color .5s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
 .msn-root.msn-scrolled .msn-header{background:transparent !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border-bottom-color:transparent !important;box-shadow:none !important;padding-top:10px}
-.msn-root.msn-scrolled .msn-bar{position:relative;max-width:1240px;width:calc(100% - 24px);margin:0 auto;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.38));backdrop-filter:blur(26px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.06);border-color:rgba(255,255,255,.7);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.4),0 10px 30px -10px rgba(22,36,10,.28),0 2px 6px rgba(22,36,10,.06)}
+.msn-root.msn-scrolled .msn-bar{position:relative;max-width:1240px;width:calc(100% - 24px);margin:0 auto;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.78));backdrop-filter:blur(26px) saturate(180%);-webkit-backdrop-filter:blur(26px) saturate(180%);border-color:rgba(255,255,255,.7);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.4),0 10px 30px -10px rgba(22,36,10,.28),0 2px 6px rgba(22,36,10,.06)}
 .msn-root.msn-scrolled .msn-bar::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 140% at 12% -30%,rgba(255,255,255,.7),transparent 45%),radial-gradient(90% 120% at 100% 130%,rgba(181,214,135,.18),transparent 55%);mix-blend-mode:screen}
 .msn-root.msn-scrolled .msn-bar>*{position:relative;z-index:1}
 
@@ -1104,10 +1128,10 @@ class Component extends DCLogic {
     const TOUR_VIDEO = 'https://drive.google.com/file/d/1Rf-TIQDm4S5ECpok4Nu_PaTIqFVBVFcR/preview';
     const NAV = [
       { label:'Home', href:'/' },
-      { label:'About Us', href:'/about/' },
-      { label:'Our Programs', href:'/programs/' },
-      { label:'Resources', href:'/resources/' },
-      { label:'Contact', href:'/contact/' },
+      { label:'About Us', href:'/about' },
+      { label:'Our Programs', href:'/programs' },
+      { label:'Resources', href:'/resources' },
+      { label:'Contact', href:'/contact' },
     ];
     const WHY = [
       ['Quality Education at an Affordable Cost','Affordable Cost','Comprehensive education at a reasonable fee, so families can give their children a strong foundation without an excessive financial burden.'],
@@ -1237,7 +1261,7 @@ class Component extends DCLogic {
         { name:'R. Harish Kumar', qual:'B.Com. (CA)', role:'Administrative Officer', img:'' },
         { name:'R. Manjushree', qual:'M.Sc., B.Ed.', role:'B.T. Assistant', img:P+'manjushree.png' },
       ]; })(),
-      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about' },{ label:'Our Programs', href:'/programs' },{ label:'Admission', href:'/admission' },{ label:'Contact', href:'/contact' }],
       resources: ['Academic Calendar', 'Downloads (Fees, Forms)', 'News & Events', 'FAQs'],
     };
   }

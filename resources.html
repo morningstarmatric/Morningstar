@@ -323,7 +323,7 @@ a{color:inherit}
 /* Resources */
 .crumb{display:flex;align-items:center;gap:8px;font-size:13px;font-weight:600;color:var(--laurel-200,#cfe5ae)}
 .crumb a{text-decoration:none;color:var(--laurel-200,#cfe5ae)}.crumb a:hover{color:#fff}
-.pillbar{position:sticky;top:65px;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:saturate(150%) blur(10px);-webkit-backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--stone-200,#e3e7da)}
+.pillbar{position:relative;top:auto !important;z-index:90;background:rgba(255,255,255,.94);backdrop-filter:saturate(150%) blur(10px);-webkit-backdrop-filter:saturate(150%) blur(10px);border-bottom:1px solid var(--stone-200,#e3e7da)}
 .pillrow{display:flex;gap:10px;overflow-x:auto;padding:13px 0;scrollbar-width:none}
 .pillrow::-webkit-scrollbar{display:none}
 .pill{white-space:nowrap;font-size:14px;font-weight:600;padding:9px 18px;border-radius:999px;border:1.5px solid var(--stone-300,#cfd5c2);color:var(--ink-700,#3f412f);text-decoration:none;transition:background .2s ease,border-color .2s ease,color .2s ease}
@@ -396,7 +396,7 @@ a{color:inherit}
 @media(prefers-reduced-motion:reduce){.ne-card,.ne-media .ph{transition:box-shadow .3s ease}.ne-card:hover{transform:none!important}}
 .reveal.in{opacity:1;transform:none}
 @media (max-width:1000px){.g3{grid-template-columns:repeat(2,1fr)}.gal{grid-template-columns:repeat(2,1fr)}.ft-grid{grid-template-columns:1fr 1fr !important}}
-@media (max-width:960px){.msn-desktop{display:none}.msn-toggle{display:flex}.msn-bar{height:62px;padding:0 18px}.msn-root.msn-scrolled .msn-bar{height:62px}.pillbar{top:61px}}
+@media (max-width:960px){.msn-desktop{display:none}.msn-toggle{display:flex}.msn-bar{height:62px;padding:0 18px}.msn-root.msn-scrolled .msn-bar{height:62px}}
 @media (min-width:961px){.msn-overlay,.msn-drawer{display:none}}
 @media (max-width:640px){.g3{grid-template-columns:1fr}.gal{grid-template-columns:1fr}.gal .tall{grid-row:span 1}.row{flex-wrap:wrap}.row .dl{width:100%;justify-content:center}.ft-grid{grid-template-columns:1fr !important}.hero-cta{flex-direction:column !important;align-items:stretch !important}}
 @media (prefers-reduced-motion:reduce){*:not(.msn-header,.msn-bar){transition-duration:.001ms !important}.reveal{opacity:1 !important;transform:none !important}}
@@ -435,13 +435,6 @@ html,body{overflow-x:clip}
 @media (max-width:960px){.msn-bar,.msn-root.msn-scrolled .msn-bar{height:auto !important;min-height:62px;padding-top:8px;padding-bottom:8px}.msn-bar>a>span:last-child>span:first-child{font-size:19px !important}.msn-bar>a>span:last-child>span:nth-child(2){margin-top:3px !important;font-size:8.5px !important;letter-spacing:.22em !important}.msn-tag{margin-top:3px !important;padding-top:3px !important;font-size:10.5px !important}}
 @media (max-width:420px){.msn-bar>a>span:last-child>span:first-child{font-size:17px !important}.msn-bar>a>span:last-child>span:nth-child(2){font-size:7.5px !important;letter-spacing:.16em !important}.msn-tag{font-size:9.5px !important}}
 
-/* floating pop-up header on scroll */
-.msn-header{transition:padding .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .5s ease,border-color .5s ease}
-.msn-bar{border:1px solid transparent;border-radius:0;transition:height .6s cubic-bezier(.22,.61,.36,1),max-width .7s cubic-bezier(.22,.61,.36,1),border-radius .6s cubic-bezier(.22,.61,.36,1),background .5s ease,box-shadow .6s ease,border-color .5s ease,transform .6s cubic-bezier(.22,.61,.36,1)}
-.msn-root.msn-scrolled .msn-header{background:transparent !important;backdrop-filter:none !important;-webkit-backdrop-filter:none !important;border-bottom-color:transparent !important;box-shadow:none !important;padding-top:10px}
-.msn-root.msn-scrolled .msn-bar{position:relative;max-width:1240px;width:calc(100% - 24px);margin:0 auto;background:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.38));backdrop-filter:blur(26px) saturate(190%) brightness(1.06);-webkit-backdrop-filter:blur(26px) saturate(190%) brightness(1.06);border-color:rgba(255,255,255,.7);border-radius:22px;box-shadow:inset 0 1px 0 rgba(255,255,255,.95),inset 0 -1px 0 rgba(255,255,255,.25),inset 0 0 0 .5px rgba(255,255,255,.4),0 10px 30px -10px rgba(22,36,10,.28),0 2px 6px rgba(22,36,10,.06)}
-.msn-root.msn-scrolled .msn-bar::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;background:radial-gradient(120% 140% at 12% -30%,rgba(255,255,255,.7),transparent 45%),radial-gradient(90% 120% at 100% 130%,rgba(181,214,135,.18),transparent 55%);mix-blend-mode:screen}
-.msn-root.msn-scrolled .msn-bar>*{position:relative;z-index:1}
 
 </style>
 </helmet>
@@ -699,6 +692,9 @@ html,body{overflow-x:clip}
 class Component extends DCLogic {
   state = { std:null, medium:'English', term:'Term 1', search:'' };
   componentDidMount(){
+    const syncHdr = () => { const hd = document.querySelector('.msn-header'); if (hd) document.documentElement.style.setProperty('--hdr-h', Math.round(hd.getBoundingClientRect().height) + 'px'); };
+    const bindHdr = (n) => { const hd = document.querySelector('.msn-header'); if (!hd){ if ((n||0) < 60) setTimeout(() => bindHdr((n||0)+1), 60); return; } syncHdr(); if ('ResizeObserver' in window){ this._hdrRo = new ResizeObserver(syncHdr); this._hdrRo.observe(hd, { box:'border-box' }); } window.addEventListener('resize', syncHdr); };
+    bindHdr();
     this._scroll = () => { const r = document.getElementById('msn-root'); if (r) r.classList.toggle('msn-scrolled', window.scrollY > 8); };
     this._key = (e) => { if (e.key === 'Escape'){ this._close(); this._closeLb(); } };
     window.addEventListener('scroll', this._scroll, { passive:true });
@@ -776,10 +772,10 @@ class Component extends DCLogic {
     const stopProp = (e) => e.stopPropagation();
     const NAV = [
       { label:'Home', href:'/' },
-      { label:'About Us', href:'/about/' },
-      { label:'Our Programs', href:'/programs/' },
-      { label:'Resources', href:'/resources/' },
-      { label:'Contact', href:'/contact/' },
+      { label:'About Us', href:'/about' },
+      { label:'Our Programs', href:'/programs' },
+      { label:'Resources', href:'/resources' },
+      { label:'Contact', href:'/contact' },
     ];
     const SM = [
       { title:'Class 3, English Grammar Worksheet Set', cls:'3', subj:'English' },
@@ -1301,7 +1297,7 @@ class Component extends DCLogic {
         { cls:'IX', book:'5,000', t1:'13,000', t2:'8,500', t3:'6,500', total:'33,000' },
         { cls:'X', book:'5,000', t1:'14,000', t2:'9,000', t3:'7,000', total:'35,000' },
       ],
-      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about/' },{ label:'Our Programs', href:'/programs/' },{ label:'Admission', href:'/admission/' },{ label:'Contact', href:'/contact/' }],
+      quickLinks: [{ label:'Home', href:'/' },{ label:'About Us', href:'/about' },{ label:'Our Programs', href:'/programs' },{ label:'Admission', href:'/admission' },{ label:'Contact', href:'/contact' }],
       resources: [{ label:'Academic Calendar', href:'#academic-calendar' },{ label:'Downloads (Fees, Forms)', href:'#study-materials' },{ label:'News & Events', href:'#news-events' },{ label:'E-Books', href:'#ebooks' }],
     };
   }
